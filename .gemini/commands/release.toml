@@ -26,7 +26,7 @@ Follow these steps precisely:
         - Create a commit for the release: `git add CHANGELOG.md README.md && git commit -m "chore(release): version <new_version>"` (include any other files updated during the version bump).
         - Create a git tag: `git tag -a "v<new_version>" -m "Release v<new_version>"`.
         - Push the tag to the remote if it exists.
-        - Propose using `gh release create` for GitHub releases, including the changelog entry as the release notes.
+        - Attempt to use `gh release create` for GitHub releases, including the changelog entry as the release notes.
 
 Report the successful completion of the release and the new version.
 """
