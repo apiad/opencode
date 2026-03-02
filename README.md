@@ -8,6 +8,7 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge)](https://github.com/apiad/starter/graphs/commit-activity)
 
 **Transform how you work with AI agents.**
+
 *A cognitive partnership model that enforces rigorous engineering standards, strategic planning, and continuous validation.*
 
 </div>
