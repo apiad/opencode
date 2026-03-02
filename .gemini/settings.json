@@ -3,11 +3,6 @@
     "plan": true,
     "enableAgents": true
   },
-  "general": {
-    "plan": {
-      "directory": ".gemini/plans"
-    }
-  },
   "hooks": {
     "SessionStart": [
       {
