@@ -15,11 +15,11 @@ Put done tasks into the Archive.
 ---
 
 ## Active Tasks
-- [ ] Implement drafting (`/draft`) and editing (`/revise`) capabilities using specialized subagents. (See plan: plans/drafting-and-editing-capabilities.md)
 
 ---
 
  ## Archive
+- [x] Implement drafting (`/draft`) and editing (`/revise`) capabilities using specialized subagents. (2026-03-02) (See plan: plans/drafting-and-editing-capabilities.md)
 - [x] Implement a custom `/plan` command workflow and a `planner` sub-agent for repository analysis and plan generation in `plans/`. (2026-03-02)
 - [x] Implement a `/cron` command and synchronization hook with systemd user timers for scheduled tasks. (2026-03-02)
 - [x] Add the /issues command to manage project issues with GitHub CLI. (2026-02-28)
