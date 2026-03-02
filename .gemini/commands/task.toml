@@ -19,7 +19,8 @@ Mark a task as 'In Progress' and assign user to it.
 3. Update its status to `[/]` In Progress.
 4. Append the tag "(@!{{ git config user.email | cut -d'@' -f1 }})" to the task line.
 5. Ensure you don't overwrite existing assignments unless requested.
-6. Verify the file after the update and start planning mode for the task.
+6. If there is a plan for the task, use `ask_user` to confirm the next steps and start working on it.
+7. Otherwise, suggest user to invoke `/plan` command to create a plan before starting work.
 
 ### **Action: Report**
 Produce a strategic report of current tasks.

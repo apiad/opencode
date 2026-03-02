@@ -12,6 +12,8 @@ Follow these phases strictly:
 ### Phase 2: Agentic Analysis
 1. Once you have a clear understanding of the objective, invoke the `planner` subagent.
 2. Pass the fully clarified objective to the `planner`. The `planner` will scan the repository and return a detailed Markdown plan.
+3. Review the plan with the user, and apply necessary corrections or adjustments based on their feedback. Use `ask_user` to confirm any changes.
+4. Ensure the final plan is comprehensive, actionable, and aligned with the user's goals before proceeding to the next phase.
 
 ### Phase 3: Saving the Plan
 1. Ensure the `plans/` directory exists.
@@ -20,7 +22,7 @@ Follow these phases strictly:
 
 ### Phase 4: Task Synchronization (TASKS.md)
 1. Read the current `TASKS.md` file to understand the project roadmap.
-2. Use `ask_user` to ask the user if they want to link this plan to `TASKS.md`. Provide options:
+2. Use `ask_user` to ask the user if they want to link this plan to `TASKS.md`. Provide options if they are relevant:
    - "Add as a new task"
    - "Update an existing task"
    - "Skip"
