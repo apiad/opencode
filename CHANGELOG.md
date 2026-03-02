@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 2026-03-02
+
+### Added
+- Implemented `/plan` command workflow and `planner` subagent for architectural planning.
+- Added `/draft` and `/revise` commands with `reporter` and `editor` subagents for structured content generation.
+- Created an actionable project style guide in `.gemini/style-guide.md`.
+- Drafted the "The Architect in the Machine" Substack article showcasing the framework.
+
+### Changed
+- Overhauled the `/research` command into an extensible, executive-style reporting workflow with iterative updates and asset linking.
+- Refactored `/draft` and `/revise` commands to integrate step-by-step, style-driven audits.
+- Refined `/plan` and `/task` workflows.
+
 ## [0.7.0] - 2026-03-02
 
 ### Added

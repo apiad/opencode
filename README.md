@@ -43,7 +43,9 @@ The `.gemini/commands/` directory defines specialized workflows that automate ev
 *   **`/task`**: Manages the project roadmap in `TASKS.md`. Use it to `create` new tasks, `work` on existing ones (marks as In Progress), `report` on priorities, or `update` the roadmap.
 *   **`/scaffold`**: Initializes new project structures from scratch using modern, standard tooling (Python/uv, TS/npm, Rust/cargo, etc.) and sets up a compatible `makefile`.
 
-### 🧹 Phase 3: Maintenance & Documentation
+### 🧹 Phase 3: Content Generation, Maintenance & Documentation
+*   **`/draft`**: Multi-phase workflow to turn research and plans into detailed, high-quality technical documents or articles section-by-section.
+*   **`/revise`**: Uses the `editor` subagent to perform structural and linguistic audits based on the project's style guide.
 *   **`/maintenance`**: Performs a deep scan of the codebase to identify technical debt, refactoring opportunities, and areas to improve test coverage.
 *   **`/docs`**: Analyzes the codebase and journals to generate or update comprehensive project documentation in the `docs/` folder.
 *   **`/cron`**: Manages repetitive background tasks (e.g., health checks, automated reports) using **systemd user timers**.
@@ -71,6 +73,11 @@ This framework shines when you combine these commands into cohesive workflows:
 2.  **Reproduce:** Use `/issues work <id>` to research the root cause.
 3.  **Fix:** Develop the fix and validate with `make`.
 4.  **Sync:** Update the issue with the resolution details.
+
+### 3️⃣ Content Creation Workflow
+1.  **Research:** Use `/research` to gather data into an executive report.
+2.  **Draft:** Run `/draft` to build an outline and expand it into a full article.
+3.  **Revise:** Use `/revise` for step-by-step style guide-driven audits and refinements.
 
 ---
 
