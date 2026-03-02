@@ -4,31 +4,31 @@ I know, this is the probably the twentieth article you've read this week on "how
 
 But even if you don't have two minutes to spare, please check the [repository](https://github.com/apiad/starter) where all I'm going to tell you about is implemented, ready for your taking. Clone it and play with it, then if you like it, come back and read the rationale behind it.
 
-Done? Ok, here wer go.
+Done? Ok, here we go.
 
-First, yes, this is another article trying to explain to you how I use AI coding agents (especifically Gemini CLI, but the specifics don't matter) to enhance my workflows. Here are a couple of reasons why I think you might be interested---and why this article might be different to so many lookalikes out there.
+So yes, this is another article trying to explain to you how I use AI coding agents (specifically Gemini CLI, but the specifics don't matter) to enhance my workflows. Here are a couple of reasons why I think you might be interested---and why this article might be different to so many lookalikes out there.
 
-First, I'm not an enthusiastic techbro who just discovered AI. If you've read this blog before, you know I'm a longtime researcher in AI---way before LLMs were a thing---and also a self-proclamed AI anti-hypist. I'm not just over excited about this shiny new toy. I've been using generative AI since day once for everything, and I've been telling you exactly how it sucks at almost anything important since day one. Coding has been the same until very recently. So, I can tell you, the change in productivity is real, provided you are responsible and considerate.
+First, I'm not an enthusiastic techbro who just discovered AI. If you've read this blog before, you know I'm a longtime researcher in AI---way before LLMs were a thing---and also a self-proclaimed AI anti-hypist. I'm not just overexcited about this shiny new toy. I've been using generative AI since day one for everything, and I've been telling you exactly how it sucks at almost anything important since day one. Coding has been the same until very recently. I can tell you the change in productivity is real, provided you are responsible and considerate.
 
-Second, my approach to incorporating AI into my workflows is one, very careful and two, grounded in healthy skepticism. I know firsthand how these things fail, so my approach attempts to be very robust to hallucinations and context drift and all the plagues of even the most powerfull LLMs.
+Second, my approach to incorporating AI into my workflows is one, very careful and two, grounded in healthy skepticism. I know firsthand how these things fail, so my approach attempts to be very robust to hallucinations and context drift and all the plagues of even the most powerful LLMs.
 
-Third, I have a thing for systems. What I'm going to show is not just a set of hacks or clever prompts or productivity tips. It's a principled system to go from ideation to research and planning to execution at the fastest responsible speed, without sacrificing on safety or mantenability.
+Third, I have a thing for systems. What I'm going to show is not just a set of hacks or clever prompts or productivity tips. It's a principled system to go from ideation to research and planning to execution at the fastest responsible speed, without sacrificing on safety or maintainability.
 
 And fourth, I have kind of a unique position in that I'm both heavily invested into coding as well as technical writing. I'm a college professor, so I do a lot of research, writing, and editing; but I also run a small AI startup, small enough that I get to do a large part of the coding. So my system attempts to bridge these two facets---code and prose creation---with the same unified principles of careful deliberation and planning, and robust tracking of the project evolution.
 
 If you're curious already, let me start by exposing the overall principles behind this approach, and then we'll dive (not delve, but close) into the details.
 
-## Principles of Effective AI-assisted Work
+## Principles of Effective AI-Assisted Work
 
-By far the most pressing limitation of modern, top-tier LLMs for my line of work is context saturation. What I mean by this, is no matter how many tokens your model can fit (Gemini 3 claims to chug as much as 1 million tokens), when you work for a considerable amount of time on a single project, you will exhaust this context. And even if the context window isn't full, the model will quickly loose the capability to keep track of the important bits of context, and will start to deviate from your instructions and make up its own agenda. Not out of evilness but simple probabilities.
+By far the most pressing limitation of modern, top-tier LLMs for my line of work is context saturation. What I mean by this, is no matter how many tokens your model can fit (Gemini 3 claims to chug as much as 1 million tokens), when you work for a considerable amount of time on a single project, you will exhaust this context. And even if the context window isn't full, the model will quickly lose the capability to keep track of the important bits of context, and will start to deviate from your instructions and make up its own agenda. Not out of evilness but simple probabilities.
 
-The way you see this problem when using Claude Code, Gemini CLI, Codex, Copilot, or anything similar is twofold. The model will either forget midtask what is was supposed to do, but it won't simply fail. It will reinterpret the task based on its faulty, lossy, blurry viewpoint given the available context and it will do something close, but not quite what you want. Or, the model will make faulty assumptions and forget to ask relevant questions, again behaving close but not quite exactly as you intended.
+The way you see this problem when using Claude Code, Gemini CLI, Codex, Copilot, or anything similar is twofold. The model will either forget midtask what is was supposed to do, but it won't simply fail; it will reinterpret the task based on its faulty, lossy, blurry viewpoint given the available context and it will do something close, but not quite what you wanted. Or, the model will make faulty assumptions and forget to ask relevant questions, again behaving close but not quite exactly as you intended.
 
-The result is always the same, you get frustrated that you achieved 95% of what you wanted, but the remaining 5% is harder to fix than to to just try again. And what could have been a happy working session where you get important and difficult things done quickly derails into a session of arguing with an LLM trying to convince to do things the way you want.
+The result is always the same, you get frustrated that you achieved 95% of what you needed, but the remaining 5% is harder to fix than to just try again. And what could have been a happy working session where you get important and difficult things done quickly derails into a session of arguing with an LLM trying to convince it (him/her/pick your side) to do things the way you want.
 
-Baring any fundamental paradigm shifts in the near future, under the assumption that LLMs will keep working as they are, the only way to fix this is to be very conscious and careful about the context---what has been dubed context engineering---in two senses: First, do not pollute the context with unnecessary details. And second, re-inject into the context whatever is relevant for any given task, so it doesn't get forgotten.
+Barring any fundamental paradigm shifts in the near future, under the assumption that LLMs will keep working as they are, the only way to fix this is to be very conscious and careful about the context---what has been dubbed context engineering---in two senses: First, do not pollute the context with unnecessary details. And second, re-inject into the context whatever is relevant for any given task, so it doesn't get forgotten.
 
-I know, kind of contradictory, but tradeoffs are what engineering is all about. In my system, I've applied three principles to help me manage context effectively.
+I know, kind of contradictory, but tradeoffs are what engineering is all about. In my system, I've applied three principles to help me manage these tradeoffs effectively.
 
 1. The important things should be made explicit.
 2. Resist the urge to guess.
@@ -44,7 +44,8 @@ I use four sub-agents in different commands. The `planner` is the lead architect
 
 When I need external knowledge---like a library’s latest API or a specific technical specification---the `researcher` agent takes over. It scours the web to fetch relevant documentation, which it then synthesizes into granular summaries in the `research/` directory. This raw data is then handed off to the main agent to build an executive report annotated and linked to all relevant sources, again all stored already in your repository.
 
-And there are two more agents, specificaly designed for technical writing. THe `reporter` agent takes an outline, and a folder of content, and it will write section by section, a detailed account of what the outline requested.
+And there are two more agents, specifically designed for technical writing. The `reporter` agent takes an outline, and a folder of content, and it will write section by section, a detailed account of what the outline requested.
+
 Unlike a standard LLM that might provide a high-level summary, the `reporter` is trained to expand specific placeholders with deep, evidence-based paragraphs. It draws directly from your `research/` files and the project `journal/` to ensure every sentence is grounded in the project's actual state. Finally, the `editor` provides the final polish, auditing the draft for structural gaps and linguistic tics. It is grounded in a customizable style guide to make sure it always respects your style.
 
 This distributed intelligence is held together by a central nervous system of context files, as per principle one. A `journal/` directory provides a chronological record of decisions and progress, acting as a long-term memory for the project. The `plans/` directory stores the strategic intent, while a `TASKS.md` file provides a high-level overview of the project's current status. This structured environment allows the subagents to maintain a high degree of situational awareness without needing to ingest the entire repository in every turn.
@@ -91,13 +92,13 @@ Once the outline is locked, the `/draft` process initializes a skeleton file---c
 
 Because the expansion happens in granular steps, the system maintains a high level of detail that a single-shot generation would inevitably lose. The result is a first draft that is structurally sound and rich with technical depth.
 
-However, a first draft is rarely the final word. It will always sound AI-ish, and for many other reasons, it is rarely good enough. To achieve professional quality, I use the `/revise` command, which runs a a structural and linguistic audit powered by the `editor` subagent following the same style guide.
+However, a first draft is rarely the final word. It will always sound AI-ish, and for many other reasons, it is rarely good enough. To achieve professional quality, I use the `/revise` command, which runs a structural and linguistic audit powered by the `editor` subagent following the same style guide.
 
 Unlike a simple "check my writing" prompt, the `editor` performs a deep analysis of the document's flow and tone. It identifies logical gaps where more evidence might be needed and highlights awkward phrasing that could obscure my intent. And crucially, this isn't an automated "fix-all" tool; it's an interactive process. The system presents its findings and proposes specific improvements, which I can then review or approve.
 
 This collaborative refinement process ensures the final output maintains a consistent, professional voice while benefiting from the speed of the AI. By using `/revise`, I can surgically improve the text to enhance clarity and impact without losing control over the narrative.
 
-But, in any case, I always find necessary a manual review and editing after all the AI enhancements. It shouldn't be a surprise to you that this article is writen in this way, but what you're reading now is probaly 80% different to what the final `/revise` iteration gave me. There is only so much you can prompt an AI, and that final human touch is not part of it.
+But, in any case, I always find necessary a manual review and editing after all the AI enhancements. It shouldn't be a surprise to you that this article is written in this way, but what you're reading now is probably 80% different to what the final `/revise` iteration gave me. There is only so much you can prompt an AI, and that final human touch is not part of it.
 
 But that's good. This automates the first 80% or so of compiling a gazillion sources into a coherent narrative, and leaves the remaining 80% of polishing for me, which is the part I actually enjoy about writing.
 
@@ -105,7 +106,7 @@ But that's good. This automates the first 80% or so of compiling a gazillion sou
 
 But there's more. All of the above is what happens during, let's say, the work day. That's me sitting in front of the terminal, typing commands, approving stuff, fixing and redirecting, etc. Being an orchestrator.
 
-But the real magic of AI-assited development is what happens when you're not looking. How you can leave you AI assistant working through the night, compiling sources, fixing bugs and proposing pull requests, enhancing the test suite, burning tokens your behalf.
+But the real magic of AI-assisted development is what happens when you're not looking. How you can leave you AI assistant working through the night, compiling sources, fixing bugs and proposing pull requests, enhancing the test suite, burning tokens your behalf.
 
 To achieve this, I built an automation layer via the `/cron` command. The heart of this automation is the `cron.toml` file. This configuration file allows me to define scheduled tasks with a simple, declarative syntax. Each task specifies a name, an execution schedule, and a natural language prompt for the AI to execute.
 
