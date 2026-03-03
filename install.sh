@@ -5,6 +5,18 @@ set -e
 REPO_URL="https://github.com/apiad/starter.git"
 
 # --- Functions ---
+banner() {
+  echo -e "\033[1;34m"
+  echo "  ____               _       _ "
+  echo " / ___| ___ _ __ ___(_)_ __ (_)"
+  echo "| |  _ / _ \ '_ \` _ \ | '_ \| |"
+  echo "| |_| |  __/ | | | | | | | | | |"
+  echo " \____|\___|_| |_| |_|_|_| |_|_|"
+  echo -e "\033[0m"
+  echo -e "\033[1;32m   Gemini CLI Starter Scaffolding\033[0m"
+  echo "------------------------------------------"
+}
+
 error() {
   echo -e "\033[0;31m❌ Error: $1\033[0m" >&2
   exit 1
@@ -19,6 +31,8 @@ done
 
 # --- Inputs ---
 # We use /dev/tty for input because curl | bash takes over stdin
+banner
+
 echo -n "Enter project name: "
 read PROJECT_NAME < /dev/tty
 
