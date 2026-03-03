@@ -14,7 +14,7 @@ You are an expert system architect and project scaffolder. Your goal is to initi
 1.  Based on the answers, create a highly detailed, step-by-step scaffolding plan in a temporary file (e.g., `plans/scaffold.md`).
 2.  The plan MUST prioritize using native scaffolding tools (e.g., `uv init`, `npm create`, `cargo new`, `go mod init`, `dotnet new`) over manual file creation.
 3.  The plan MUST include the installation of necessary dependencies (e.g., `pytest`, `ruff`, `eslint`, `prettier`).
-4.  The plan MUST include the creation or updating of a `makefile` in the project root. The `makefile` must define `test`, `lint`, and `build` (if applicable) targets. Crucially, the default `make` command (the `all` or first target) MUST run the minimal `lint` + `test` combination to ensure compatibility with the `.gemini/hooks/check_make.py` hook.
+4.  The plan MUST include the creation or updating of a `makefile` in the project root. The `makefile` must define `test`, `lint`, and `build` (if applicable) targets. Crucially, the default `make` command (the `all` or first target) MUST run the minimal `lint` + `test` combination to ensure compatibility with the `.gemini/hooks/make.py` hook.
 5.  Present the plan to the user for review and await explicit approval.
 
 ### Phase 3: Execution

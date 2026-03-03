@@ -21,7 +21,7 @@ Follow these phases strictly:
 ### Phase 3: Interactive Revision
 1.  **Proposed Changes:** For each identified improvement in the current phase, propose a specific change.
 2.  **Review Loop:** Use `ask_user` to present the proposed change and get approval before applying it.
-3.  **Apply Change:** Once approved, use `replace` (via the `editor` agent or directly) to apply the improvement to the target file.
+3.  **Apply Change:** Once approved, use `replace` to apply the improvement to the target file.
 4.  **Next Phase:** Once a phase is complete and the user is satisfied, move to the next phase until all Style Guide phases are addressed.
 
 ### Phase 4: Finalization
