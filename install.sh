@@ -101,11 +101,4 @@ git add .
 git commit -m "Initial commit" -q
 
 echo "✅ Project $PROJECT_NAME scaffolded successfully!"
-echo "🚀 Starting Gemini CLI..."
-
-# Run the gemini CLI
-if command -v gemini >/dev/null 2>&1; then
-  exec gemini
-else
-  echo "⚠️  'gemini' command not found. Please ensure the Gemini CLI is installed and in your PATH."
-fi
+echo "🚀 Run 'gemini /onboard' to get started with your new project!"
