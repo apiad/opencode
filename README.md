@@ -34,17 +34,7 @@ This interactive script will:
 
 Once Gemini CLI is open, run `/scaffold` to begin, or `/onboard` to get an overview of the repository.
 
----
-
-## 🏗️ Alternative Installation
-
-If you prefer a manual setup:
-
-1. Clone the repo or [create a new project directly](https://github.com/apiad/starter/generate).
-2. Delete `README.md`, `CHANGELOG.md`, and `journal/*.md` to get a fresh history.
-3. Run `gemini /scaffold` to start a new project.
-
-## 📥 Integration (Existing Projects)
+### 📥 Integration (Existing Projects)
 
 To add this framework to an existing Git repository, run:
 
@@ -57,6 +47,16 @@ This script will:
 2.  **Prompt** for permission before overwriting any existing core files.
 3.  **Extract** the `.gemini/` configuration and framework files.
 4.  **Create** a first integration commit.
+
+### 🏗️ Alternative Installation
+
+If you prefer a manual setup:
+
+1. Clone the repo or [create a new project directly](https://github.com/apiad/starter/generate).
+2. Delete `README.md`, `CHANGELOG.md`, and `journal/*.md` to get a fresh history.
+3. Run `gemini /scaffold` to start a new project.
+
+---
 
 ## 🧠 The Core Philosophy
 
