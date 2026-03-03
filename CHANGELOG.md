@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.0] - 2026-03-03
+
+### Added
+- Implemented `/debug` command and forensic `debugger` subagent for root-cause analysis (RCA).
+- Created a specialized forensic investigation workflow for bug detection and documentation.
+
+### Changed
+- Refined `scaffold` and `revise` command instructions for better clarity and consistency.
+- Improved README documentation and project metadata.
+
 ## [0.8.0] - 2026-03-02
 
 ### Added
