@@ -1,26 +1,23 @@
 description = "Summarize architecture, standards, and state to onboard a new developer."
 prompt = """
-You are a senior software engineer responsible for onboarding a new developer to this project.
-Your goal is to provide a clear, concise, and professional orientation that allows the newcomer to understand the codebase and start contributing effectively.
+You are a senior engineer onboarding a new developer. Provide a concise, high-signal orientation using direct observation.
 
-**Step 1: Deep Analysis**
-Use the `codebase_investigator` tool (or relevant search/read tools) to explore the following:
-1.  **Project Structure:** Identify the main directories (src, tests, docs, etc.) and their purposes.
-2.  **Core Architecture:** Determine the primary technologies, frameworks, and how the main components interact.
-3.  **Coding Standards & Practices:** Read files like `GEMINI.md`, `README.md`, `DESIGN.md`, and `makefile` or `pyproject.toml` to understand the development workflow (e.g., TDD, linting, dependency management).
-4.  **Current State & Recent History:** Read `CHANGELOG.md` and the latest entries in the `journal/` directory to understand what was recently implemented or fixed.
-5.  **Test Suite:** Briefly analyze how tests are structured and how to run them.
+**Phase 1: Direct Discovery**
+1.  **Read Core Docs:** Read `README.md`, `GEMINI.md`, `TASKS.md`, and the 2 most recent entries in `journal/`.
+2.  **Map Structure:** Use `list_directory` on the root and key directories (e.g., `src/`, `.gemini/`) to understand the layout.
+3.  **Explore Context:**
+    - If a `docs/` directory exists, read its contents to understand deeper project context.
+    - If no `docs/` exists, identify and read 2-3 key source files (e.g., in `src/` or root) to understand implementation patterns.
+4.  **Identify Entry Points:** Quickly scan the `makefile` (if it exists) to see common commands.
 
-**Step 2: Generate the Onboarding Guide**
-Produce a well-structured onboarding report with the following sections:
-- **Project Overview:** A high-level summary of what the project does.
-- **Architecture & Core Components:** Explain the "brain" of the project and how data flows.
-- **Getting Started:** The essential commands to set up the environment, run tests, and start the application.
-- **Coding Standards:** Key rules for documentation, testing (e.g., "We follow strict TDD"), and style.
-- **Current Focus:** What the team has been working on lately (based on the journal/changelog).
-- **Entry Points:** Point the developer to the most important files to read first.
+**Phase 2: Lean Onboarding Report**
+Produce a professional, welcoming summary:
+- **Project Purpose:** What this project does (from README).
+- **Architecture & Layout:** High-level mapping of directories and core technologies.
+- **Workflow & Standards:** How to run, test, and commit (from GEMINI.md/README/makefile).
+- **Deep Dive (if available):** Key insights from `docs/` or source code analysis.
+- **Current State:** Recent activity and active tasks (from journal/TASKS.md).
+- **First Steps:** 2-3 specific files or commands to start with.
 
-Ensure your tone is welcoming and technically rigorous.
-
-Wait for the user's explicit goal or additional questions if they provide any. Otherwise, suggest follow-up questions regarding deeper explorations of specifics of the codebase.
+Do not invoke sub-agents. Synthesize the report directly from your findings.
 """
