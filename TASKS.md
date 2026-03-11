@@ -19,6 +19,8 @@ Put done tasks into the Archive.
 ---
 
  ## Archive
+- [x] Refine `/onboard` command to include documentation or source code discovery. (2026-03-11)
+- [x] Simplify `/onboard` command to use direct file analysis instead of sub-agents. (2026-03-11)
 - [x] Implement conditional journal hook enforcement based on file modification times. (2026-03-11) (See plan: plans/conditional-journal-enforcement.md)
 - [x] Implement conditional `make` hook execution based on file modification times. (2026-03-11) (See plan: plans/conditional-make-hook.md)
 - [x] Consolidate `add-gemini.sh` into a unified, non-destructive `install.sh` for setup and updates. (2026-03-11) (See plan: plans/unified-installer.md)
