@@ -32,8 +32,8 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          import:
-            - sys.path.append(".")
+          paths:
+            - "."
 
 nav:
   - Home: index.md
