@@ -19,42 +19,28 @@
 
 ## 🔥 Quick Start
 
-The fastest way to bootstrap a new project from this template is to run the following command in your terminal:
+The fastest way to bootstrap a new project or integrate the framework into an existing one is to run the following command in your terminal:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/apiad/starter/main/install.sh | bash
 ```
 
 This interactive script will:
-1.  **Prompt** for your project name and target directory.
-2.  **Clone** the template and **reset** the Git history.
-3.  **Clean** out placeholder content (`README.md`, `CHANGELOG.md`, `journal/`, etc.).
-4.  **Initialize** a fresh project structure, ready for the Gemini CLI.
-5.  **Launch** the Gemini CLI to start your first session.
+1.  **Validate** your environment (requires `git`, `node`, and a clean working tree).
+2.  **Clone** the latest framework components to a temporary location.
+3.  **Analyze** your current directory and propose a list of files to create or update.
+4.  **Prompt** for your explicit confirmation before applying any changes.
+5.  **Integrate** the `.gemini/` configuration and framework files (non-destructively).
+6.  **Commit** the changes automatically with a descriptive message.
 
-Once Gemini CLI is open, run `/scaffold` to begin, or `/onboard` to get an overview of the repository.
+Once the installation is complete, run `gemini /onboard` to get an overview of the repository and start your first session.
 
-### 📥 Integration (Existing Projects)
-
-To add this framework to an existing Git repository, run:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/apiad/starter/main/add-gemini.sh | bash
-```
-
-This script will:
-1.  **Check** for a clean working tree.
-2.  **Prompt** for permission before overwriting any existing core files.
-3.  **Extract** the `.gemini/` configuration and framework files.
-4.  **Create** a first integration commit.
-
-### 🏗️ Alternative Installation
+### 🏗️ Alternative: Manual Setup
 
 If you prefer a manual setup:
 
-1. Clone the repo or [create a new project directly](https://github.com/apiad/starter/generate).
-2. Delete `README.md`, `CHANGELOG.md`, and `journal/*.md` to get a fresh history.
-3. Run `gemini /scaffold` to start a new project.
+1. [Create a new project from this template](https://github.com/apiad/starter/generate).
+2. Follow the onboarding instructions in the generated repository.
 
 ---
 

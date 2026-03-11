@@ -19,6 +19,7 @@ Put done tasks into the Archive.
 ---
 
  ## Archive
+- [x] Consolidate `add-gemini.sh` into a unified, non-destructive `install.sh` for setup and updates. (2026-03-11) (See plan: plans/unified-installer.md)
 - [x] Implement the `install.sh` scaffolding script for new projects. (2026-03-03) (See plan: plans/install-script-scaffolding.md)
 - [x] Refactor the `/research` command to follow a more extensible, executive-style reporting workflow with iterative updates and asset linking. (2026-03-02)
 - [x] Implement drafting (`/draft`) and editing (`/revise`) capabilities using specialized subagents. (2026-03-02) (See plan: plans/drafting-and-editing-capabilities.md)

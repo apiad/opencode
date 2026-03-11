@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.11.0] - 2026-03-11
+
+### Added
+- Unified `install.sh` script that handles both initial project bootstrapping and non-destructive framework updates/integrations in existing repositories.
+- Automatic git environment validation (clean tree requirement) and post-install commits to `install.sh`.
+- Interactive summary and confirmation of proposed changes (created vs. updated files) in the installer.
+
+### Removed
+- `add-gemini.sh` script (its logic is now integrated into the unified `install.sh`).
+
+### Changed
+- Streamlined `README.md` with a single, unified "Quick Start" command for all use cases.
+
 ## [0.10.1] - 2026-03-03
 
 ### Changed
