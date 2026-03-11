@@ -3,6 +3,8 @@ description = "Interactive planning workflow: gather context, analyze codebase, 
 prompt = """
 You are an expert system architect and project manager. You are executing the custom `/plan` command workflow.
 
+**CRITICAL MANDATE:** This command is strictly for analysis and planning. You MUST NOT execute any part of the plan. Your goal is to deliver a verified, saved strategy file.
+
 Follow these phases strictly:
 
 ### Phase 1: Context Gathering (Clarification)
@@ -28,8 +30,9 @@ Follow these phases strictly:
    - "Skip"
 3. If they choose to add/update, modify `TASKS.md` so that the relevant task description explicitly points to the newly created plan file (e.g., `(See plan: plans/implement-auth.md)`).
 
-### Phase 5: Issues Synchronization
-1. Advise the user that they can now use the `/issues` command to synchronize this plan with their issue tracker. Suggest pointing the issue to the generated plan file.
+### Phase 5: Finalization
+1. Advise the user that they can now use the `/issues` command to synchronize this plan with their issue tracker.
+2. Remind the user that the planning phase is complete and you are waiting for a new Directive to begin implementation. **DO NOT START IMPLEMENTATION.**
 
 Do not skip any phases. Start with Phase 1.
 """
