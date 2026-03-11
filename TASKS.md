@@ -19,6 +19,9 @@ Put done tasks into the Archive.
 ---
 
  ## Archive
+- [x] Refine `/plan` command to strictly enforce a non-execution mandate for generated plans. (2026-03-11)
+- [x] Integrate MkDocs with Material theme and setup automatic GitHub Pages deployment via CI/CD. (2026-03-11) (See plan: plans/mkdocs-integration.md)
+- [x] Create comprehensive project documentation in `docs/` (Overview, Deployment, Design, Development). (2026-03-11)
 - [x] Refine `/onboard` command to include documentation or source code discovery. (2026-03-11)
 - [x] Simplify `/onboard` command to use direct file analysis instead of sub-agents. (2026-03-11)
 - [x] Implement conditional journal hook enforcement based on file modification times. (2026-03-11) (See plan: plans/conditional-journal-enforcement.md)
