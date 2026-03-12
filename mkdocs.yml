@@ -37,6 +37,7 @@ plugins:
 
 nav:
   - Home: index.md
+  - User Guide: user-guide.md
   - Setup & Deployment: deploy.md
   - Architecture & Design: design.md
   - Development & Contribution: develop.md
