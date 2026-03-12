@@ -22,7 +22,7 @@
 The fastest way to bootstrap a new project or integrate the framework into an existing one is to run the following command in your terminal:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/apiad/starter/main/install.sh | bash
+curl -fsSL https://apiad.github.io/starter/install.sh | bash
 ```
 
 This interactive script will:

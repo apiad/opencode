@@ -18,8 +18,10 @@ Put done tasks into the Archive.
 
 ---
 
- ## Archive
-- [x] Create comprehensive User Guide (`docs/user-guide.md`) based on "The Architect in the Machine" philosophy. (2026-03-11) (See plan: plans/user-guide-integration.md)
+  ## Archive
++- [x] Update `install.sh` to be served via GitHub Pages and update all references to use the new URL. (2026-03-11)
+ - [x] Create comprehensive User Guide (`docs/user-guide.md`) based on "The Architect in the Machine" philosophy. (2026-03-11) (See plan: plans/user-guide-integration.md)
+
 - [x] Refine `/plan` command to strictly enforce a non-execution mandate for generated plans. (2026-03-11)
 - [x] Integrate MkDocs with Material theme and setup automatic GitHub Pages deployment via CI/CD. (2026-03-11) (See plan: plans/mkdocs-integration.md)
 - [x] Create comprehensive project documentation in `docs/` (Overview, Deployment, Design, Development). (2026-03-11)

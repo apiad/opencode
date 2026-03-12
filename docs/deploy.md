@@ -7,7 +7,7 @@ Getting the **Gemini CLI Opinionated Framework** up and running is an automated,
 The fastest way to install or update the framework is to run the following command:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/apiad/starter/main/install.sh | bash
+curl -fsSL https://apiad.github.io/starter/install.sh | bash
 ```
 
 ### 1. New Project (Scaffolding)
