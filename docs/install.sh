@@ -60,44 +60,39 @@ trap 'rm -rf "$TEMP_DIR"' EXIT
 git clone --depth 1 -q "$REPO_URL" "$TEMP_DIR" || error "Failed to clone template repository."
 
 # --- Discovery ---
-FILES_TO_EXTRACT=(
-  "GEMINI.md"
-  "makefile"
-  "TASKS.md"
-  "CHANGELOG.md"
-  "README.md"
-)
-
-CONTENT_DIRS=(
-  "journal"
-  "plans"
-  "research"
-  "drafts"
-)
+CORE_FILES=("GEMINI.md")
+SCAFFOLD_FILES=("README.md" "TASKS.md" "CHANGELOG.md" "makefile")
+CONTENT_DIRS=("journal" "plans" "research" "drafts")
 
 WILL_CREATE=()
 WILL_UPDATE=()
 
-# Check .gemini directory
+# 1. Core Framework Check
 if [[ -d ".gemini" ]]; then
   WILL_UPDATE+=(".gemini/ (core framework)")
 else
   WILL_CREATE+=(".gemini/ (core framework)")
 fi
 
-# Check top-level files
-for f in "${FILES_TO_EXTRACT[@]}"; do
+for f in "${CORE_FILES[@]}"; do
   if [[ -e "$f" ]]; then
-    WILL_UPDATE+=("$f")
+    WILL_UPDATE+=("$f (core framework)")
   else
-    WILL_CREATE+=("$f")
+    WILL_CREATE+=("$f (core framework)")
   fi
 done
 
-# Check content directories
+# 2. Project Scaffolding Check
+for f in "${SCAFFOLD_FILES[@]}"; do
+  if [[ ! -e "$f" ]]; then
+    WILL_CREATE+=("$f (new scaffolding)")
+  fi
+done
+
+# 3. Content Directories Check
 for d in "${CONTENT_DIRS[@]}"; do
   if [[ ! -d "$d" ]]; then
-    WILL_CREATE+=("$d/")
+    WILL_CREATE+=("$d/ (new content directory)")
   fi
 done
 
@@ -109,7 +104,7 @@ if [[ ${#WILL_CREATE[@]} -gt 0 ]]; then
 fi
 
 if [[ ${#WILL_UPDATE[@]} -gt 0 ]]; then
-  echo -e "\033[1;34mExisting files/folders to update (framework only):\033[0m"
+  echo -e "\033[1;34mExisting files/folders to update (core framework):\033[0m"
   for f in "${WILL_UPDATE[@]}"; do echo "  ~ $f"; done
 fi
 
@@ -128,12 +123,19 @@ echo "🛠️  Applying changes..."
 mkdir -p .gemini
 cp -r "$TEMP_DIR/.gemini/." .gemini/
 
-# 2. Update Top-Level Files
-for f in "${FILES_TO_EXTRACT[@]}"; do
+# 2. Update Core Files (Always)
+for f in "${CORE_FILES[@]}"; do
   cp "$TEMP_DIR/$f" .
 done
 
-# 3. Ensure Content Directories & .gitkeep
+# 3. Create Scaffolding Files (Only if missing)
+for f in "${SCAFFOLD_FILES[@]}"; do
+  if [[ ! -f "$f" ]]; then
+    cp "$TEMP_DIR/$f" .
+  fi
+done
+
+# 4. Ensure Content Directories & .gitkeep
 for d in "${CONTENT_DIRS[@]}"; do
   mkdir -p "$d"
   if [[ -f "$TEMP_DIR/$d/.gitkeep" ]]; then
@@ -141,7 +143,7 @@ for d in "${CONTENT_DIRS[@]}"; do
   fi
 done
 
-# 4. Journal Entry
+# 5. Journal Entry
 TODAY=$(date +%Y-%m-%d)
 mkdir -p journal
 JOURNAL_FILE="journal/$TODAY.md"
