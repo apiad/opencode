@@ -9,15 +9,19 @@ This project is more than just a template; it is a structured environment that e
 The framework is built on the belief that AI is most effective when it is constrained by rigorous engineering standards and empowered by deep project context. We operate on three fundamental pillars:
 
 ### 1. Critical Cognitive Partnership
+
 The agent is mandated to challenge ideas before implementing them. It identifies technical flaws, security risks, or redundant logic, acting as a "peer reviewer" in real-time.
 
 ### 2. Strategy-First (Research -> Plan -> Execute)
+
 Every non-trivial change follows a strict, non-negotiable lifecycle. The agent first researches the domain, proposes a detailed implementation plan, obtains user approval, and only then begins writing code. This is enforced by the **TCR (Test-Commit-Revert)** protocol, ensuring a "Green-only" development path.
 
 ### 3. Validation-as-Truth
+
 The `makefile` is the ultimate source of truth for project health. Automated hooks ensure that every agent action is followed by a validation run (linting, testing, formatting) to prevent regressions.
 
 ### 4. Task Isolation (Feature Branching)
+
 All development work is strictly performed on dedicated, auto-generated feature branches. This keeps the `main` branch protected and always in a deployable state, while providing a clean, granular history for every task.
 
 ## 🚀 Quick Start
