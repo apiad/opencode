@@ -54,21 +54,33 @@ Brings order to your version history.
 Automates the deployment process.
 - **How it works:** Verifies workspace integrity (clean git tree, passing tests via `make`), analyzes commit history to propose the next version bump, drafts a `CHANGELOG.md` entry, and publishes the final tag to GitHub.
 
----
+## 🔄 A Full Feature Development Walkthrough
 
-## ✍️ The Content Creation Workflow
+A complete, principled development cycle follows the **Research -> Plan -> Execute** lifecycle.
 
-The framework is uniquely suited for writing high-quality documentation and long-form articles, built on the same cognitive foundation as the development path.
+### **Step 1: Research with `/research`**
+You are integrating a new authentication library. You start by researching the technical requirements.
+- The `researcher` subagent gathers documentation and synthesizes it into `research/auth-library-deep-dive.md`.
 
-### `/draft`
-Turns research into structured prose.
-- **How it works:** Performs a deep scan of `research/` and `plans/` to identify key themes. It collaboratively generates a Markdown outline. Once approved, the `reporter` subagent expands the outline section-by-section, drawing directly from your validated research to ensure evidence-based writing.
+### **Step 2: Strategy with `/plan`**
+Once you understand the requirements, you trigger the `/plan` command.
+- The `planner` subagent analyzes the codebase and generates `plans/implement-auth.md`, mapping out the specific architectural changes and testing strategy.
 
-### `/revise`
-Provides professional editing and polish.
-- **How it works:** Uses the `editor` subagent to perform a structural and linguistic audit based on your `.gemini/style-guide.md`. It identifies logical gaps and awkward phrasing, presenting specific improvements for you to review interactively.
+### **Step 3: Execute with `/task work`**
+The approved plan is linked to a task. You trigger the execution:
+- **Pre-flight:** The agent verifies the tree is clean on `main`.
+- **Isolation:** A `feature/auth-integration` branch is created.
+- **Loop (Red-Green-Verify):**
+    1.  Agent writes a failing `test_auth_logic.py`.
+    2.  Agent implements the minimal logic to pass.
+    3.  Agent runs `make test`. If successful, the step is committed.
+    4.  The loop repeats for every granular step.
 
----
+### **Step 4: Review & Integrate**
+After all steps pass, the agent presents the final work. Upon your approval, it merges back to `main` and cleans up the feature branch.
+
+### **Step 5: Document & Release with `/docs` & `/release`**
+Finally, use `/docs` to update the technical documentation and `/release` to publish the new version.
 
 ## ⚙️ Background Tasks & Maintenance
 

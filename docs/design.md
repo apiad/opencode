@@ -20,6 +20,10 @@ Commands define structured, multi-phase workflows that automate the development 
 - **`/research`:** A deep-dive exploration that produces exhaustive reports in the `research/` directory.
 - **`/debug`:** Activates a forensic investigation mode for root-cause analysis.
 - **`/docs`:** Analyzes the codebase and project state to update the documentation suite.
+- **`/task`:** The primary execution engine, managing `TASKS.md` and enforcing the strict TCR (Test-Commit-Revert) loop and feature branch isolation.
+
+### 🔌 Synergistic Validation
+The `/task` command works in tandem with the `make.py` hook to ensure a "no-regression" policy. While `/task` enforces testing during the Red-Green-Verify cycle, the `make.py` hook provides a final, infrastructure-level check after every turn. If any turn (manual or automated) results in broken code, the framework immediately detects it, ensuring that the repository's "last known state" is always stable.
 
 ### 3. Specialized Agents (`.gemini/agents/`)
 Instead of a single "do-it-all" AI, the framework delegates tasks to specialized sub-agents with restricted toolsets and focused personas (e.g., `planner`, `debugger`, `editor`, `reporter`). This ensures higher reliability and more consistent results.
