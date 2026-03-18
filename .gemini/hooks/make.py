@@ -117,7 +117,7 @@ def main():
                 "```\n" + error_message.strip() + "\n```\n"
                 "Fix these issues and ensure 'make' passes before continuing."
             )
-            utils.send_hook_decision("deny", reason=fail_reason, continue_flag=False)
+            utils.send_hook_decision("deny", reason=fail_reason)
         else:
             # make passed
             update_last_run_timestamp()

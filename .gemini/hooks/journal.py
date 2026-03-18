@@ -114,8 +114,7 @@ def main():
                 f"New changes detected: {', '.join(new_significant_changes[:3])}{'...' if len(new_significant_changes) > 3 else ''}.\n"
                 f"Please add or update a one-line entry to {journal_file} "
                 "describing the work you just did. Do not stop until this file is updated."
-            ),
-            continue_flag=False
+            )
         )
 
     except Exception as e:

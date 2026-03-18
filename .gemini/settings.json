@@ -76,12 +76,7 @@
             "name": "update-journal-and-changelog",
             "type": "command",
             "command": "python3 .gemini/hooks/journal.py"
-          }
-        ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
+          },
           {
             "name": "notify-user",
             "type": "command",
