@@ -3,7 +3,7 @@ set -e
 
 # --- Configuration ---
 REPO_URL="https://github.com/apiad/starter.git"
-VERSION="0.12.0"
+VERSION="0.13.0"
 
 # --- Functions ---
 banner() {

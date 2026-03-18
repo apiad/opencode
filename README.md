@@ -75,7 +75,7 @@ The `.gemini/commands/` directory defines specialized workflows that automate ev
 *   **`/draft`**: Multi-phase workflow to turn research and plans into detailed, high-quality technical documents or articles section-by-section.
 *   **`/revise`**: Uses the `editor` subagent to perform structural and linguistic audits based on the project's style guide.
 *   **`/maintenance`**: Performs a deep scan of the codebase to identify technical debt, refactoring opportunities, and areas to improve test coverage.
-*   **`/docs`**: Analyzes the codebase and journals to generate or update comprehensive project documentation in the `docs/` folder.
+*   **`/document`**: Analyzes the codebase and journals to generate or update comprehensive project documentation in the `docs/` folder.
 *   **`/cron`**: Manages repetitive background tasks (e.g., health checks, automated reports) using **systemd user timers**.
 
 ### 🚀 Phase 4: Shipping & Quality
@@ -91,7 +91,7 @@ This framework shines when you combine these commands into cohesive workflows:
 2.  **Plan:** Use `/plan` to turn requirements into a technical roadmap in `plans/`.
 3.  **Track:** Link the plan to `TASKS.md` using `/plan`'s built-in sync.
 4.  **Implement:** Use `/task work` to mark progress and begin coding.
-5.  **Refine:** Run `/docs` to ensure your changes are well-documented.
+5.  **Refine:** Run `/document` to ensure your changes are well-documented.
 6.  **Ship:** Use `/commit` for clean history and `/release` for a new version tag.
 
 ### 2️⃣ Bug Resolution Workflow

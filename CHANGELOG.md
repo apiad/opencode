@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.13.0] - 2026-03-18
+
+### Added
+- **Hypothesis-Driven Debugging:** Refactored the `/debug` command and `debugger` agent to implement a scientific, hypothesis-driven workflow. Includes status analysis, hypothesis formulation with user approval, and isolated testing in temporary `debug/hyp-*` branches.
+- **Content:** Added a new blog post draft "Revenge of the Test-Driven Nerds" to the `drafts/` directory.
+
+### Changed
+- **Command Rename:** Renamed the `.gemini/commands/docs.toml` to `.gemini/commands/document.toml` for better semantic clarity.
+- **Settings:** Removed the experimental `plan` setting from `.gemini/settings.json`.
+- **Documentation:** Enhanced installation and setup documentation with detailed project scaffolding and integration steps.
+
 ## [0.12.0] - 2026-03-16
 
 ### Added
