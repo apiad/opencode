@@ -14,13 +14,15 @@ Put done tasks into the Archive.
 
 ---
 
-## Active Tasks
+---
 
-- [/] Implement the hypothesis-driven debugging workflow for the `/debug` command and `debugger` agent. (@apiad) (See plan: plans/hypothesis-driven-debug-command.md)
+## Active Tasks
 
 ---
 
 ## Archive
+
+- [x] Implement the hypothesis-driven debugging workflow for the `/debug` command and `debugger` agent. (2026-03-18) (See plan: plans/hypothesis-driven-debug-command.md)
 
 - [x] Draft the blog article "Revenge of the Test-Driven Nerds" exploring the shift from human-driven to AI-agent-driven TCR. (2026-03-16)
 - [x] Update the core documentation suite (index, develop, design, user-guide) to incorporate the new TCR protocol and task isolation principles. (2026-03-16)
