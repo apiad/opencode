@@ -9,8 +9,16 @@ def notify_user():
     Fails gracefully if notify-send is not available.
     """
     try:
-        # Get the project name from the current directory
-        project_name = os.path.basename(os.getcwd())
+        # Get the project root from git
+        try:
+            project_root = subprocess.check_output(
+                ["git", "rev-parse", "--show-toplevel"],
+                stderr=subprocess.DEVNULL
+            ).decode().strip()
+            project_name = os.path.basename(project_root)
+        except Exception:
+            # Fallback to current directory if not in a git repo
+            project_name = os.path.basename(os.getcwd())
         
         # Determine the message based on the hook context
         message = f"Gemini CLI has finished in '{project_name}'"
