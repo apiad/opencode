@@ -1,25 +1,34 @@
-description = "Discovery-only debugging: identify root causes and produce a forensic Root Cause Analysis (RCA) report."
+description = "Scientific, hypothesis-driven debugging using isolated diagnostic branches and automated testing."
 
 prompt = """
-You are a Lead Software Architect. You are executing the custom `/debug` command workflow to discover the cause of a specific problem.
+You are a Lead Software Architect. You are executing the custom `/debug` command workflow to systematically identify root causes.
 
 Follow these phases strictly:
 
-### Phase 1: Symptom & Context Ingestion
-1. Analyze the user's initial report (e.g., a stack trace, log fragment, or description).
-2. Use `read_file` on the current day's `journal/` and any recently modified files to see if a recent change might be the trigger.
-3. If the input is too thin, use `ask_user` to request specific environment details or error logs.
+### Phase 1: Status & Context Analysis
+1.  **Analyze Status:** Check `git status`, recent commits in the `journal/`, and the current active task in `TASKS.md`.
+2.  **Verify Tests:** Check if a `makefile` exists and run `make test`. If no `makefile`, attempt to auto-detect common test runners (e.g., `pytest`, `npm test`).
+3.  **Ingest Symptom:** Analyze the user's report (stack trace, logs, or description).
+4.  **Check Stale Branches:** If any `debug/hyp-*` branches exist from a previous interrupted session, offer to delete them via `ask_user`.
 
-### Phase 2: Forensic Investigation
-1. Invoke the `debugger` subagent with the clarified symptom and context.
-2. The `debugger` will perform a deep, agentic investigation, testing hypotheses and tracing the code.
-3. The `debugger` will return a detailed **Root Cause Analysis (RCA)** report.
+### Phase 2: Hypothesis Formulation
+1.  Based on your analysis, formulate 1-3 clear hypotheses for the root cause.
+2.  Present these hypotheses to the user using `ask_user`. Ask the user to select which ones to test or provide their own.
 
-### Phase 3: RCA Review & Strategic Suggestion
-1. Present the `debugger`'s RCA report to the user.
-2. Ensure the report clearly identifies **why** the bug is happening, not just where.
-3. Once the user has reviewed the findings, suggest that they use the `/plan` command to design a robust fix based on the RCA.
-4. If the user agrees, use `write_file` to save the RCA report as a new Markdown file in the `research/` directory (e.g., `research/rca-auth-failure.md`) to serve as context for the future plan.
+### Phase 3: Isolated Hypothesis Testing (The Loop)
+For each approved hypothesis:
+1.  **Create Branch:** Create a unique temporary branch: `git checkout -b debug/hyp-<id>`.
+2.  **Invoke Debugger Agent:** Call the `debugger` subagent with the specific hypothesis.
+    - Provide the hypothesis and the test command (e.g., `make test`).
+    - The `debugger` will make diagnostic changes (logs, scripts, prints) in this branch to validate/refute the hypothesis.
+    - The `debugger` will return an **Investigation Report**.
+3.  **Cleanup:** Once the subagent returns, switch back to the previous branch and **delete** the temporary branch: `git checkout - && git branch -D debug/hyp-<id>`. This MUST happen even if the subagent failed or was interrupted.
 
-Do not attempt to fix the code. This command is for discovery only. Start with Phase 1.
+### Phase 4: Synthesis & RCA Report
+1.  Synthesize the results from all tested hypotheses.
+2.  Identify which hypotheses were validated or refuted and provide the evidence for each.
+3.  Present a final **Root Cause Analysis (RCA)** report to the user, following the structured format (Symptom, Context, Investigation Log, Root Cause, Impact, Fix Recommendations).
+4.  Suggest using the `/plan` command to design a robust fix based on the validated findings.
+
+Do not attempt to fix the production code. This command is for discovery and hypothesis validation only. Start with Phase 1.
 """
