@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.14.0] - 2026-03-18
+
+### Added
+- **Notification Hook:** Implemented a new `AfterAgent` hook (`notify.py`) that sends a desktop notification using `notify-send` and plays a system "ping" sound (via `paplay`) when the agent completes its turn.
+- **Hook Robustness:** Improved project name detection in notifications by correctly identifying the git repository root.
+
+### Changed
+- **Hook Sequencing:** Refined the `AfterAgent` hook block to be sequential, ensuring notifications only trigger if preceding validation hooks (like `make` or `journal`) return an `allow` decision.
+
 ## [0.13.0] - 2026-03-18
 
 ### Added
