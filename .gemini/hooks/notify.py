@@ -30,6 +30,23 @@ def notify_user():
             stderr=subprocess.DEVNULL,
             stdout=subprocess.DEVNULL
         )
+
+        # Try to play a notification sound
+        try:
+            # Check for common system sounds
+            sound_file = "/usr/share/sounds/freedesktop/stereo/message.oga"
+            if not os.path.exists(sound_file):
+                sound_file = "/usr/share/sounds/freedesktop/stereo/complete.oga"
+
+            # Use paplay (PulseAudio/PipeWire) if available
+            subprocess.run(
+                ["paplay", sound_file],
+                check=False,
+                stderr=subprocess.DEVNULL,
+                stdout=subprocess.DEVNULL
+            )
+        except Exception:
+            pass
     except Exception:
         # Gracefully handle cases where notify-send is not installed or fails
         pass
