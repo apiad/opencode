@@ -16,6 +16,8 @@ Put done tasks into the Archive.
 
 ## Active Tasks
 
+- [ ] Implement the hypothesis-driven debugging workflow for the `/debug` command and `debugger` agent. (See plan: plans/hypothesis-driven-debug-command.md)
+
 ---
 
 ## Archive
