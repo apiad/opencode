@@ -18,11 +18,11 @@ Put done tasks into the Archive.
 
 ## Active Tasks
 
-- [/] In Progress (@gemini-cli) Implement the new `/learn` command and specialized learning agent to automate technology exploration and skill codification. (See plan: plans/implement-learn-command.md)
-
 ---
 
 ## Archive
+
+- [x] Implement the new `/learn` command and specialized `learner` agent with a 2-layer orchestration system for technology exploration and skill codification. (2026-03-20) (See plan: plans/implement-learn-command.md)
 
 - [x] Consolidate project hooks into a single Git pre-commit hook (2026-03-20) (See plan: plans/consolidate-hooks.md)
 

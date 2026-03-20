@@ -18,5 +18,9 @@ class TestCommands(unittest.TestCase):
             self.assertGreater(len(data["description"]), 0)
             self.assertGreater(len(data["prompt"]), 0)
 
+    def test_learner_agent_exists(self):
+        path = ".gemini/agents/learner.md"
+        self.assertTrue(os.path.exists(path), f"{path} does not exist")
+
 if __name__ == "__main__":
     unittest.main()
