@@ -18,7 +18,7 @@ Put done tasks into the Archive.
 
 ## Active Tasks
 
-- [ ] Implement the new `/learn` command and specialized learning agent to automate technology exploration and skill codification. (See plan: plans/implement-learn-command.md)
+- [/] In Progress (@gemini-cli) Implement the new `/learn` command and specialized learning agent to automate technology exploration and skill codification. (See plan: plans/implement-learn-command.md)
 
 ---
 

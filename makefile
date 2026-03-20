@@ -4,6 +4,7 @@ all: test lint
 
 test:
 	@echo "Running tests..."
+	python3 -m unittest discover tests
 
 docs-serve:
 	@mkdocs serve
