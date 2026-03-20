@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.19.0] - 2026-03-20
+
+### Added
+- **Knowledge Mastering (/learn):** Introduced a new 4-phase grounded learning lifecycle (Audit, Research, Execution, Codification) to automate mastering new technologies.
+- **Learner Sub-agent:** A specialized "Grounded Learning Specialist" agent that verifies library behavior through real-world code experimentation.
+- **Skill System:** A permanent project knowledge base in `.gemini/skills/` with mandatory YAML frontmatter for autonomous agent activation.
+- **Comprehensive Documentation Update:** Integrated the `/learn` command and skill system into the framework's documentation suite.
+
+### Changed
+- **Testing Philosophy:** Updated documentation to reflect a shift toward agent-driven validation and TCR (Test-Commit-Revert) protocols instead of traditional unit tests.
+
 ## [0.18.0] - 2026-03-20
 
 ### Added
