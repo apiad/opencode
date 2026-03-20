@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.18.0] - 2026-03-20
+
+### Added
+- **Installer Boilerplate Generation:** `docs/install.sh` now generates clean, generic boilerplate for `README.md`, `CHANGELOG.md`, `TASKS.md`, and `makefile` instead of copying project-specific versions when scaffolding a new project.
+- **Scientific Debugging Documentation:** Added comprehensive documentation for the `/debug` command's scientific, hypothesis-driven workflow in `docs/design.md` and `docs/user-guide.md`.
+
+### Changed
+- **Documentation Suite Overhaul:** Major updates to the entire documentation suite (`index.md`, `deploy.md`, `design.md`, `develop.md`, `user-guide.md`) to reflect recent framework changes, including the Journal-First philosophy, TCR (Test-Commit-Revert) loop details, and safe update logic.
+
 ## [0.17.1] - 2026-03-20
 
 ### Changed
