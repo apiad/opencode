@@ -69,10 +69,6 @@ class TestPreCommitHook(unittest.TestCase):
             
         # Hook should succeed
         result = subprocess.run(["python3", "../.gemini/hooks/pre-commit.py"], capture_output=True, text=True)
-        if result.returncode != 0:
-            print(f"\nHOOK FAILED (rc={result.returncode})")
-            print(f"STDOUT: {result.stdout}")
-            print(f"STDERR: {result.stderr}")
         self.assertEqual(result.returncode, 0)
         self.assertIn("Validation passed", result.stdout)
 
@@ -114,6 +110,25 @@ class TestPreCommitHook(unittest.TestCase):
         # It might fail because make test fails (no makefile)
         # But it shouldn't fail with "Updated journal required"
         self.assertNotIn("Updated journal required", result.stdout + result.stderr)
+
+    def test_install_hooks(self):
+        # Create a dummy pre-commit script in the test repo so the symlink is not dangling
+        os.makedirs(".gemini/hooks", exist_ok=True)
+        with open(".gemini/hooks/pre-commit.py", "w") as f:
+            f.write("#!/usr/bin/env python3\npass")
+            
+        # Create a makefile with install-hooks target (the one we'll implement)
+        # For now, we'll use the real makefile from the project
+        shutil.copy("../makefile", "makefile")
+        
+        # Run make install-hooks
+        result = subprocess.run(["make", "install-hooks"], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0)
+        
+        # Check if the hook is linked
+        hook_path = ".git/hooks/pre-commit"
+        self.assertTrue(os.path.exists(hook_path))
+        self.assertTrue(os.access(hook_path, os.X_OK))
 
 if __name__ == "__main__":
     unittest.main()
