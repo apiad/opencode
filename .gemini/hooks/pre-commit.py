@@ -20,6 +20,15 @@ def main():
     if not changed_files:
         return 0
 
+    # Run make
+    print("Running validation (make test)...")
+    res = run_command("make test")
+    if res.returncode != 0:
+        print("Validation failed:")
+        print(res.stdout)
+        print(res.stderr)
+        return res.returncode
+
     # Calculate max(mtime) for all changed files (excluding .gemini/ and the journal)
     meaningful_changes = [f for f in changed_files if not f.startswith(".gemini/") and f != journal_path]
 
@@ -44,16 +53,6 @@ def main():
         print(f"Error: Updated journal required (update {journal_path} to include a summary of recent changes).")
         return 1
 
-    # Run make
-    print("Running validation (make test)...")
-    res = run_command("make test")
-    if res.returncode != 0:
-        print("Validation failed:")
-        print(res.stdout)
-        print(res.stderr)
-        return res.returncode
-
-    print("Validation passed.")
     return 0
 
 if __name__ == "__main__":
