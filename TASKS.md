@@ -17,11 +17,12 @@ Put done tasks into the Archive.
 ---
 
 ## Active Tasks
-- [/] Consolidate project hooks into a single Git pre-commit hook (@apiad) (See plan: plans/consolidate-hooks.md)
 
 ---
 
 ## Archive
+
+- [x] Consolidate project hooks into a single Git pre-commit hook (2026-03-20) (See plan: plans/consolidate-hooks.md)
 
 - [x] Implement the hypothesis-driven debugging workflow for the `/debug` command and `debugger` agent. (2026-03-18) (See plan: plans/hypothesis-driven-debug-command.md)
 
