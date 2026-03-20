@@ -32,6 +32,90 @@ confirm() {
   fi
 }
 
+create_readme_boilerplate() {
+  cat <<EOF > README.md
+# Project Name
+
+Brief description of the project.
+
+## 🚀 Quick Start
+
+1. Install dependencies.
+2. Run the application.
+
+## 🛠️ Built With
+
+- [Gemini CLI](https://github.com/apiad/gemini-cli) - AI-powered development framework.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+EOF
+}
+
+create_changelog_boilerplate() {
+  cat <<EOF > CHANGELOG.md
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Added
+- Initial project setup with Gemini CLI framework.
+EOF
+}
+
+create_tasks_boilerplate() {
+  cat <<EOF > TASKS.md
+# Tasks
+
+Legend:
+
+- [ ] Todo
+- [/] In Progress (@user)
+- [x] Done
+
+**INSTRUCTIONS:**
+
+Keep task descriptions short but descriptive. Do not add implementation details, those belong in task-specific plans.
+
+---
+
+## Active Tasks
+
+- [ ] Define project requirements and initial roadmap.
+
+---
+
+## Archive
+EOF
+}
+
+create_makefile_boilerplate() {
+  cat <<EOF > makefile
+.PHONY: all test lint format
+
+all: test lint
+
+test:
+	@echo "Running tests..."
+
+lint:
+	@echo "Running linting..."
+
+format:
+	@echo "Running formatting..."
+
+install-hooks:
+	ln -sf ../../.gemini/hooks/pre-commit.py .git/hooks/pre-commit
+	chmod +x .git/hooks/pre-commit
+EOF
+}
+
 # --- Check Prerequisites ---
 for cmd in git node; do
   if ! command -v "$cmd" >/dev/null 2>&1; then
@@ -175,12 +259,11 @@ for f in "${CORE_FILES[@]}"; do
   fi
 done
 
-# 3. Create Scaffolding Files (Only if missing)
-for f in "${SCAFFOLD_FILES[@]}"; do
-  if [[ ! -f "$f" ]]; then
-    cp "$TEMP_DIR/$f" .
-  fi
-done
+# 3. Create Scaffolding Files (Boilerplate if missing)
+if [[ ! -f "README.md" ]]; then create_readme_boilerplate; fi
+if [[ ! -f "CHANGELOG.md" ]]; then create_changelog_boilerplate; fi
+if [[ ! -f "TASKS.md" ]]; then create_tasks_boilerplate; fi
+if [[ ! -f "makefile" ]]; then create_makefile_boilerplate; fi
 
 # 4. Ensure Content Directories & .gitkeep
 for d in "${CONTENT_DIRS[@]}"; do
