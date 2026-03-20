@@ -60,36 +60,51 @@ trap 'rm -rf "$TEMP_DIR"' EXIT
 git clone --depth 1 -q "$REPO_URL" "$TEMP_DIR" || error "Failed to clone template repository."
 
 # --- Discovery ---
+# Files that are ALWAYS updated (Core Framework)
 CORE_FILES=("GEMINI.md")
+# Files that are ONLY created if missing (Scaffolding)
 SCAFFOLD_FILES=("README.md" "TASKS.md" "CHANGELOG.md" "makefile")
+# Directories that are ensured
 CONTENT_DIRS=("journal" "plans" "research" "drafts")
+# Files within .gemini/ that are PROTECTED (Never overwritten)
+PROTECTED_GEMINI_FILES=("settings.json" "style-guide.md")
 
 WILL_CREATE=()
 WILL_UPDATE=()
+WILL_PROTECT=()
 
-# 1. Core Framework Check
-if [[ -d ".gemini" ]]; then
-  WILL_UPDATE+=(".gemini/ (core framework)")
-else
+# 1. .gemini Directory Logic
+if [[ ! -d ".gemini" ]]; then
   WILL_CREATE+=(".gemini/ (core framework)")
+else
+  # Check for protected files
+  for f in "${PROTECTED_GEMINI_FILES[@]}"; do
+    if [[ -f ".gemini/$f" ]]; then
+      WILL_PROTECT+=(".gemini/$f (user configuration)")
+    fi
+  done
+  WILL_UPDATE+=(".gemini/ (hooks, scripts, core commands)")
 fi
 
+# 2. Core Files Logic (GEMINI.md)
 for f in "${CORE_FILES[@]}"; do
   if [[ -e "$f" ]]; then
-    WILL_UPDATE+=("$f (core framework)")
+    WILL_UPDATE+=("$f (will preserve 'Project Notes' section if possible)")
   else
     WILL_CREATE+=("$f (core framework)")
   fi
 done
 
-# 2. Project Scaffolding Check
+# 3. Project Scaffolding Check
 for f in "${SCAFFOLD_FILES[@]}"; do
   if [[ ! -e "$f" ]]; then
     WILL_CREATE+=("$f (new scaffolding)")
+  else
+    WILL_PROTECT+=("$f (existing project file)")
   fi
 done
 
-# 3. Content Directories Check
+# 4. Content Directories Check
 for d in "${CONTENT_DIRS[@]}"; do
   if [[ ! -d "$d" ]]; then
     WILL_CREATE+=("$d/ (new content directory)")
@@ -104,8 +119,13 @@ if [[ ${#WILL_CREATE[@]} -gt 0 ]]; then
 fi
 
 if [[ ${#WILL_UPDATE[@]} -gt 0 ]]; then
-  echo -e "\033[1;34mExisting files/folders to update (core framework):\033[0m"
+  echo -e "\033[1;34mExisting files to update:\033[0m"
   for f in "${WILL_UPDATE[@]}"; do echo "  ~ $f"; done
+fi
+
+if [[ ${#WILL_PROTECT[@]} -gt 0 ]]; then
+  echo -e "\033[1;35mFiles to preserve (will NOT be modified):\033[0m"
+  for f in "${WILL_PROTECT[@]}"; do echo "  # $f"; done
 fi
 
 echo ""
@@ -119,13 +139,40 @@ fi
 
 echo "🛠️  Applying changes..."
 
-# 1. Update .gemini (non-destructive for user files)
+# 1. Update .gemini (Surgical Update)
 mkdir -p .gemini
-cp -r "$TEMP_DIR/.gemini/." .gemini/
+# Copy subdirectories one by one, preserving protected files
+for subdir in agents commands hooks scripts; do
+  if [[ -d "$TEMP_DIR/.gemini/$subdir" ]]; then
+    mkdir -p ".gemini/$subdir"
+    cp -r "$TEMP_DIR/.gemini/$subdir/." ".gemini/$subdir/"
+  fi
+done
 
-# 2. Update Core Files (Always)
+# Restore protected files if they existed in temp (preventing accidental overwrite if cp -r was used)
+for f in "${PROTECTED_GEMINI_FILES[@]}"; do
+  if [[ -f "$TEMP_DIR/.gemini/$f" && ! -f ".gemini/$f" ]]; then
+    cp "$TEMP_DIR/.gemini/$f" ".gemini/$f"
+  fi
+done
+
+# 2. Update Core Files with preservation
 for f in "${CORE_FILES[@]}"; do
-  cp "$TEMP_DIR/$f" .
+  if [[ "$f" == "GEMINI.md" && -f "GEMINI.md" ]]; then
+    # Try to preserve the section after "## Project Notes"
+    # We take the header and core mandates from TEMP, and append the user's notes
+    NOTES_START=$(grep -n "## Project Notes" GEMINI.md | cut -d: -f1 || echo "")
+    if [[ -n "$NOTES_START" ]]; then
+      TEMP_CORE=$(sed "/## Project Notes/q" "$TEMP_DIR/GEMINI.md")
+      USER_NOTES=$(sed "1,$NOTES_START d" GEMINI.md)
+      echo "$TEMP_CORE" > GEMINI.md
+      echo "$USER_NOTES" >> GEMINI.md
+    else
+      cp "$TEMP_DIR/$f" .
+    fi
+  else
+    cp "$TEMP_DIR/$f" .
+  fi
 done
 
 # 3. Create Scaffolding Files (Only if missing)
@@ -144,19 +191,20 @@ for d in "${CONTENT_DIRS[@]}"; do
 done
 
 # 5. Journal Entry
-TODAY=$(date +%Y-%m-%d)
-mkdir -p journal
-JOURNAL_FILE="journal/$TODAY.md"
-if [[ ! -f "$JOURNAL_FILE" ]]; then
-  echo "# $TODAY" > "$JOURNAL_FILE"
-fi
-
 if $IS_UPDATE; then
-  echo -e "\n## Gemini CLI Update\n- Updated framework to version $VERSION." >> "$JOURNAL_FILE"
+  MSG="Updated Gemini CLI framework to version $VERSION."
   COMMIT_MSG="chore: update Gemini CLI framework to v$VERSION"
 else
-  echo -e "\n## Gemini CLI Integration\n- Integrated Gemini CLI framework v$VERSION." >> "$JOURNAL_FILE"
+  MSG="Integrated Gemini CLI framework version $VERSION."
   COMMIT_MSG="feat: integrate Gemini CLI framework v$VERSION"
+fi
+
+# Use the project's journal script if it exists
+if [[ -f ".gemini/scripts/journal.py" ]]; then
+  python3 .gemini/scripts/journal.py "$MSG"
+else
+  TODAY=$(date +%Y-%m-%d)
+  echo -e "\n## Gemini CLI Integration\n- $MSG" >> "journal/$TODAY.md"
 fi
 
 # --- Post-Install ---
