@@ -64,7 +64,7 @@ wheels = [
 
 [[package]]
 name = "starter"
-version = "0.1.0"
+version = "0.20.0"
 source = { virtual = "." }
 
 [package.dev-dependencies]

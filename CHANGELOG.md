@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.20.0] - 2026-03-23
+
+### Added
+- **Unified Discovery-Plan-Execute Lifecycle:** Formally established a strict three-phase architectural boundary (Discovery -> Plan -> Execution).
+- **Modernized Test Suite (uv/pytest):** Replaced legacy testing infrastructure with `uv` for dependency management and `pytest` for automated validation.
+- **Dynamic Structural Testing:** Implemented `tests/test_structure.py` for discover-based, schema-compliant verification of all 15 commands and 6 agents.
+- **Documentation Overhaul:** Updated the entire documentation suite (`docs/index.md`, `docs/design.md`, `docs/develop.md`, `docs/user-guide.md`) to reflect the new unified lifecycle and technical stack.
+- **Improved Content Creation:** Refactored the `/draft` command and evolved the `writer` agent for review-driven refinement.
+
+### Changed
+- **Read-Only Audit Workflows:** Refactored `/maintenance` and `/review` (formerly `/revise`) to be strictly read-only 'Discovery' commands that produce artifacts for `/plan`.
+- **Review Command Evolution:** Evolved the `/review` command into a non-destructive, multi-phase audit workflow with sidecar reporting.
+- **Agent Naming Alignment:** Renamed `editor` to `reviewer` and `reporter` to `writer` for improved semantic clarity.
+- **Test Optimization:** Refactored `tests/test_review_command.py` and `tests/test_sync.py` to be dynamic and less brittle, removing hardcoded skips and string matches.
+
 ## [0.19.1] - 2026-03-20
 
 ### Changed
