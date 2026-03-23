@@ -18,7 +18,7 @@ Put done tasks into the Archive.
 
 ## Active Tasks
 
-- [ ] Improve the `/review` command and evolve the `reviewer` agent to a non-destructive, multi-phase audit workflow. (See plan: plans/improve-review-command.md)
+- [/] Improve the `/review` command and evolve the `reviewer` agent to a non-destructive, multi-phase audit workflow. (@apiad) (See plan: plans/improve-review-command.md)
 
 ---
 
