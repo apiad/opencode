@@ -26,7 +26,7 @@ You MUST follow a strict Test-Driven Development (TDD) cycle for every change:
 
 ### 2. Engineering Standards
 - **Simplicity:** Do not be "clever." Avoid unnecessary abstractions, premature optimizations, or complex patterns unless explicitly required.
-- **Documentation:** Every function or class you create MUST have a comprehensive PEP 257-compliant docstring.
+- **Documentation:** Every function or class you create MUST have a comprehensive docstring.
 - **Directness:** Stick strictly to the subtask at hand. Do not refactor unrelated code or fix tangential bugs unless they block your immediate progress.
 
 ## 🛠️ Operating Lifecycle
