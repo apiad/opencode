@@ -14,7 +14,7 @@ This framework solves this problem by enforcing three core principles:
 
 1.  **The important things should be made explicit:** We keep track of everything important in Markdown files. Ideas are committed to `plans/`, research is summarized in `research/`, and all changes are logged in the `journal/`. This physical "long-term memory" prevents the agent from forgetting context.
 2.  **Resist the urge to guess:** We favor explicit commands over implicit actions. If you want the model to make a plan, you use the `/plan` command, which invokes a carefully crafted workflow rather than relying on the agent's default behavior.
-3.  **Delegate, delegate, delegate:** We use specialized sub-agents (`planner`, `researcher`, `writer`, `reviewer`). These agents run complex, multi-step tasks in private contexts, preventing their internal reasoning (e.g., browsing 20 web pages) from polluting the main session's context window.
+3.  **Delegate, delegate, delegate:** We use specialized sub-agents (`planner`, `researcher`, `writer`, `reviewer`, `coder`). These agents run complex, multi-step tasks in private contexts, preventing their internal reasoning (e.g., browsing 20 web pages) from polluting the main session's context window.
 
 ---
 
@@ -86,7 +86,7 @@ Your tool for project initialization.
 
 Your roadmap manager.
 
-- **How it works:** Manages a living `TASKS.md` document. Use it to `create` new tasks, `work` on existing ones, `report` on priorities, or `update` statuses.
+- **How it works:** Manages a living `TASKS.md` document. Use it to `create` new tasks, `work` on existing ones, `report` on priorities, or `update` statuses. In the `work` mode, it acts as an orchestrator, delegating granular implementation steps to the specialized `coder` subagent.
 
 ### `/commit`
 
@@ -124,10 +124,11 @@ The approved plan is linked to a task. You trigger the execution:
 - **Pre-flight:** The agent verifies the tree is clean on `main`.
 - **Isolation:** A `feature/auth-integration` branch is created.
 - **Loop (Red-Green-Verify):**
-    1.  Agent writes a failing `test_auth_logic.py` based on the plan.
-    2.  Agent implements the minimal logic to pass.
-    3.  Agent runs `make test`. If successful, the step is committed.
-    4.  If it fails, the agent tries **one quick fix**. If it fails again, the change is **automatically reverted**, preserving the last stable state.
+    The `/task` orchestrator breaks the plan into granular steps. For each step, it delegates to the **`coder` subagent**:
+    1.  **`coder`** writes a failing `test_auth_logic.py` based on the step.
+    2.  **`coder`** implements the minimal logic to pass.
+    3.  **`coder`** verifies with `make test`. If successful, the orchestrator commits the step.
+    4.  If it fails, the orchestrator reverts the step and reports the failure.
     5.  The loop repeats for every granular step defined in the plan.
 
 ### **Step 4: Review & Integrate**
