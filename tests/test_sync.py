@@ -20,9 +20,6 @@ def test_commands_synced_in_user_guide():
     with open("docs/user-guide.md", "r") as f:
         content = f.read()
     for cmd in commands:
-        # Known gaps to be fixed in this task
-        if cmd in ["scaffold", "onboard"]:
-            continue
         assert f"/{cmd}" in content
 
 def test_no_legacy_docs_command():
