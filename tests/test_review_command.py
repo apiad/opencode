@@ -41,6 +41,17 @@ def test_docs_updated():
         # "revise" might still exist in old context but should be gone from descriptions
         # "editor" might still exist but "reviewer" should be the primary agent name now
 
+def test_writer_agent_exists():
+    assert os.path.exists(".gemini/agents/writer.md")
+
+def test_reporter_agent_gone():
+    assert not os.path.exists(".gemini/agents/reporter.md")
+
+def test_writer_agent_has_replace():
+    with open(".gemini/agents/writer.md", "r") as f:
+        content = f.read()
+    assert "replace" in content
+
 if __name__ == "__main__":
     # Simple manual runner for now
     try:
@@ -52,6 +63,11 @@ if __name__ == "__main__":
         test_review_command_is_multiphase()
         test_draft_command_suggests_review()
         test_docs_updated()
+        
+        test_writer_agent_exists()
+        test_reporter_agent_gone()
+        test_writer_agent_has_replace()
+        
         print("Tests Passed")
     except AssertionError as e:
         print(f"Test Failed: {e}")
