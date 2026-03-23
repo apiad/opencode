@@ -17,6 +17,14 @@ def test_reviewer_agent_has_grep_search():
         content = f.read()
     assert "grep_search" in content
 
+def test_review_command_is_multiphase():
+    with open(".gemini/commands/review.toml", "r") as f:
+        content = f.read()
+    assert "Phase 1" in content
+    assert "Phase 2" in content
+    assert "Phase 3" in content
+    assert "reviewer" in content
+
 if __name__ == "__main__":
     # Simple manual runner for now
     try:
@@ -25,6 +33,7 @@ if __name__ == "__main__":
         test_review_command_exists()
         test_revise_command_gone()
         test_reviewer_agent_has_grep_search()
+        test_review_command_is_multiphase()
         print("Tests Passed")
     except AssertionError as e:
         print(f"Test Failed: {e}")
