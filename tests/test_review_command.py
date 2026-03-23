@@ -25,6 +25,12 @@ def test_review_command_is_multiphase():
     assert "Phase 3" in content
     assert "reviewer" in content
 
+def test_draft_command_suggests_review():
+    with open(".gemini/commands/draft.toml", "r") as f:
+        content = f.read()
+    assert "/review" in content
+    assert "/revise" not in content
+
 if __name__ == "__main__":
     # Simple manual runner for now
     try:
@@ -34,6 +40,7 @@ if __name__ == "__main__":
         test_revise_command_gone()
         test_reviewer_agent_has_grep_search()
         test_review_command_is_multiphase()
+        test_draft_command_suggests_review()
         print("Tests Passed")
     except AssertionError as e:
         print(f"Test Failed: {e}")

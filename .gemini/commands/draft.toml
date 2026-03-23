@@ -30,7 +30,7 @@ Follow these phases strictly:
 
 ### Phase 6: Conclusion
 1.  **Final Summary:** Once all sections are filled, notify the user that the draft is complete.
-2.  **Next Steps:** Suggest using the `/revise` command to perform a structural and linguistic audit of the new draft based on the Style Guide.
+2.  **Next Steps:** Suggest using the `/review` command to perform a non-destructive, multi-phase audit of the new draft and produce a `<filename>.review.md` report. Mention that they can then use `/draft` again attaching the review to apply the changes.
 
 Do not skip any phases. Start with Phase 1.
 """
