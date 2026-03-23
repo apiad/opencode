@@ -18,11 +18,11 @@ Put done tasks into the Archive.
 
 ## Active Tasks
 
-- [/] Improve the `/draft` command and evolve the `writer` agent to include a review-driven "Refinement Phase." (@apiad) (See plan: plans/improve-draft-command-and-writer-agent.md)
-
 ---
 
 ## Archive
+
+- [x] Improve the `/draft` command and evolve the `writer` agent to include a review-driven "Refinement Phase." (2026-03-23) (See plan: plans/improve-draft-command-and-writer-agent.md)
 
 - [x] Improve the `/review` command and evolve the `reviewer` agent to a non-destructive, multi-phase audit workflow. (2026-03-23) (See plan: plans/improve-review-command.md)
 
