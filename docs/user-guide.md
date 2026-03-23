@@ -198,7 +198,8 @@ Your background automation layer.
 
 Your defense against context rot.
 
-- **How it works:** Performs a comprehensive audit of the codebase to identify technical debt, outdated implementations, or deviations between code and documentation. It presents a detailed refactoring plan for your approval before making any changes, ensuring the repository remains a clean environment for the AI to operate within.
+- **How it works:** Performs a comprehensive, read-only audit of the codebase to identify technical debt, outdated implementations, or documentation gaps using the `codebase_investigator`. It generates a "Maintenance Report Card" in the `research/` directory.
+- **Why it works:** It separates the audit from the implementation, ensuring the codebase remains a clean environment. After an audit, use the `/plan` command to safely execute the suggested improvements.
 
 ---
 

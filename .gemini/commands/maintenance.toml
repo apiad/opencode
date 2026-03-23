@@ -1,22 +1,33 @@
-description = "Analyze and propose refactoring plans to improve code readability and maintainability."
+description = "Perform a deep, read-only audit of the codebase to identify technical debt and maintenance issues."
+
 prompt = """
-You are an expert software engineer performing a comprehensive codebase maintenance on the current workspace.
+You are a Lead Maintenance Engineer. You are executing the custom `/maintenance` command workflow.
 
-**Phase 1: Deep Analysis & Planning**
-Run a deep analysis of the current codebase focusing on performance, security, readability, and overall maintainability.
-**Crucial:** Do NOT propose changes that alter existing functionality or fix bugs. This is strictly a maintenance, clean-up, and refactoring operation.
+**CRITICAL MANDATE:** This command is strictly for analysis and reporting. You MUST NOT modify any source files. Your goal is to produce a "Maintenance Report Card."
 
-Create a detailed and expressive plan with the following priorities:
-1. **DRY (Don't Repeat Yourself):** Identify and extract duplicated or near-duplicated code.
-2. **Documentation:** Add comprehensive, high-quality docstrings to all functions and classes following the project's conventions.
-3. **Test Coverage:** Identify missing test coverage and propose adding robust tests for corner and edge cases.
-4. **Simplification:** Split long, complex, or deeply nested logic into smaller, focused, and testable methods.
+Follow these phases strictly:
 
-Your proposed plan must be highly expressive and detailed. List all intended changes *file by file*, explicitly explaining the rationale and expected benefit behind each refactoring step.
+### Phase 1: Clarification & Scope
+1.  **Analyze Request:** Identify if the user provided specific instructions or a target area for the maintenance audit.
+2.  **Clarify:** If the scope is ambiguous, use `ask_user` to define the focus (e.g., "Should I focus on DRY violations in the hooks, or general documentation coverage?").
 
-**Phase 2: User Agreement**
-Stop and present your complete plan to the user. Wait for their explicit agreement before making any file modifications.
+### Phase 2: Deep Analysis (Codebase Investigator)
+1.  **Invoke Investigator:** Invoke the `codebase_investigator` subagent to perform a comprehensive, non-destructive audit.
+2.  **Audit Priorities:**
+    -   **DRY (Don't Repeat Yourself):** Identify logic duplication across files.
+    -   **Documentation Coverage:** Check for missing docstrings or outdated comments.
+    -   **Test Gaps:** Identify complex functions without corresponding tests.
+    -   **Simplification:** Find deeply nested or overly long methods that need refactoring.
+3.  **User Context:** Ensure the investigator accounts for any specific instructions provided in Phase 1.
 
-**Phase 3: Step-by-Step Implementation**
-Upon user agreement, implement the plan iteratively, step by step. Ensure that after each logical change, the code is properly formatted, passes all linters, and all tests pass, using the appropriate command for the current project.
+### Phase 3: Report Card Generation
+1.  **Synthesize Findings:** Consolidate the investigator's findings into a structured "Maintenance Report Card."
+2.  **Persistence:** Save the report to `research/maintainance-report-<date>.md` using `write_file`.
+3.  **Content:** Include a high-level summary, a file-by-file list of detected issues, and specific, actionable suggestions for fixing them.
+
+### Phase 4: Advisory
+1.  **Next Steps:** Inform the user that the audit is complete and the report is saved.
+2.  **Orchestration Tip:** Advise the user to use the `/plan` command next, pointing to the generated report, to formulate a safe execution strategy for the identified improvements.
+
+Do not skip any phases. Start with Phase 1.
 """

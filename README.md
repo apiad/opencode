@@ -75,7 +75,7 @@ The `.gemini/commands/` directory defines specialized workflows that automate ev
 ### 🧹 Phase 3: Content Generation, Maintenance & Documentation
 *   **`/draft`**: Multi-phase workflow to turn research and plans into detailed, high-quality technical documents or articles section-by-section using the `writer` subagent.
 *   **`/review`**: Uses the `reviewer` subagent to perform non-destructive, multi-phase structural and linguistic audits based on the project's style guide.
-*   **`/maintenance`**: Performs a deep scan of the codebase to identify technical debt, refactoring opportunities, and areas to improve test coverage.
+*   **`/maintenance`**: Performs a deep, read-only audit of the codebase using the `codebase_investigator` to identify technical debt and generate a "Maintenance Report Card" in `research/`.
 *   **`/document`**: Analyzes the codebase and journals to generate or update comprehensive project documentation in the `docs/` folder.
 *   **`/cron`**: Manages repetitive background tasks (e.g., health checks, automated reports) using **systemd user timers**.
 

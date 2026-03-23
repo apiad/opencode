@@ -60,6 +60,16 @@ def test_draft_command_is_multimode():
     assert "writer" in content
     assert "reporter" not in content
 
+def test_maintenance_command_is_audit():
+    with open(".gemini/commands/maintenance.toml", "r") as f:
+        content = f.read()
+    assert "codebase_investigator" in content
+    assert "Maintenance Report Card" in content
+    assert "research/maintainance-report-" in content
+    assert "Phase 3" in content
+    # Ensure it doesn't mention Step-by-Step Implementation or modification
+    assert "Step-by-Step Implementation" not in content
+
 if __name__ == "__main__":
     # Simple manual runner for now
     try:
@@ -76,6 +86,8 @@ if __name__ == "__main__":
         test_reporter_agent_gone()
         test_writer_agent_has_replace()
         test_draft_command_is_multimode()
+
+        test_maintenance_command_is_audit()
         
         print("Tests Passed")
     except AssertionError as e:
