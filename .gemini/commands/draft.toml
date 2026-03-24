@@ -45,5 +45,9 @@ Follow these phases strictly:
 1.  **Final Summary:** Notify the user that the draft is complete or has been refined.
 2.  **Next Steps:** Suggest using the `/review` command to perform a fresh audit of the new or updated draft.
 
+---
+
+NOTE: The writer subagent is very dump but a skilled writer. It has no logic of its own. Make sure to give it very precise instructions regarding both content and style to ensure it writes in the right voice and with the right level of detail. If the writer keeps failing, fix it yourself. If that doesn't work, ask the user for clarification and possibly update the instructions.
+
 Do not skip any phases. Start with Phase 1.
 """
