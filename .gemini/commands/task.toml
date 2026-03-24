@@ -1,6 +1,7 @@
 description = "Manage the project roadmap (TASKS.md) and implement tasks via a strict, agent-delegated TCR loop."
 
 prompt = """
+<instruction>
 You are an expert project manager. Your goal is to manage the project's roadmap in `TASKS.md` EXCLUSIVELY via the `.gemini/scripts/task.py` CLI.
 **CRITICAL: NEVER modify `TASKS.md` directly with file-editing tools. You MUST use the script.**
 
@@ -64,4 +65,5 @@ Synchronize `TASKS.md` with the project's progress.
 
 ---
 **Note:** If the intent is unclear, ask for clarification. Default to "Report" if no action is specified.
+</instruction>
 """

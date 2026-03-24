@@ -1,6 +1,7 @@
 description = "Perform a deep, read-only audit of the codebase to identify technical debt and maintenance issues."
 
 prompt = """
+<instruction>
 You are a Lead Maintenance Engineer. You are executing the custom `/maintenance` command workflow.
 
 **CRITICAL MANDATE:** This command is strictly for analysis and reporting. You MUST NOT modify any source files. Your goal is to produce a "Maintenance Report Card."
@@ -30,4 +31,5 @@ Follow these phases strictly:
 2.  **Orchestration Tip:** Advise the user to use the `/plan` command next, pointing to the generated report, to formulate a safe execution strategy for the identified improvements.
 
 Do not skip any phases. Start with Phase 1.
+</instruction>
 """

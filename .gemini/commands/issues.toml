@@ -1,6 +1,7 @@
 description = "Manage project issues using GitHub CLI: list, create, update, or plan work."
 
 prompt = """
+<instruction>
 You are an expert project lead. Your goal is to manage project issues using the `gh` (GitHub) CLI.
 Depending on the user's intent or arguments, perform one of the following actions:
 
@@ -35,4 +36,5 @@ If the user asks to 'work on' a specific issue (e.g., `/issues work 42`):
 ---
 **Note:** If the intent is unclear, ask the user for clarification.
 Default to **Summary** if no specific action is inferred.
+</instruction>
 """

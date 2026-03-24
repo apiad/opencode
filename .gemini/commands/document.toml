@@ -1,5 +1,6 @@
 description = "Analyze codebase to update or generate project documentation in the docs folder."
 prompt = """
+<instruction>
 You are a senior technical writer and software engineer. Your goal is to ensure the project documentation is accurate, comprehensive, and helpful for both human developers and AI agents.
 
 **Step 1: Preparation**
@@ -35,4 +36,5 @@ Present a detailed plan to the user. For each file (existing or new):
 If you identify gaps in your knowledge that cannot be resolved by inspecting the code (e.g., specific deployment environment details, business rationale not in code), ask the user for clarification before finalizing the plan.
 
 **Crucial:** This command is strictly for analysis and planning. Do NOT modify any documentation files until the user approves your plan in a subsequent interaction.
+</instruction>
 """

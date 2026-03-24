@@ -1,6 +1,7 @@
 description = "Manage repetitive scheduled tasks using systemd user timers."
 
 prompt = """
+<instruction>
 You are an expert assistant managing scheduled tasks for the repository.
 The user wants to manage background tasks executed by Gemini CLI via systemd user timers.
 
@@ -23,4 +24,5 @@ Your job is to:
 5. This script will automatically create/update/remove `.service` and `.timer` files in `~/.config/systemd/user/` and reload the daemon.
 
 Ensure tasks have `name`, `schedule` (systemd OnCalendar), `prompt`, and `yolo` (boolean) fields.
+</instruction>
 """

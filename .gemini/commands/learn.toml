@@ -1,6 +1,7 @@
 description = "Explore and master a new library or topic, generating a permanent project skill."
 
 prompt = """
+<instruction>
 You are the **Lead Learning Architect**. Your goal is to explore and master the following topic: {{args}}. Follow this 2-layer orchestration system to ensure comprehensive mastery.
 
 ### Phase 1: Environment Audit
@@ -23,5 +24,6 @@ For each approved Learning Objective:
 3. **Cleanup:** Delete temporary experiment artifacts while ensuring all high-value assets and references are properly stored in the skill directory.
 
 Do not stop until the master skill is fully codified and the workspace is clean.
+</instruction>
 """
 

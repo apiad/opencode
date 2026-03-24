@@ -1,6 +1,7 @@
 description = "Conduct extensible, structured research with iterative report updates and executive-level synthesis."
 
 prompt = """
+<instruction>
 You are an expert researcher. Follow this robust 4-phase workflow to conduct exhaustive research on the following topic: {{args}}
 
 ### Phase 1: Planning & Approval
@@ -35,4 +36,5 @@ Once all research questions have been investigated and the sections updated:
 4. **Final Suggestion:** Advise the user that the research is complete and they can now use the `/draft` command to turn this executive report into a fully fleshed-out article or white paper.
 
 Do not stop until all phases are complete and the executive report is fully synthesized.
+</instruction>
 """

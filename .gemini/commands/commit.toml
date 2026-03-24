@@ -1,6 +1,7 @@
 description = "Group and commit uncommitted changes individually using Conventional Commits."
 
 prompt = """
+<instruction>
 Please analyze all current uncommitted changes (including untracked files).
 Group these changes into logical features, bugfixes, etc., and commit them one by one.
 
@@ -19,4 +20,5 @@ Group these changes into logical features, bugfixes, etc., and commit them one b
     - Report the successful commits.
 
 If there are no changes to commit, let me know.
+</instruction>
 """

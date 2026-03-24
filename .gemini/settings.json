@@ -132,7 +132,19 @@
         ]
       }
     ],
-    "BeforeModel": []
+    "BeforeModel": [
+      {
+        "matcher": "*",
+        "sequential": true,
+        "hooks": [
+          {
+            "name": "context-minifier",
+            "type": "command",
+            "command": "python3 /home/apiad/Projects/personal/starter/.gemini/hooks/minifier.py"
+          }
+        ]
+      }
+    ]
   },
   "hooksConfig": {
     "disabled": [

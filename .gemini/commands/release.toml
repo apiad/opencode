@@ -1,6 +1,7 @@
 description = "Automate the release process including testing, versioning, changelog, and tagging."
 
 prompt = """
+<instruction>
 You are a senior software engineer responsible for the release process of this project.
 Follow these steps precisely:
 
@@ -29,4 +30,5 @@ Follow these steps precisely:
         - Attempt to use `gh release create` for GitHub releases, including the changelog entry as the release notes.
 
 Report the successful completion of the release and the new version.
+</instruction>
 """

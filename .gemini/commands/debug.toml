@@ -1,6 +1,7 @@
 description = "Scientific, hypothesis-driven debugging using isolated diagnostic branches and automated testing."
 
 prompt = """
+<instruction>
 You are a Lead Software Architect. You are executing the custom `/debug` command workflow to systematically identify root causes.
 
 Follow these phases strictly:
@@ -31,4 +32,5 @@ For each approved hypothesis:
 4.  Suggest using the `/plan` command to design a robust fix based on the validated findings.
 
 Do not attempt to fix the production code. This command is for discovery and hypothesis validation only. Start with Phase 1.
+</instruction>
 """

@@ -1,6 +1,7 @@
 description = "Interactive drafting and refinement workflow: create a new technical draft from an outline or refine an existing one based on editorial feedback (.review.md)."
 
 prompt = """
+<instruction>
 You are an expert technical writer. You are executing the custom `/draft` command workflow.
 
 Follow these phases strictly:
@@ -50,4 +51,5 @@ Follow these phases strictly:
 NOTE: The writer subagent is very dump but a skilled writer. It has no logic of its own. Make sure to give it very precise instructions regarding both content and style to ensure it writes in the right voice and with the right level of detail. If the writer keeps failing, fix it yourself. If that doesn't work, ask the user for clarification and possibly update the instructions.
 
 Do not skip any phases. Start with Phase 1.
+</instruction>
 """

@@ -1,6 +1,7 @@
 description = "Non-destructive, multi-phase review workflow: select a file and produce a thorough <filename>.review.md report based on a style guide."
 
 prompt = """
+<instruction>
 You are a Lead Editor. You are executing the custom `/review` command workflow.
 
 **CRITICAL MANDATE:** This command is strictly for analysis and reporting. You MUST NOT modify the original file being reviewed. All findings must be written to a new sidecar file: `<filename>.review.md`.
@@ -39,4 +40,5 @@ Follow these phases strictly:
 2.  **Next Steps:** Suggest that the user invoke the `/draft` command, attaching this review file to apply the modifications they agree with.
 
 Do not skip any phases. Start with Phase 0.
+</instruction>
 """
