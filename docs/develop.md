@@ -37,7 +37,7 @@ The `/task` command is the primary tool for repository execution:
 - **`/task update`**: Updates the status or plan-path of an existing task via the script.
 
 **CLI-First Roadmap Discipline:**
-The project roadmap (`TASKS.md`) must **never** be edited by hand. All task operations must be performed via the `.gemini/scripts/task.py` script or the corresponding `/task` actions. This ensures structural integrity and a verifiable audit trail.
+The project roadmap (`TASKS.md`) must **never** be edited by hand. All task operations must be performed via the `.opencode/tools/task.py` script or the corresponding `/task` actions. This ensures structural integrity and a verifiable audit trail.
 
 #### **The TCR Loop (Work Action)**
 
@@ -65,7 +65,7 @@ When a bug is detected, the `/debug` command enforces a structured, scientific i
 Before merging or committing any final change, the work **must** be documented in the daily journal. This is enforced by a **timestamp-based git hook**. Use the following tool to satisfy the requirement:
 
 ```bash
-python3 .gemini/scripts/journal.py 'one-line description of the work'
+python3 .opencode/tools/journal.py 'one-line description of the work'
 ```
 
 Failure to do this will block your commit or turn execution.

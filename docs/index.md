@@ -51,7 +51,7 @@ curl -fsSL https://apiad.github.io/starter/install.sh | bash
 - **Architectural Planning:** Use `/plan` to generate persistent, actionable strategies.
 - **Forensic Debugging:** Use `/debug` for root-cause analysis without immediate (and potentially incorrect) fixes.
 - **Automated Documentation:** Use `/document` to keep the documentation synchronized with the evolving codebase.
-- **Procedural Roadmap Management:** Use `/task` and the `.gemini/scripts/task.py` utility to maintain a structured, machine-managed project roadmap in `TASKS.md`.
+- **Procedural Roadmap Management:** Use `/task` and the `.opencode/tools/task.py` utility to maintain a structured, machine-managed project roadmap in `TASKS.md`.
 
 ## 🔄 Project Lifecycle
 

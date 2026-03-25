@@ -15,7 +15,7 @@ curl -fsSL https://apiad.github.io/starter/install.sh | bash
 Running `install.sh` in an empty directory will:
 
 - Initialize a fresh Git repository.
-- Extract the core `.gemini/` framework and configuration files.
+- Extract the core `.opencode/` framework and configuration files.
 - Create the standard project structure (`journal/`, `plans/`, `research/`, `drafts/`).
 - Initialize baseline files (`README.md`, `CHANGELOG.md`, `TASKS.md`, `makefile`).
 - Perform an initial "feat" commit.
@@ -25,10 +25,10 @@ Running `install.sh` in an empty directory will:
 If run inside an existing project, the script performs a **Surgical Update**:
 
 - **Validate:** Ensure a clean Git working tree to prevent data loss.
-- **Surgical Sync:** Updates core framework components (`hooks/`, `commands/`, `agents/`, `scripts/`) individually.
+- **Surgical Sync:** Updates core framework components (`commands/`, `agents/`, `tools/`) individually.
 - **Protection:** Explicitly preserves user configurations in **Protected Files**:
-    - `.gemini/settings.json`
-    - `.gemini/style-guide.md`
+    - `opencode.json`
+    - `.opencode/style-guide.md`
 - **Intelligent GEMINI.md Merge:** Preserves your custom content in the `## Project Notes` section of `GEMINI.md` while updating the core mandates above it.
 - **Confirm:** Presents a detailed summary of which files will be **created**, **updated**, or **protected** and waits for your approval.
 - **Integrate:** Adds missing directory structures (`journal/`, `plans/`, etc.) if they don't exist.
@@ -40,7 +40,7 @@ To ensure full functionality, your environment should have:
 
 - **Git:** Required for state management and change detection hooks.
 - **Node.js:** Necessary for running the `gemini` CLI.
-- **Python 3.12+:** Required for executing the project's automation hooks (`.gemini/hooks/`).
+- **Python 3.12+:** Required for executing the project's automation scripts in `.opencode/tools/`.
 - **uv:** The required Python package and project manager.
 - **Make:** Used for project validation and health checks (runs `uv run pytest`).
 
@@ -52,7 +52,7 @@ After installation, you **must** link the framework's hooks to your git reposito
 make install-hooks
 ```
 
-This target creates a symbolic link from `.gemini/hooks/pre-commit.py` to `.git/hooks/pre-commit`, enabling the automated journal and validation checks.
+This target creates a symbolic link from `.opencode/tools/git-precommit.py` to `.git/hooks/pre-commit`, enabling the automated journal and validation checks.
 
 ## 🚢 Getting Started
 
@@ -69,10 +69,6 @@ gemini /onboard
 ### 2. Initialize the Roadmap
 
 Check the current `TASKS.md` file and use the `/task` command to define your project's initial goals.
-
-### 3. Codified Knowledge
-
-Knowledge mastered via `/learn` is stored in `.gemini/skills/`. These are permanent project assets and **must** be tracked in version control to ensure the AI's long-term memory persists across environments.
 
 ### 3. Start a New Feature
 

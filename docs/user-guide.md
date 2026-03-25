@@ -94,31 +94,36 @@ Your tool for project initialization.
 
 Your roadmap manager.
 
-- **How it works:** Manages a living `TASKS.md` document **exclusively** via the `.gemini/scripts/task.py` utility. Use it to `create` new tasks, `start` work on existing ones, `report` on priorities, or `archive` completed tasks.
+- **How it works:** Manages a living `TASKS.md` document **exclusively** via the `.opencode/tools/task.py` utility. Use it to `create` new tasks, `start` work on existing ones, `report` on priorities, or `archive` completed tasks.
 - **Why it works:** By treating the roadmap as a machine-managed artifact, the framework ensures consistent formatting, automated ID generation (e.g., `G.4`), and a clear transition from `Todo` to `Archive` that aligns with the agent's turn lifecycle.
 - **Workflow Example:**
-    1.  `python .gemini/scripts/task.py add --label "New Feature" --description "..." --category "Logic"`
-    2.  `python .gemini/scripts/task.py start --task-id L.1` (marks as In Progress)
+    1.  `python .opencode/tools/task.py add --label "New Feature" --description "..." --category "Logic"`
+    2.  `python .opencode/tools/task.py start --task-id L.1` (marks as In Progress)
     3.  Perform work via `/task work` (TCR loop).
-    4.  `python .gemini/scripts/task.py archive --task-id L.1` (moves to Archive)
+    4.  `python .opencode/tools/task.py archive --task-id L.1` (moves to Archive)
 
 ### `/commit`
 ...
-## 🌲 The Tier Protocol (Semantic Routing)
+## 🌲 Agent Architecture
 
-To balance speed, cost, and architectural integrity, the framework implements a **Tier Protocol** for model routing. This is configured in `.gemini/settings.json`.
+The framework uses **OpenCode** with specialized agents that handle different cognitive workloads:
 
-### The "Thinking" Tier (Clever/Pro)
-Specialized agents that require high-reasoning and deep causal analysis are mapped to **`gemini-3.1-pro-preview`**.
-- **`planner`**: For architectural design and strategy.
-- **`debugger`**: For forensic root-cause analysis.
-- **`learner`**: For mastering new technologies without hallucinations.
-- **`reviewer`**: For critical editorial audits.
+### Primary Agents
+- **`plan`**: Architectural design and strategy
+- **`build`**: TCR coding workflow
+- **`query`**: Default repo Q&A
+- **`research`**: Research campaigns
+- **`brainstorm`**: Critical thinking
+- **`write`**: Prose composition
+- **`review`**: Editorial audits
 
-### The "Execution" Tier (Dumber/Lite)
-Agents optimized for high-volume drafting and discovery are mapped to **`gemini-2.5-flash-lite`**.
-- **`writer`**: For section-by-section drafting.
-- **`researcher`**: For rapid information gathering.
+### Subagents
+- **`builder`**: Test-driven implementation
+- **`scout`**: Web research
+- **`investigator`**: Codebase analysis
+- **`writer`**: Prose refinement
+- **`reviewer`**: Editorial audits
+- **`debugger`**: RCA investigation
 
 ## 🔄 A Full Feature Development Walkthrough
 
@@ -192,7 +197,7 @@ Every code change must be documented in `journal/YYYY-MM-DD.md`. If you modify a
 To simplify this, the framework includes a dedicated script. Always use it instead of manual editing:
 
 ```bash
-python3 .gemini/scripts/journal.py "Brief description of your work"
+python3 .opencode/tools/journal.py "Brief description of your work"
 ```
 
 This tool automatically:

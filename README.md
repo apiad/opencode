@@ -30,7 +30,7 @@ This interactive script will:
 2.  **Clone** the latest framework components to a temporary location.
 3.  **Analyze** your current directory and propose a list of files to create or update.
 4.  **Prompt** for your explicit confirmation before applying any changes.
-5.  **Integrate** the `.gemini/` configuration and framework files (non-destructively).
+5.  **Integrate** the `.opencode/` configuration and framework files (non-destructively).
 6.  **Commit** the changes automatically with a descriptive message.
 
 Once the installation is complete, run `gemini /onboard` to get an overview of the repository and start your first session.
@@ -54,12 +54,11 @@ This repository is a heavily customized and oppinionanted Gemini CLI agent, read
 
 ## 🛠️ The Project Lifecycle
 
-The `.gemini/commands/` directory defines specialized workflows that automate every phase of the development lifecycle:
+The `.opencode/commands/` directory defines specialized workflows that automate every phase of the development lifecycle:
 
 ### 🔍 Phase 1: Planning & Discovery
 *   **`/research <topic>`**: A deep, 3-phase investigation (Planning -> Data Gathering -> Reporting) that produces exhaustive Markdown reports in the `research/` directory. **Crucial for gathering technical requirements and state-of-the-art context.**
-*   **`/learn <topic>`**: A grounded learning lifecycle (Audit -> Strategic Mapping -> Execution -> Codification) for mastering new technologies and building a permanent, machine-readable knowledge base in `.gemini/skills/` using the specialized `learner` subagent.
-*   **`/brainstorm`**: An interactive, high-signal brainstorming session. The agent acts as a critical partner—challenging your assumptions, identifying architectural risks, and asking hard follow-up questions—without making any changes to the codebase.
+*   **`/learn <topic>`**: A grounded learning lifecycle for mastering new technologies through structured exploration and experimentation.*   **`/brainstorm`**: An interactive, high-signal brainstorming session. The agent acts as a critical partner—challenging your assumptions, identifying architectural risks, and asking hard follow-up questions—without making any changes to the codebase.
 *   **`/plan`**: The **Architectural Bridge**. This interactive workflow translates ideas into actionable execution plans:
     *   **Phase 1 (Clarification):** The agent interviews you to resolve ambiguities before planning.
     *   **Phase 2 (Agentic Analysis):** A specialized `planner` subagent scans the codebase and generates a detailed technical strategy.
@@ -107,16 +106,15 @@ This framework shines when you combine these commands into cohesive workflows:
 2.  **Draft:** Run `/draft` to build an outline and expand it into a full article.
 3.  **Review:** Use `/review` for non-destructive, multi-phase audits and refinements.
 
-## ⚓ The Hook System
+## ⚓ Pre-Commit Validation
 
-The framework uses a dual-layer hook system to synchronize the agent with your project state:
+The framework uses a git pre-commit hook to enforce engineering standards:
 
-*   **`session.py` / `welcome.py`**: Initialize the environment, provide a project summary, and check for environment readiness.
-*   **`log.py`**: Provides a comprehensive, structured audit trail of every agent turn and tool execution.
-*   **`notify.py`**: Sends a desktop notification and sound when the agent completes its work, minimizing downtime.
-*   **`cron.py`**: Synchronizes repetitive tasks with **systemd user timers**.
-*   **`pre-commit.py` (Git Hook)**: Enforces daily journaling and timestamp-based validation before any code changes are finalized.
+*   **`git-precommit.py` (Git Hook)**: Enforces daily journaling and timestamp-based validation before any code changes are finalized.
 *   **`journal.py` (Script)**: The dedicated utility for correctly formatting and appending new journal entries.
+*   **`task.py` (Script)**: Manages the project roadmap in `TASKS.md`.
+
+Install hooks with: `make install-hooks`
 
 ## 📄 License & Contribution
 

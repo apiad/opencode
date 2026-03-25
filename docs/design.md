@@ -1,140 +1,131 @@
 # Architecture & Systems
 
-The **Gemini CLI Opinionated Framework** is not just a collection of scripts; it is an integrated system designed to empower AI agents while enforcing rigorous engineering standards.
+The **Gemini CLI Opinionated Framework** uses **OpenCode** as its agent orchestration layer. The core framework resides in the `.opencode/` directory.
 
-## 🏗️ The Core Architecture
+## 🏗️ The OpenCode Architecture
 
-The project's "brain" resides in the `.gemini/` directory, which is organized into four primary systems:
+### Primary Agents (`.opencode/agents/`)
 
-### 1. The Hook System (`.gemini/hooks/`)
+| Agent | Purpose |
+|-------|---------|
+| `plan` | Planning workflow - analyzes codebase, generates plans to `plans/` |
+| `build` | TCR coding workflow - manages tasks and delegates to builder |
+| `query` | Default agent for repo Q&A - invokes subagents as needed |
+| `research` | Research campaigns - parallel scout work with writer summaries |
+| `brainstorm` | Critical thinking and risk assessment |
+| `write` | Prose composition and refinement |
+| `review` | Multi-phase editorial review |
 
-The framework uses a dual-layer hook system to enforce standards and automate workflows.
+### Subagents (`.opencode/agents/subagents/`)
 
-#### **A. Gemini CLI Lifecycle Hooks**
-These scripts are registered in `.gemini/settings.json` and intercept the turn-by-turn lifecycle of the agent.
+| Subagent | Purpose |
+|----------|---------|
+| `builder` | TCR grunt coding (test-driven implementation) |
+| `scout` | Web research (parallelizable) |
+| `investigator` | Codebase architectural analysis |
+| `writer` | Prose refinement |
+| `reviewer` | Editorial audits |
+| `debugger` | RCA investigation |
 
-- **`session.py` / `welcome.py`:** Initialize the session, provide a project summary, and check for environment readiness (e.g., verifying if Git hooks are installed).
-- **`log.py`:** Provides a comprehensive audit trail of every interaction, logging structured markers for `BeforeAgent`, `AfterModel`, and `AfterTool` events.
-- **`notify.py`:** Sends a desktop notification and plays a system sound once the agent completes its turn, ensuring the user is alerted when the agent is waiting for input.
-- **`cron.py`:** Synchronizes the `cron.toml` task definitions with **systemd user timers** for background execution.
-- **`minifier.py`:** A `BeforeModel` hook that performs **Context Minification**. It identifies redundant `<instruction>` blocks from previous turns and replaces them with a lightweight placeholder, preserving only the most recent instruction to maximize token efficiency and prevent context saturation during long sessions.
+### Commands (`.opencode/commands/`)
 
-#### **B. Git Hooks**
-These are linked to the repository's `.git/hooks/` directory and manage the finality of changes.
+Commands define structured, multi-phase workflows that automate the development lifecycle:
 
-- **`pre-commit.py`:** The primary enforcement mechanism. It performs **timestamp-based validation**, ensuring that a journal entry exists for the current date and that its timestamp is newer than any modified files. It also serves as the trigger for project-wide health checks.
-- **`utils.py`:** A shared Python library providing common functions for git analysis, hook decisions, and communication with the Gemini CLI.
+| Command | Phase | Description |
+|---------|-------|-------------|
+| `/research` | Discovery | Deep-dive exploration producing Markdown reports |
+| `/maintenance` | Discovery | Non-destructive codebase audit |
+| `/review` | Discovery | Multi-phase linguistic and structural audit |
+| `/debug` | Discovery | Scientific, hypothesis-driven forensic investigation |
+| `/brainstorm` | Discovery | Interactive critical-thinking sessions |
+| `/plan` | Strategy | Mandatory bridge to execution plans |
+| `/task` | Execution | TCR loop and feature branch isolation |
+| `/draft` | Execution | Content transformation into finished documents |
+| `/document` | Execution | Documentation synchronization |
+| `/onboard` | All | Project orientation for new developers |
+| `/scaffold` | All | Project initialization with modern tooling |
+| `/commit` | Shipping | Conventional commits with grouped changes |
+| `/release` | Shipping | Version bump, changelog, git tagging |
+| `/issues` | All | GitHub CLI integration |
 
-### 2. The Script Utility System (`.gemini/scripts/`)
-
-Helper scripts that standardize framework operations across different environments.
-
-- **`journal.py`:** A dedicated script to correctly format and append new journal entries (`[timestamp ISO] - description`). This is the **only recommended way** to update the journal, as it ensures temporal consistency for the `pre-commit.py` hook.
-
-### 3. The Command System (`.gemini/commands/`)
-
-Commands define structured, multi-phase workflows that automate the development lifecycle. They are strictly categorized by their role in the Unified Lifecycle Flow.
-
-#### **Semantic Tier Routing (The Tier Protocol)**
-The framework implements a dual-tier model routing strategy to optimize for intelligence, cost, and execution speed. This is configured in `.gemini/settings.json` via `modelConfigs.overrides`.
-
-- **The "Thinking" Tier (Clever/Pro):** High-reasoning agents (`planner`, `reviewer`, `learner`, `debugger`) are mapped to `gemini-3.1-pro-preview`. This ensures that architectural decisions, master-level learning, and forensic root-cause analysis are performed by the most capable models.
-- **The "Execution" Tier (Dumber/Lite):** High-volume, procedural agents (`writer`, `researcher`) are mapped to `gemini-2.5-flash-lite`. This provides high-velocity drafting and discovery without excessive context costs.
-
-#### Phase 1: Discovery & Audit (Read-Only)
-- **`/research`:** Deep-dive exploration producing exhaustive Markdown reports.
-- **`/maintenance`:** A non-destructive codebase audit generating a 'Maintenance Report Card'.
-- **`/review`:** A multi-phase linguistic and structural audit of a document, producing a sidecar `.review.md` file.
-- **`/debug`:** A scientific, hypothesis-driven forensic investigation ending in a Root Cause Analysis (RCA) report.
-- **`/learn`:** A grounded learning lifecycle for mastering new technologies and codifying them into project skills.
-
-#### Phase 2: Strategy (The Bridge)
-- **`/plan`:** The mandatory bridge. An interactive workflow that transitions between clarification, analysis of discovery artifacts, and strategy generation. It produces a persistent Markdown plan in `plans/`.
-
-#### Phase 3: Execution (Side-Effects)
-- **`/task`:** The primary execution engine, managing `TASKS.md` and enforcing the **strict TCR (Test-Commit-Revert) loop** and feature branch isolation. **Procedural Task Management:** The `/task` command operates exclusively via `.gemini/scripts/task.py`, which acts as the single source of truth for the project roadmap.
-- **`/draft`:** The content execution engine, transforming plans or `.review.md` reports into finished Markdown documents.
-- **`/document`:** Analyzes the codebase and project state to update the documentation suite.
-
-### 🔄 The Unified Lifecycle Flow
+### The Unified Lifecycle Flow
 
 The framework enforces a strict architectural boundary between discovering what to do and actually doing it. Data flows unidirectionally:
 
-1. **Artifact Generation:** Discovery commands (`/maintenance`, `/review`, `/debug`) create read-only artifacts (`research/`, `*.review.md`).
-2. **Strategy Synthesis:** The `planner` agent ingests these artifacts via the `/plan` command to generate an actionable, step-by-step roadmap.
-3. **Execution Routing:** The verified plan is handed off to the appropriate execution command (`/task` for logic, `/draft` for prose).
+1. **Discovery:** `/research`, `/maintenance`, `/review`, `/debug` create read-only artifacts
+2. **Strategy:** `/plan` generates actionable roadmaps in `plans/`
+3. **Execution:** `/task` (code) or `/draft` (prose) perform actual work
 
-### 🔍 Deep Dive: Scientific Debugging
-
-The `/debug` command implements a principled approach to problem-solving, moving through four distinct phases:
-
-1.  **Status & Context Analysis:** The agent gathers all relevant error logs, stack traces, and recent changes.
-2.  **Hypothesis Formulation:** Instead of guessing, the agent must propose a specific hypothesis for the root cause and obtain user approval.
-3.  **Isolated Hypothesis Testing:** The agent creates a temporary **diagnostic branch** (`debug/hyp-*`) and is granted restricted `write_file` access *only* for diagnostic code (logs, reproduction scripts).
-4.  **Synthesis & RCA Report:** Once verified, the agent synthesizes the findings into a structured Root Cause Analysis (RCA) report, ensuring the "fix" is understood before it is implemented.
-
-### 🔍 Deep Dive: TCR (Test-Commit-Revert) Protocol
+## 🔄 TCR (Test-Commit-Revert) Protocol
 
 The `/task work` command enforces a high-discipline development lifecycle through a strict TCR loop:
 
-1.  **Pre-flight Verification:** Ensures a clean `main` branch and passing tests.
-2.  **Isolation:** All work occurs on an auto-generated, kebab-case feature branch.
-3.  **The Loop (Red-Green-Verify):**
-    - **Red:** A failing test is written to define the step's goal.
-    - **Green:** Minimal code is written to pass the test.
-    - **Verify:** If the test fails, the agent is allowed **one quick fix**. If it fails again, the change is **automatically reverted** (`git checkout .`), preserving the last known stable state.
-4.  **Integration:** Upon completion, the feature branch is merged, the roadmap is updated, and the branch is deleted.
+1. **Pre-flight Verification:** Ensures a clean `main` branch and passing tests.
+2. **Isolation:** All work occurs on an auto-generated, kebab-case feature branch.
+3. **The Loop (Red-Green-Verify):**
+   - **Red:** A failing test is written to define the step's goal.
+   - **Green:** Minimal code is written to pass the test.
+   - **Verify:** If the test fails, the agent is allowed **one quick fix**. If it fails again, the change is **automatically reverted** (`git checkout .`), preserving the last known stable state.
+4. **Integration:** Upon completion, the feature branch is merged, the roadmap is updated, and the branch is deleted.
 
-### 🔍 Deep Dive: Timestamp-Based Validation
+## 📝 Procedural Task Management
 
-The `pre-commit.py` hook implements a sophisticated cross-file validation strategy:
+The `TASKS.md` file is managed exclusively via `.opencode/tools/task.py`:
 
-1.  **Change Detection:** Uses `git status --porcelain` to identify all modified files, excluding internal framework files (`.gemini/`) and the journal itself.
-2.  **MTime Analysis:** Calculates the maximum modification time (`max(mtime)`) among all meaningful changes.
-3.  **Audit Trail Check:** Parses the **last entry** in the current day's journal file (`journal/YYYY-MM-DD.md`) and extracts its ISO timestamp.
-4.  **Temporal Consistency:** If the journal entry timestamp is **older** than the latest file change, the commit is blocked. This forces the agent (or user) to document the work *after* it is done but *before* it is finalized.
+- **Single source of truth** for project roadmap
+- **State lifecycle:** `add` (Todo) → `start` (In Progress) → `archive` (Done)
+- **Never edit `TASKS.md` by hand** — always use the task script
 
-### 🔍 Deep Dive: Procedural Task Management (`task.py`)
+### Usage
 
-The framework enforces a **CLI-First** roadmap discipline. The `TASKS.md` file is a machine-managed artifact produced by the `.gemini/scripts/task.py` utility.
+```bash
+python .opencode/tools/task.py --help
+python .opencode/tools/task.py add --label "Feature X" --description "..."
+python .opencode/tools/task.py start --task-id G.1
+python .opencode/tools/task.py archive --task-id G.1
+```
 
-- **Data Integrity:** The script parses `TASKS.md` into a structured `Task` model, ensuring that IDs (e.g., `G.4`), labels, and dependencies are consistent.
-- **State Lifecycle:** Tasks move through a strictly defined lifecycle: `add` (Todo) -> `start` (In Progress) -> `archive` (Done/Archive).
-- **Migration Logic:** The script automatically assigns IDs and categorizes tasks during its initial run on a legacy `TASKS.md` file.
-- **Test Isolation:** The script's test suite (`tests/test_task_script.py`) utilizes the `GEMINI_TASKS_FILE` environment variable and `tempfile` to operate on a temporary roadmap, preventing verification logic from corrupting the actual project state.
+## 🔍 Scientific Debugging (`/debug`)
 
-### 4. Specialized Agents (`.gemini/agents/`)
+The `/debug` command implements a principled approach to problem-solving:
 
-Instead of a single "do-it-all" AI, the framework delegates tasks to specialized sub-agents with restricted toolsets and focused personas.
+1. **Status & Context Analysis:** Gather error logs, stack traces, and recent changes.
+2. **Hypothesis Formulation:** Propose a specific root cause hypothesis.
+3. **Isolated Testing:** Create a temporary diagnostic branch (`debug/hyp-*`).
+4. **RCA Synthesis:** Generate a Root Cause Analysis report.
 
-- **`planner`:** Responsible for high-level architectural design and roadmap generation.
-- **`debugger`:** A forensic investigation specialist using a scientific, hypothesis-driven workflow.
-- **`learner`:** A "Grounded Learning Specialist" who masters new technologies by writing, executing, and documenting code experiments.
-- **`researcher`:** Optimized for deep information gathering and multi-source synthesis.
-- **`writer` / `reviewer`:** Content generation and refinement specialists.
+## ⚓ Pre-Commit Validation
 
-### 5. The Skill System (`.gemini/skills/`)
+The framework uses a timestamp-based git hook to enforce journaling:
 
-The framework's permanent knowledge base. Each skill is a directory containing:
-- **`SKILL.md`:** The entry point with mandatory YAML frontmatter (`name` and `description`) for autonomous activation.
-- **`reference-*.md`:** Granular documentation for specific learning objectives.
-- **`assets/`:** Idiomatic, verified code examples and experiment scripts.
+- **Hook location:** `.opencode/tools/git-precommit.py`
+- **Install:** `make install-hooks`
+- **Rule:** Journal entry timestamp must be newer than file modifications
 
-### 6. State Management
+## 📁 Directory Structure
 
-The framework maintains internal state to optimize operations and ensure continuity:
+```
+.opencode/
+├── agents/          # Primary agent definitions
+│   └── subagents/  # Specialized subagents
+├── commands/        # High-level commands
+├── tools/           # Utilities (task.py, journal.py, git-precommit.py)
+└── style-guide.md   # Prose style rules
 
-- **`.gemini/last_make_run`**: Stores the timestamp of the last successful validation, allowing the framework to skip redundant tests.
-- **`.gemini/last_journal_update`**: Tracks when the journal was last updated to intelligently enforce the journaling requirement.
-- **`.gemini/settings.json`**: Configures the framework's global behavior and hook execution order.
+plans/               # Saved execution plans
+journal/             # Daily journal entries (YYYY-MM-DD.md)
+research/           # Research artifacts
+drafts/             # Content drafts
+TASKS.md            # Project roadmap (managed by task.py)
+```
 
-## ⚙️ The Technology Stack
+## ⚙️ Technology Stack
 
-- **CLI Engine:** Gemini CLI (Interactive Node.js-based terminal).
-- **Core Automation:** Python (Hooks and specialized scripts).
-- **Validation & Health:** Make (Central source of truth for builds and tests).
-- **State & Versioning:** Git (Change detection and history tracking).
-- **Documentation:** Markdown (Universal format for journals, plans, and reports).
+- **CLI Engine:** OpenCode (Node.js-based agent framework)
+- **Core Automation:** Python (Scripts in `.opencode/tools/`)
+- **Validation & Health:** Make (source of truth for builds/tests)
+- **State & Versioning:** Git
+- **Documentation:** Markdown (journals, plans, reports)
 
 ---
 

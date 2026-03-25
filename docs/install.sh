@@ -111,7 +111,7 @@ format:
 	@echo "Running formatting..."
 
 install-hooks:
-	ln -sf ../../.gemini/hooks/pre-commit.py .git/hooks/pre-commit
+	ln -sf ../../.opencode/tools/git-precommit.py .git/hooks/pre-commit
 	chmod +x .git/hooks/pre-commit
 EOF
 }
@@ -150,24 +150,24 @@ CORE_FILES=("GEMINI.md")
 SCAFFOLD_FILES=("README.md" "TASKS.md" "CHANGELOG.md" "makefile")
 # Directories that are ensured
 CONTENT_DIRS=("journal" "plans" "research" "drafts")
-# Files within .gemini/ that are PROTECTED (Never overwritten)
-PROTECTED_GEMINI_FILES=("settings.json" "style-guide.md")
+# Files within .opencode/ that are PROTECTED (Never overwritten)
+PROTECTED_OPENCODE_FILES=("opencode.json" "style-guide.md")
 
 WILL_CREATE=()
 WILL_UPDATE=()
 WILL_PROTECT=()
 
-# 1. .gemini Directory Logic
-if [[ ! -d ".gemini" ]]; then
-  WILL_CREATE+=(".gemini/ (core framework)")
+# 1. .opencode Directory Logic
+if [[ ! -d ".opencode" ]]; then
+  WILL_CREATE+=(".opencode/ (core framework)")
 else
   # Check for protected files
-  for f in "${PROTECTED_GEMINI_FILES[@]}"; do
-    if [[ -f ".gemini/$f" ]]; then
-      WILL_PROTECT+=(".gemini/$f (user configuration)")
+  for f in "${PROTECTED_OPENCODE_FILES[@]}"; do
+    if [[ -f ".opencode/$f" ]]; then
+      WILL_PROTECT+=(".opencode/$f (user configuration)")
     fi
   done
-  WILL_UPDATE+=(".gemini/ (hooks, scripts, core commands)")
+  WILL_UPDATE+=(".opencode/ (agents, commands, tools)")
 fi
 
 # 2. Core Files Logic (GEMINI.md)
@@ -217,26 +217,26 @@ confirm "Do you want to proceed with these changes?"
 
 # --- Execution ---
 IS_UPDATE=false
-if [[ -d ".gemini" ]]; then
+if [[ -d ".opencode" ]]; then
   IS_UPDATE=true
 fi
 
 echo "🛠️  Applying changes..."
 
-# 1. Update .gemini (Surgical Update)
-mkdir -p .gemini
+# 1. Update .opencode (Surgical Update)
+mkdir -p .opencode
 # Copy subdirectories one by one, preserving protected files
-for subdir in agents commands hooks scripts; do
-  if [[ -d "$TEMP_DIR/.gemini/$subdir" ]]; then
-    mkdir -p ".gemini/$subdir"
-    cp -r "$TEMP_DIR/.gemini/$subdir/." ".gemini/$subdir/"
+for subdir in agents commands tools; do
+  if [[ -d "$TEMP_DIR/.opencode/$subdir" ]]; then
+    mkdir -p ".opencode/$subdir"
+    cp -r "$TEMP_DIR/.opencode/$subdir/." ".opencode/$subdir/"
   fi
 done
 
 # Restore protected files if they existed in temp (preventing accidental overwrite if cp -r was used)
-for f in "${PROTECTED_GEMINI_FILES[@]}"; do
-  if [[ -f "$TEMP_DIR/.gemini/$f" && ! -f ".gemini/$f" ]]; then
-    cp "$TEMP_DIR/.gemini/$f" ".gemini/$f"
+for f in "${PROTECTED_OPENCODE_FILES[@]}"; do
+  if [[ -f "$TEMP_DIR/.opencode/$f" && ! -f ".opencode/$f" ]]; then
+    cp "$TEMP_DIR/.opencode/$f" ".opencode/$f"
   fi
 done
 
@@ -283,7 +283,7 @@ else
 fi
 
 # Use the project's journal script if it exists
-python3 .gemini/scripts/journal.py "$MSG"
+python3 .opencode/tools/journal.py "$MSG"
 
 # --- Post-Install ---
 git add .
