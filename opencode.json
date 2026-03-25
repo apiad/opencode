@@ -1,0 +1,6 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "query",
+  "agent": {},
+  "instructions": [".opencode/AGENTS.md"]
+}
