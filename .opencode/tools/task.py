@@ -2,6 +2,7 @@
 
 import re
 import sys
+import os
 import argparse
 from collections import defaultdict, deque
 
@@ -278,7 +279,7 @@ def main():
 
     args = parser.parse_args()
 
-    tasks_file_path = "TASKS.md"
+    tasks_file_path = os.environ.get("GEMINI_TASKS_FILE", "TASKS.md")
 
     try:
         with open(tasks_file_path, 'r') as f:
@@ -305,8 +306,10 @@ def main():
         tasks = update_task(tasks, args.task_id, plan_path=args.plan_path)
 
     formatted = format_tasks_to_markdown(tasks)
-    with open(tasks_file_path, 'w') as f:
-        f.write(formatted)
+    # Only write if content changed (preserves original formatting if no changes)
+    if content.strip() != formatted.strip():
+        with open(tasks_file_path, 'w') as f:
+            f.write(formatted)
 
 if __name__ == "__main__":
     main()

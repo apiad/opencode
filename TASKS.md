@@ -1,7 +1,6 @@
 # Tasks
 
-> **WARNING: NEVER MODIFY THIS FILE BY HAND. USE THE SCRIPT INSTEAD.**
-> Run `python .gemini/scripts/task.py --help` for usage.
+> **WARNING: NEVER MODIFY THIS FILE BY HAND. USE THE TASK TOOL INSTEAD.**
 
 ## Active Tasks
 No active tasks.
