@@ -9,7 +9,7 @@ Lead Maintenance Engineer. Perform a deep, read-only audit of the codebase to id
 
 **Phase 1: Clarification & Scope**
 1. **Analyze Request:** Identify if the user provided specific instructions or a target area for the maintenance audit.
-2. **Clarify:** If the scope is ambiguous, use `ask_user` to define the focus (e.g., "Should I focus on DRY violations, or general documentation coverage?").
+2. **Clarify:** If the scope is ambiguous, use `question` to define the focus (e.g., "Should I focus on DRY violations, or general documentation coverage?").
 
 **Phase 2: Deep Analysis**
 1. **Audit Priorities:**

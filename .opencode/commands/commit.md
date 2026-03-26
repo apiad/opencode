@@ -12,7 +12,7 @@ Analyze all current uncommitted changes (including untracked files), group them 
 2. **Proposal:**
    - Present the proposed commit groups and their commit messages to the user for approval.
    - Use Conventional Commits format: `<type>(<scope>): <subject>`.
-   - Use `ask_user` to confirm with the user before proceeding with the commits.
+   - Use `question` to confirm with the user before proceeding with the commits.
 3. **Execution:**
    - After confirmation, for each group:
      a. Stage the files.

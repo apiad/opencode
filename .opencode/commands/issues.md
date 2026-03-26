@@ -11,7 +11,7 @@ If no arguments or 'summary' is provided, produce a strategic report of open iss
 2. Provide a brief summary of each issue.
 3. Evaluate each issue based on **Feasibility** vs. **Impact**.
 4. Suggest which issues to tackle next, explaining the rationale.
-5. Use `ask_user` to ask if the user wants to work on a specific issue or create a new one.
+5. Use `issues` to ask if the user wants to work on a specific issue or create a new one.
 
 **Action: Create or Update**
 If the user provides a description or asks to 'create'/'update' an issue:
@@ -22,7 +22,7 @@ If the user provides a description or asks to 'create'/'update' an issue:
    - **Implementation Ideas:** Technical details, potential file paths, or architecture changes.
    - **Reproduction Steps (for Bugfixes):** If it's a bug, try to reproduce it first and add clear steps to the issue.
 3. **For Updating:** Fetch the existing issue body with `gh issue view <number> --json body` and propose the changes.
-4. Use `ask_user` to present the generated/updated issue description and get confirmation before running `gh issue create` or `gh issue edit`.
+4. Use `issues` to present the generated/updated issue description and get confirmation before running `gh issue create` or `gh issue edit`.
 
 **Action: Work**
 If the user asks to 'work on' a specific issue (e.g., `/issues work 42`):
@@ -31,6 +31,6 @@ If the user asks to 'work on' a specific issue (e.g., `/issues work 42`):
    - Research the relevant files and logic in the codebase.
    - Provide a comprehensive step-by-step implementation plan.
    - Include details on how to test and validate the changes.
-3. Use `ask_user` to present the plan and wait for approval before starting the execution.
+3. Use `issues` to present the plan and wait for approval before starting the execution.
 
 **Note:** If the intent is unclear, ask the user for clarification. Default to **Summary** if no specific action is inferred.

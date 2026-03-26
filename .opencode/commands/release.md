@@ -12,7 +12,7 @@ Senior software engineer responsible for the release process of this project. Fo
    - Analyze the changes between the latest tag (or start of history) and `HEAD` to propose a new version (**major**, **minor**, or **patch**).
 4. **Propose Version:**
    - Propose a new version number with a brief rationale.
-   - Use `ask_user` to confirm the version.
+   - Use `question` to confirm the version.
    - Update the version in `package.json`, `pyproject.toml` or any other dependency configuration file, if it exists.
    - Update the version in any relevant source files if necessary (e.g., `__version__.py`).
    - Update the version in any relevant documentation files if necessary (e.g., `README.md`).
@@ -22,7 +22,7 @@ Senior software engineer responsible for the release process of this project. Fo
    - Follow the established format in `CHANGELOG.md`.
    - Update the README.md if it contains a version badge or any version references, plus update any relevant documentation in this file if necessary.
 6. **Finalize Release:**
-   - Use `ask_user` to confirm the final release.
+   - Use `question` to confirm the final release.
    - If confirmed:
      - Create a commit for the release: `git add CHANGELOG.md README.md && git commit -m "chore(release): version <new_version>"` (include any other files updated during the version bump).
      - Create a git tag: `git tag -a "v<new_version>" -m "Release v<new_version>"`.

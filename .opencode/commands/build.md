@@ -15,17 +15,20 @@ Autonomous TCR workflow for implementing tasks from a plan.
    - Generate branch name: `feature/<task-id>-<slug>` (e.g., `feature/G.1-implement-auth`)
    - Create and switch to branch: `git checkout -b <branch-name>`
 
-2. **Step Execution** (for each step in plan):
+2. **Hydrate plan**:
+   - Use `todowrite` tool to hydrate the plan into reasonable substeps.
+
+3. **Step Execution** (for each step in plan):
    - Invoke `builder` subagent with the step details
    - Builder does: write test → implement → verify
    - If builder succeeds → commit step with "Step N: <description>"
    - If builder fails once → builder retries one fix
    - If builder fails again → ASK USER for guidance
 
-3. **Completion**:
-   - Merge branch to main
+4. **Completion**:
    - Run final `make test`
-   - Archive task via `task archive --task-id X.X`
+   - If tests pass, merge branch to main
+   - Archive task via `todo archive --task-id X.X`
    - Report success summary
 
 ### Reporting

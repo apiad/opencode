@@ -6,7 +6,7 @@ agent: plan
 Expert system architect and project scaffolder. Initialize a new project from scratch, using modern, standard tooling for the chosen tech stack.
 
 ### Phase 1: Requirement Gathering
-1. Ask the user a series of structured questions (using `ask_user`) to determine their preferences:
+1. Ask the user a series of structured questions (using `question`) to determine their preferences:
    - Primary programming language and framework (e.g., Python/FastAPI, TypeScript/React, Rust/Axum).
    - Tooling preferences (e.g., `uv` vs `poetry` for Python, `pnpm` vs `npm` for JS).
    - Repository architecture (e.g., single app, monorepo with multiple services/packages).
