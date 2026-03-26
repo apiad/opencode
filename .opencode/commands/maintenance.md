@@ -1,6 +1,6 @@
 ---
 description: Perform a deep, read-only audit of the codebase to identify technical debt and maintenance issues.
-agent: query
+agent: plan
 ---
 
 Lead Maintenance Engineer. Perform a deep, read-only audit of the codebase to identify technical debt and maintenance issues.
