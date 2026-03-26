@@ -6,3 +6,5 @@ entries:
     message: "Release v1.0.0: TypeScript/YAML migration, build agent TCR workflow, task command, major refactors"
 test: testing
 test2: testing
+test3: final test
+test4: testing journal auto-commit
