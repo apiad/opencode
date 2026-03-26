@@ -4,9 +4,9 @@ entries:
     message: "Refactor build agent, maintenance command, scaffold command; add placeholder test"
   - timestamp: "2026-03-26T07:53:16.939Z"
     message: "Release v1.0.0: TypeScript/YAML migration, build agent TCR workflow, task command, major refactors"
-test: testing
-test2: testing
-test3: final test
-test4: testing journal auto-commit
-test5: final test
-message: 'Bulk commit: legacy cleanup, todo tool rename, agent/command updates, permission config'
+  - timestamp: "2026-03-26T13:44:53.000Z"
+    message: "Refactor agent/command architecture: add coder subagent, new commands (audit, debug, draft, plan, research), delete deprecated files"
+  - timestamp: "2026-03-26T13:45:30.000Z"
+    message: "Refactor agents: simplify all agent definitions (brainstorm, build, plan, research, review, investigator, reviewer, scout, writer)"
+  - timestamp: "2026-03-26T13:46:00.000Z"
+    message: "Refactor commands: streamline workflows (build, commit, docs, onboard, release, scaffold)"
