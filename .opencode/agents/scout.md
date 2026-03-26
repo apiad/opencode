@@ -1,7 +1,6 @@
 ---
 description: Specialized subagent for conducting targeted web searches and research
-mode: subagent
-permission:
+permissions:
   webfetch: allow
   websearch: allow
 ---

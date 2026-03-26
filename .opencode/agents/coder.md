@@ -1,7 +1,6 @@
 ---
 description: Specialized subagent for writing non-permanent code to test hypotheses
-mode: subagent
-permission:
+permissions:
   bash: allow
   write: allow
 ---

@@ -1,36 +1,48 @@
 ---
-description: Manage project issues using GitHub CLI: list, create, update, or plan work.
-agent: build
+description: Manage project issues using GitHub CLI
+agent: ship
 ---
 
-Expert project lead. Manage project issues using the `gh` (GitHub) CLI.
+Manage project issues using the `gh` (GitHub) CLI.
 
-**Action: Summary (Default)**
-If no arguments or 'summary' is provided, produce a strategic report of open issues.
-1. Use `gh issue list --json number,title,labels,updatedAt,body` to fetch open issues.
-2. Provide a brief summary of each issue.
-3. Evaluate each issue based on **Feasibility** vs. **Impact**.
-4. Suggest which issues to tackle next, explaining the rationale.
-5. Use `issues` to ask if the user wants to work on a specific issue or create a new one.
+### Actions (infer from context)
 
-**Action: Create or Update**
-If the user provides a description or asks to 'create'/'update' an issue:
-1. If an issue number or specific title is provided, check if it already exists with `gh issue list -S "<title or number>"`.
-2. **For New Issues:** Generate a standard issue description with:
-   - **Executive Summary:** A clear, one-sentence goal.
-   - **Rationale:** Why is this important?
-   - **Implementation Ideas:** Technical details, potential file paths, or architecture changes.
-   - **Reproduction Steps (for Bugfixes):** If it's a bug, try to reproduce it first and add clear steps to the issue.
-3. **For Updating:** Fetch the existing issue body with `gh issue view <number> --json body` and propose the changes.
-4. Use `issues` to present the generated/updated issue description and get confirmation before running `gh issue create` or `gh issue edit`.
+#### Summary (Default)
+If no specific action is requested, produce a strategic report of open issues.
+1. Use `gh issue list --json number,title,labels,updatedAt,body` to fetch open issues
+2. Provide a brief summary of each issue
+3. Evaluate each issue based on **Feasibility** vs. **Impact**
+4. Suggest which issues to tackle next
+5. Ask if user wants to work on a specific issue or create a new one
 
-**Action: Work**
-If the user asks to 'work on' a specific issue (e.g., `/issues work 42`):
-1. Fetch the full issue details using `gh issue view <number> --json title,body,labels`.
-2. Enter **Plan Mode**:
-   - Research the relevant files and logic in the codebase.
-   - Provide a comprehensive step-by-step implementation plan.
-   - Include details on how to test and validate the changes.
-3. Use `issues` to present the plan and wait for approval before starting the execution.
+#### Create
+If user wants to create a new issue:
+1. Check if similar issue exists: `gh issue list -S "<title>"`
+2. Generate standard issue description:
+   - **Executive Summary:** One-sentence goal
+   - **Rationale:** Why this matters
+   - **Implementation Ideas:** Technical details, potential paths
+   - **Reproduction Steps (Bugfixes):** Clear steps to reproduce
+3. Present via `question` for confirmation
+4. Create with `gh issue create`
 
-**Note:** If the intent is unclear, ask the user for clarification. Default to **Summary** if no specific action is inferred.
+#### Update
+If user wants to update an existing issue:
+1. Fetch issue: `gh issue view <number> --json body`
+2. Present proposed changes
+3. Confirm and update with `gh issue edit`
+
+#### Work On
+If user asks to work on an issue (e.g., `/issues work 42`):
+1. Fetch issue details: `gh issue view <number> --json title,body,labels`
+2. Enter **Plan Mode** to create implementation plan
+3. Present plan for approval
+
+### Key Mandates
+- **Never touch source code** — Issue tracking only
+- **GitHub integration** — Requires `gh` authentication
+- If `gh` not available → inform user and suggest `gh auth login`
+
+### Constraints
+- Requires GitHub CLI (`gh`) authentication
+- If not authenticated → prompt user to run `gh auth login`
