@@ -36,11 +36,15 @@ Follow these phases strictly:
 
 ### Phase 4: Task Synchronization (tasks.yaml)
 1. Read the current `tasks.yaml` file to understand the project roadmap.
-2. Use `ask_user` to ask the user if they want to link this plan to `tasks.yaml`. Provide options if they are relevant:
-   - "Add as a new task"
+2. Use `ask_user` to ask the user if they want to link this plan to a task. Provide options:
+   - "Add as a new task" (recommended)
    - "Update an existing task"
    - "Skip"
-3. If they choose to add/update, use the `task` tool to attach the plan to the relevant task.
+3. If they choose to add as new task:
+   - Ask for label and category
+   - Use `task add --label "X" --category "Y" --plan-path plans/my-plan.md` to create task AND attach plan in one step
+4. If they choose to update existing task:
+   - Use `task attach-plan --task-id X.X --plan-path plans/my-plan.md` to attach plan to existing task
 
 ### Phase 5: Finalization
 1. Advise the user that they can now use the `/issues` command to synchronize this plan with their issue tracker.
