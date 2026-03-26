@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2026-03-26
+
+### Added
+- **Build Agent with Full TCR Workflow:** Implemented a complete Test-Commit-Revert agent for test-driven implementation with single-iteration workflow.
+- **Task Command:** Added dedicated `/task` command for managing project roadmap in `tasks.yaml`.
+- **Plan Workflow Improvements:** Enhanced task linking workflow with better plan synchronization.
+
+### Changed
+- **Maintenance Command:** Reassigned from `query` agent to `plan` agent for improved audit workflows.
+- **Scaffold Command:** Streamlined by removing execution phase from command spec.
+
+### Refactored
+- **TypeScript/YAML Migration:** Migrated task and journal tools from Python to TypeScript with YAML storage (BREAKING).
+- **Build Agent Simplification:** Simplified to one-off TCR agent, removing preconditions and constraints.
+- **Subagent Structure:** Flattened subagent directory structure in `.opencode/`.
+
+### Documentation
+- Updated all references from Python tools to TypeScript/YAML.
+- Updated documentation to reference `.opencode` paths.
+- Added context minification feature documentation and principles.
+
 ## [0.22.0] - 2026-03-24
 
 ### Added
