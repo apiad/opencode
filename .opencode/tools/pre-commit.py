@@ -6,7 +6,7 @@ import re
 from datetime import date, datetime
 
 def run_command(command):
-    result = subprocess.run(command, capture_output=True, text=True, shell=True)
+    result = subprocess.run(command, capture_output=True, text=True, shell=True, stdin=subprocess.DEVNULL)
     return result
 
 def main():
@@ -21,7 +21,9 @@ def main():
 
     # Check if ONLY journal files changed - auto-commit and return
     journal_files = [f for f in changed_files if f.startswith("journal/")]
-    meaningful_files = [f for f in changed_files if not f.startswith("journal/") and not f.startswith(".gemini") and not f.startswith(".opencode")]
+    # Normalize paths - .opencode appears as opencode in git status
+    normalized = [f.lstrip(".") for f in changed_files]
+    meaningful_files = [f for f in normalized if not f.startswith("journal/") and not f.startswith("gemini") and not f.startswith("opencode")]
 
     if journal_files and not meaningful_files:
         print("Journal-only change detected. Auto-committing...")
@@ -41,7 +43,7 @@ def main():
             print(res.stderr)
             return res.returncode
 
-    meaningful_changes = [f for f in changed_files if not f.startswith(".gemini") and not f.startswith(".opencode") and f != journal_path and not f.endswith(".yaml")]
+    meaningful_changes = [f for f in changed_files if not f.lstrip(".").startswith("gemini") and not f.lstrip(".").startswith("opencode") and f != journal_path and not f.endswith(".yaml")]
 
     if not meaningful_changes:
         return 0
