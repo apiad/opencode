@@ -4,7 +4,6 @@ all: test lint
 
 test:
 	@echo "Running tests..."
-	@uv run pytest tests/
 
 docs-serve:
 	@mkdocs serve

@@ -4,16 +4,16 @@ agent: build
 subagents: [tester]
 ---
 
-# /build [feature]
+# /build
 
-Implement [feature] using Test-Commit-Revert discipline.
+Implement using Test-Commit-Revert discipline.
 
 ## Workflow
 
 ### Phase 1: Planning Check
 Check `.knowledge/plans/` for relevant plan:
-- If found: Load and follow plan phases
-- If not found: Create minimal plan or ask user
+- If found: Load and follow plan phases strictly. Use `todowrite` to keep track of progress.
+- If not found: Instruct user to use `/plan` and refuse to continue.
 
 ### Phase 2: TCR Loop
 
@@ -25,9 +25,11 @@ For each implementation step:
 - Commit the test: `git add -A && git commit -m "test: [step description]"`
 
 **Step 2: GREEN (Implement)**
-- Write minimal code to pass test
-- No refactoring yet
-- Run `make test` to confirm pass
+- Launch `general` subagent with focused instructions to implement:
+  - Write minimal code to pass test
+  - No refactoring yet
+  - Run `make test` to confirm pass
+- Give the general subagent concrete instructions on what logic to implement.
 
 **Step 3: VERIFY**
 - If pass → Commit: `git commit -m "feat: [step description]"`
@@ -37,11 +39,6 @@ For each implementation step:
   - If pass → Commit
   - If fail → **REVERT**: `git checkout .`
   - Report failure to user
-
-**Step 4: REFACTOR (optional)**
-- Improve code while keeping tests green
-- Run `make test`
-- Commit: `git commit -m "refactor: [what improved]"`
 
 ### Phase 3: Completion
 - All plan phases complete

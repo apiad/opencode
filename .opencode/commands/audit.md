@@ -40,9 +40,9 @@ Investigate specific areas:
    - Known issues
 
 ### Phase 3: Report
-Write structured audit to `.knowledge/insights/audits/{scope}-{date}.md`:
+Write structured audit to `.knowledge/notes/audits/{scope}-{date}.md`:
 
-```yaml
+```markdown
 ---
 id: audit-{scope}-{date}
 created: {date}

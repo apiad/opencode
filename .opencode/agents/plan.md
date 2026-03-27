@@ -2,7 +2,7 @@
 description: Decide approach, design architecture, create actionable plans
 mode: primary
 permissions:
-    "*": false
+    "*": deny
     read: allow
     edit:
         .knowledege/plans: allow

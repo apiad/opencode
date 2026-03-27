@@ -22,7 +22,7 @@ Every agent MUST follow these:
 
 | Path | Purpose | Created by |
 |------|---------|------------|
-| `.knowledge/insights/*` | Analysis outputs (research, audits, investigations) | analyze agent |
+| `.knowledge/notes/*` | Analysis outputs (research, audits, investigations) | analyze agent |
 | `.knowledge/plans/` | Action plans | plan agent |
 | `.knowledge/log/` | Chronological activity log | release agent |
 | `.experiments/` | Subagent scratch space (gitignored) | subagents |
@@ -51,7 +51,7 @@ Every agent MUST follow these:
 
 | Agent | Purpose | Permissions |
 |-------|---------|-------------|
-| `analyze` | Understand, investigate, research | Read-only on project files; write to `.knowledge/insights/` |
+| `analyze` | Understand, investigate, research | Read-only on project files; write to `.knowledge/notes/` |
 | `plan` | Decide approach, design architecture | Read-only on project files; write to `.knowledge/plans/` |
 | `build` | Execute, implement, create | Full write access to project files |
 | `release` | Finalize, commit, publish | Full write access; git operations |

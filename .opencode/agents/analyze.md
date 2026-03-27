@@ -2,17 +2,20 @@
 description: Understand, investigate, and research - read-only knowledge gathering
 mode: primary
 permissions:
-    "*": false
+    "*": deny
     read: allow
     glob: allow
     list: allow
+    websearch: allow
+    webfetch: allow
     edit:
-        .knowledge/notes: allow
+        .knowledge/notes*: allow
     bash:
         ls*: allow
         find*: allow
         git ls*: allow
         git status*: allow
+        todowrite: allow
     task:
         scout: allow
         investigator: allow
