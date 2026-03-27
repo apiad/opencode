@@ -1,64 +1,76 @@
 # /note Command
 
-Create structured notes from raw thoughts.
+Create structured notes from content via stdin.
 
 ## Usage
 
 ```
-/note <your raw thoughts>
+/note --title "Title" [--tags "tag1,tag2"] [--save]
 ```
 
 ## How It Works
 
-The model runs the `note` CLI tool:
-
-1. **Create**: `uv run note create --content "..."`
-2. **Review**: Model presents structured note
-3. **Iterate**: Re-run with modifications if needed
-4. **Save**: `uv run note save --content "..." --filename "name"`
-
-## CLI Tool
-
-**Location**: `.opencode/bin/note`
-
-**Commands**:
+Model pipes content to `note.py` via stdin:
 
 ```bash
-# Structure content into note
-uv run note create --content "Your thoughts..."
-
-# Save to file
-uv run note save --content "..." --filename "name"
-
-# List existing notes
-uv run note list
-
-# Search notes
-uv run note search --query "auth"
+echo "Note content..." | uv run note --title "Title" --tags "tag1"
 ```
+
+## CLI Options
+
+- `--title, -t` (required) - Note title
+- `--slug, -s` (optional) - URL slug (auto-generated from title)  
+- `--tags` (optional) - Comma-separated tags
+- `--save` (flag) - Save to file (always prints to stdout)
 
 ## Example
 
 ```
-User: /note "I was thinking about auth flow. We need OAuth2."
+User: /note "Auth Design Thoughts"
 
-Model: uv run note create --content "I was thinking about auth flow..."
+Model: echo "I was thinking about auth flow. We need OAuth2..." | \
+       uv run note --title "Auth Design Thoughts" --tags "auth,design"
 
 Output:
-{
-  "id": "2026-03-27-abc123",
-  "title": "Auth Flow Thoughts",
-  "created": "2026-03-27",
-  "type": "note",
-  "tags": ["auth"],
-  "filename": "auth-flow-thoughts"
-}
+---
+title: "Auth Design Thoughts"
+slug: auth-design-thoughts
+date: 2026-03-27
+tags:
+  - auth
+  - design
+---
 
-Model: Here's your note with tags: auth. Save as "auth-flow-thoughts"?
+# Auth Design Thoughts
 
-User: Yes
+I was thinking about auth flow. We need OAuth2...
 
-Model: uv run note save --content "..." --filename "auth-flow-thoughts"
+User: Save it
+
+Model: [re-runs with --save flag]
 ```
 
-Notes saved to: `.knowledge/notes/<filename>.md`
+## Output
+
+Always prints YAML frontmatter + Markdown to stdout:
+
+```yaml
+---
+title: "My Title"
+slug: my-title
+date: 2026-03-27
+tags:
+  - tag1
+  - tag2
+---
+
+# My Title
+
+Content from stdin...
+```
+
+With `--save`, also writes to: `.knowledge/notes/<slug>.md`
+
+## Script Location
+
+`.opencode/bin/note.py` (inline script with uv dependencies)
