@@ -157,6 +157,11 @@ main() {
     echo -e "Next steps:"
     echo -e "  ${CYAN}opencode /onboard${NC}  - Get started with your project"
     echo ""
+    if [[ "$mode" == "link" ]]; then
+        echo -e "To update framework later:"
+        echo -e "  ${CYAN}cd .opencode && git pull${NC}"
+        echo ""
+    fi
 }
 
 main "$@"
