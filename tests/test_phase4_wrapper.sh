@@ -8,10 +8,14 @@ REPO_DIR="/home/apiad/Projects/personal/opencode"
 
 echo "=== Phase 4: Wrapper Repository Test ==="
 
-# Check 1: .opencode/ removed from repo tracking
-echo -n "Checking .opencode/ is gitignored... "
-if ! grep -q "^\.opencode/" "$REPO_DIR/.gitignore" 2>/dev/null; then
-    echo "FAIL: .opencode/ not in .gitignore"
+# Check 1: .opencode/ is now a git submodule (not in .gitignore)
+echo -n "Checking .opencode/ is a git submodule... "
+if [[ ! -f "$REPO_DIR/.gitmodules" ]]; then
+    echo "FAIL: .opencode is not a submodule (.gitmodules missing)"
+    exit 1
+fi
+if ! grep -q "path = \.opencode" "$REPO_DIR/.gitmodules" 2>/dev/null; then
+    echo "FAIL: .opencode not registered as submodule"
     exit 1
 fi
 echo "OK"
