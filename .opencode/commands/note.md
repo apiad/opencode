@@ -1,76 +1,22 @@
-# /note Command
+---
+description: Structure markdown notes from thoughts or context
+agent: analyze
+---
 
-Create structured notes from content via stdin.
+# /note
 
-## Usage
+You are running the /note command. This command creates a structured markdown note with a YAML header from the user conversation.
 
-```
-/note --title "Title" [--tags "tag1,tag2"] [--save]
-```
+Determine what should be the content of the note (a well-structured markdown body), the note title, slug (kebab-cased filename) and potential tags.
 
-## How It Works
+## What to do next
 
-Model pipes content to `note.py` via stdin:
+Run the following command:
 
 ```bash
-echo "Note content..." | uv run note --title "Title" --tags "tag1"
+uv run .opencode/bin/note.py --title [TITLE] --slug [SLUG] --tags [TAGS (comma-separated)]
 ```
 
-## CLI Options
+Use `cat` or `echo` to send the actual content as stdin if its short, or write to a temporary file if its long.
 
-- `--title, -t` (required) - Note title
-- `--slug, -s` (optional) - URL slug (auto-generated from title)  
-- `--tags` (optional) - Comma-separated tags
-- `--save` (flag) - Save to file (always prints to stdout)
-
-## Example
-
-```
-User: /note "Auth Design Thoughts"
-
-Model: echo "I was thinking about auth flow. We need OAuth2..." | \
-       uv run note --title "Auth Design Thoughts" --tags "auth,design"
-
-Output:
----
-title: "Auth Design Thoughts"
-slug: auth-design-thoughts
-date: 2026-03-27
-tags:
-  - auth
-  - design
----
-
-# Auth Design Thoughts
-
-I was thinking about auth flow. We need OAuth2...
-
-User: Save it
-
-Model: [re-runs with --save flag]
-```
-
-## Output
-
-Always prints YAML frontmatter + Markdown to stdout:
-
-```yaml
----
-title: "My Title"
-slug: my-title
-date: 2026-03-27
-tags:
-  - tag1
-  - tag2
----
-
-# My Title
-
-Content from stdin...
-```
-
-With `--save`, also writes to: `.knowledge/notes/<slug>.md`
-
-## Script Location
-
-`.opencode/bin/note.py` (inline script with uv dependencies)
+**Read the output and follow instructions from there.**

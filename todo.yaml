@@ -28,3 +28,12 @@ tasks:
       - none
     createdAt: "2026-03-27T13:16:30.421Z"
     updatedAt: "2026-03-27T13:16:30.421Z"
+  - id: "A.1"
+    label: "framework-pattern-refactor"
+    description: "Create comprehensive refactoring plan for framework modes and commands"
+    category: "architecture"
+    status: todo
+    complexity: 5
+    dependencies: []
+    createdAt: "2026-03-27T15:02:43.131Z"
+    updatedAt: "2026-03-27T15:02:43.131Z"

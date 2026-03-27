@@ -10,45 +10,12 @@ import re
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Optional
 
 import typer
 import yaml
 
+app = typer.Typer(help="Create structured notes")
 NOTES_DIR = Path(".knowledge/notes")
-
-USAGE = """Create structured notes from stdin content.
-
-USAGE:
-  uv run note --title "My Note" [--slug my-note] [--tags "tag1,tag2"] < content.txt
-  uv run note --title "My Note" --save < content.txt
-  echo "Content..." | uv run note --title "Title" --tags "tag1"
-
-OPTIONS:
-  --title, -t TEXT     Note title (required)
-  --slug, -s TEXT      URL slug (auto-generated from title if not provided)
-  --tags TEXT          Comma-separated tags (optional)
-  --save               Save to file (prints to stdout regardless)
-
-OUTPUT:
-  Always prints formatted note with YAML frontmatter to stdout.
-  With --save, also writes to .knowledge/notes/<slug>.md
-
-EXAMPLES:
-  # Preview a note
-  echo "Auth thoughts..." | uv run note --title "Auth Design" --tags "auth,design"
-
-  # Save a note
-  echo "Auth thoughts..." | uv run note --title "Auth Design" --save
-
-  # Custom slug
-  echo "Content..." | uv run note --title "Auth Design" --slug auth-2024
-"""
-
-
-def show_usage():
-    print(USAGE, file=sys.stderr)
-    raise typer.Exit(1)
 
 
 def slugify(title: str) -> str:
@@ -69,23 +36,19 @@ def format_note(title: str, slug: str, tags: list[str], content: str) -> str:
 
     yaml_header = yaml.dump(frontmatter, sort_keys=False, allow_unicode=True, default_flow_style=False)
 
-    return "\n".join(["---", yaml_header.rstrip(), "---", "", f"# {title}", "", content])
+    lines = ["---", yaml_header.rstrip(), "---", "", content]
+
+    return "\n".join(lines)
 
 
+@app.command()
 def main(
-    title: Optional[str] = typer.Option(None, "--title", "-t", help="Note title"),
-    slug: Optional[str] = typer.Option(None, "--slug", "-s", help="URL slug (auto-generated from title if not provided)"),
+    title: str = typer.Option(..., "--title", "-t", help="Note title"),
+    slug: str | None = typer.Option(None, "--slug", "-s", help="URL slug (auto-generated from title if not provided)"),
     tags: str = typer.Option("", "--tags", help="Comma-separated tags"),
     save: bool = typer.Option(False, "--save", help="Save to file (prints to stdout regardless)"),
 ):
     """Create a structured note from stdin content."""
-    # Show usage if no title provided
-    if title is None:
-        show_usage()
-    
-    # After show_usage() check, title is guaranteed to be str
-    title_str: str = title
-
     # Read content from stdin
     content = sys.stdin.read().strip()
 
@@ -103,9 +66,6 @@ def main(
     # Format the note
     formatted = format_note(title, slug, tag_list, content)
 
-    # Print to stdout
-    print(formatted)
-
     # Save if requested
     if save:
         NOTES_DIR.mkdir(parents=True, exist_ok=True)
@@ -117,7 +77,9 @@ def main(
 
         filepath.write_text(formatted)
         typer.echo(f"\n✓ Saved to: {filepath}")
+    else:
+        typer.echo(f"\nNote has NOT being saved. It's in draft mode. Ask the user for changes, and rerun with --save when confirmed.")
 
 
 if __name__ == "__main__":
-    typer.run(main)
+    app()
