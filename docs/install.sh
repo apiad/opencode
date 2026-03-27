@@ -81,12 +81,12 @@ select_mode() {
     echo ""
     echo -ne "Enter choice [1]: "
     read -r choice
-    choice="${choice:-1}"
+    mode="${choice:-1}"
 
-    case "$choice" in
-        1) echo "copy" ;;
-        2) echo "link" ;;
-        *) echo "copy" ;;
+    case "$mode" in
+        1) install_copy ;;
+        2) install_link ;;
+        *) install_copy ;;
     esac
 }
 
@@ -126,13 +126,7 @@ main() {
     check_not_installed
     check_git_clean
 
-    mode=$(select_mode)
-
-    echo ""
-    case "$mode" in
-        copy) install_copy ;;
-        link) install_link ;;
-    esac
+    select_mode
 
     create_directories
 
