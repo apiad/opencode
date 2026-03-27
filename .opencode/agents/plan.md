@@ -5,12 +5,12 @@ permissions:
     "*": deny
     read: allow
     edit:
-        .knowledege/plans: allow
+        .knowledege/plans/*: allow
     glob: allow
     list: allow
     bash:
-        ls*: allow
-        find*: allow
+        ls *: allow
+        find *: allow
     task:
         investigator: allow
 ---

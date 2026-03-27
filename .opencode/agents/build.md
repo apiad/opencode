@@ -2,9 +2,9 @@
 description: Execute, implement, and create - disciplined implementation
 mode: primary
 permissions:
-    *: allow
+    "*": allow
     task:
-        *: deny
+        "*": deny
         tester: allow
         drafter: allow
         general: allow

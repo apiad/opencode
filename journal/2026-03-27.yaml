@@ -1,4 +1,0 @@
-date: "2026-03-27"
-entries:
-  - timestamp: "2026-03-27T08:05:27.083Z"
-    message: "Completed RQ6 research on CLI auto-discovery and introspection mechanisms. Covered: 1) Introspection flags (--help, --json, environment variables), 2) Shell completion generation (bash/zsh/fish/PowerShell), 3) Dynamic help generation (framework patterns), 4) Structured data export (JSON output modes), 5) Discovery protocols (PATH-based plugin discovery), 6) Capability advertising (environment variables, feature flags). Found 9 authoritative sources from Click, Cobra, oclif, clig.dev, and other major CLI frameworks."

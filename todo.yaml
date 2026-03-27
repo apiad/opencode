@@ -8,3 +8,13 @@ tasks:
     dependencies: []
     createdAt: "2026-03-27T07:32:56.679Z"
     updatedAt: "2026-03-27T07:33:17.365Z"
+  - id: "F.1"
+    label: "planning"
+    description: "Create plan for framework submodule architecture"
+    category: "framework"
+    status: todo
+    complexity: 5
+    dependencies:
+      - none
+    createdAt: "2026-03-27T09:39:58.725Z"
+    updatedAt: "2026-03-27T09:39:58.725Z"

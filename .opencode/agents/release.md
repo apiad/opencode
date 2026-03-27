@@ -2,9 +2,9 @@
 description: Finalize, commit, version, publish, and deploy
 mode: primary
 permissions:
-    *: allow
+    "*": allow
     task:
-        *: deny
+        "*": deny
 ---
 
 # RELEASE Mode

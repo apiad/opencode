@@ -4,13 +4,14 @@ agent: plan
 subagents: [investigator]
 ---
 
-# /plan [description]
+# /plan
 
-Create structured implementation plan for [description].
+Create structured implementation plan.
 
 ## Workflow
 
 ### Phase 1: Constraint Analysis
+
 Use `investigator` to understand:
 - Existing code structure
 - Relevant patterns to follow
@@ -18,6 +19,7 @@ Use `investigator` to understand:
 - Dependencies involved
 
 ### Phase 2: Decomposition
+
 Break [description] into phases:
 1. **Phase 1:** [initial step]
 2. **Phase 2:** [next step]
@@ -26,6 +28,7 @@ Break [description] into phases:
 Maximum 5 phases for clarity.
 
 ### Phase 3: Definition
+
 For each phase, define:
 - **Goal:** What must be achieved
 - **Deliverable:** Tangible output
@@ -33,7 +36,8 @@ For each phase, define:
 - **Depends on:** Previous phases
 
 ### Phase 4: Documentation
-Write plan to `.knowledge/plans/active/{kebab-case-description}.md`:
+
+Write plan to `.knowledge/plans/{kebab-case-description}.md`:
 
 ```yaml
 ---
@@ -85,6 +89,7 @@ phases:
 ```
 
 ## Key Constraints
+
 - Maximum 5 phases
 - Clear done criteria for each
 - Expires in 7 days (warns when stale)
