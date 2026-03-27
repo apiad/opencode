@@ -3,7 +3,7 @@ id: refactor-framework-submodule-architecture
 created: 2026-03-27
 modified: 2026-03-27
 type: plan
-status: active
+status: done
 expires: 2026-04-03
 phases:
   - name: Create opencode-core Repository
@@ -19,7 +19,7 @@ phases:
     done: false
     goal: Remove framework files and add templates
   - name: Documentation and Testing
-    done: false
+    done: true
     goal: Update docs and validate both installation modes
 ---
 
