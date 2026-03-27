@@ -1,0 +1,1564 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://apiad.github.io/starter/user-guide/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../deploy/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>User Guide - Gemini CLI Opinionated Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#user-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Gemini CLI Opinionated Framework" class="md-header__button md-logo" aria-label="Gemini CLI Opinionated Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Gemini CLI Opinionated Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              User Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/apiad/starter" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  User Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../deploy/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Setup & Deployment
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../design/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Architecture & Design
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../develop/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Development & Contribution
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Gemini CLI Opinionated Framework" class="md-nav__button md-logo" aria-label="Gemini CLI Opinionated Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Gemini CLI Opinionated Framework
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/apiad/starter" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#principles-of-effective-ai-assisted-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 Principles of Effective AI-Assisted Work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-1-discovery-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔍 Phase 1: Discovery &amp; Audit
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Phase 1: Discovery &amp; Audit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#research" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /research
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /debug
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-2-strategy-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌉 Phase 2: Strategy &amp; Planning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌉 Phase 2: Strategy &amp; Planning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /plan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /onboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-3-execution-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Phase 3: Execution &amp; Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Phase 3: Execution &amp; Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scaffold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /scaffold
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /todo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌲 Agent Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌲 Agent Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-agents-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primary Agents (Modes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subagents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subagents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-full-feature-development-walkthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 A Full Feature Development Walkthrough
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 A Full Feature Development Walkthrough">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /release
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-full-feature-development-walkthrough_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 A Full Feature Development Walkthrough
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 A Full Feature Development Walkthrough">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-discovery-with-research-or-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Discovery with /research or /audit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-strategy-with-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Strategy with /plan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-execute-with-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Execute with /build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-review-integrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Review &amp; Integrate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-document-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Document &amp; Release
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#walkthrough-solving-a-bug-with-debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔍 Walkthrough: Solving a Bug with /debug
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintaining-your-journal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Maintaining your Journal
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✍️ Maintaining your Journal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-rule-of-temporal-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Rule of Temporal Consistency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-note-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the Note Tool
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-content-creation-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ The Content Creation Workflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✍️ The Content Creation Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#draft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /draft
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /fix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development & Contribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#principles-of-effective-ai-assisted-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 Principles of Effective AI-Assisted Work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-1-discovery-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔍 Phase 1: Discovery &amp; Audit
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Phase 1: Discovery &amp; Audit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#research" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /research
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /debug
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-2-strategy-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌉 Phase 2: Strategy &amp; Planning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌉 Phase 2: Strategy &amp; Planning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /plan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /onboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-3-execution-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Phase 3: Execution &amp; Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Phase 3: Execution &amp; Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scaffold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /scaffold
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /todo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌲 Agent Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌲 Agent Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-agents-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primary Agents (Modes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subagents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subagents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-full-feature-development-walkthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 A Full Feature Development Walkthrough
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 A Full Feature Development Walkthrough">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /release
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-full-feature-development-walkthrough_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 A Full Feature Development Walkthrough
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 A Full Feature Development Walkthrough">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-discovery-with-research-or-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Discovery with /research or /audit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-strategy-with-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Strategy with /plan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-execute-with-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Execute with /build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-review-integrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Review &amp; Integrate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-document-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Document &amp; Release
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#walkthrough-solving-a-bug-with-debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔍 Walkthrough: Solving a Bug with /debug
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintaining-your-journal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Maintaining your Journal
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✍️ Maintaining your Journal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-rule-of-temporal-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Rule of Temporal Consistency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-note-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the Note Tool
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-content-creation-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ The Content Creation Workflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✍️ The Content Creation Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#draft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /draft
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /fix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="user-guide">User Guide</h1>
+<p>Welcome to the <strong>OpenCode Framework</strong>. This guide explains how to use the framework to achieve a high-velocity, AI-assisted development workflow.</p>
+<p>The framework is not just a set of scripts; it is a principled system designed to take you from ideation to execution at the fastest responsible speed, without sacrificing safety or maintainability.</p>
+<hr />
+<h2 id="principles-of-effective-ai-assisted-work">🧠 Principles of Effective AI-Assisted Work</h2>
+<p>The most pressing limitation of modern LLMs is context saturation. When you work on a single project for a long time, the model can lose track of important details, leading to hallucinations or drift.</p>
+<p>This framework solves this problem by enforcing core principles:</p>
+<ol>
+<li><strong>The important things should be made explicit:</strong> We keep track of everything important in Markdown files. Ideas are committed to <code>.knowledge/plans/</code>, research is summarized in <code>.knowledge/notes/</code>, and all changes are logged in <code>.knowledge/log/</code>. This physical "long-term memory" prevents the agent from forgetting context.</li>
+<li><strong>Resist the urge to guess:</strong> We favor explicit commands over implicit actions. If you want the model to make a plan, you use the <code>/plan</code> command, which invokes a carefully crafted workflow rather than relying on the agent's default behavior.</li>
+<li><strong>Evidence-based:</strong> Every claim cites specific sources and findings are actionable.</li>
+</ol>
+<hr />
+<h2 id="phase-1-discovery-audit">🔍 Phase 1: Discovery &amp; Audit</h2>
+<p>The most critical phase of any project occurs before you write a single line of code. This phase uses read-only commands to gather information safely.</p>
+<h3 id="research"><code>/research</code></h3>
+<p>Your tool for deep domain exploration.
+- <strong>How it works:</strong> Gathers documentation and synthesizes it into <code>.knowledge/notes/</code> reports.</p>
+<h3 id="debug"><code>/debug</code></h3>
+<p>Your primary tool for forensic, scientific investigation.</p>
+<ul>
+<li><strong>How it works:</strong> When a bug is detected, the <code>/debug</code> command implements a principled approach to problem-solving using the specialized <code>debugger</code> subagent. It moves through four distinct phases: Context Analysis, Hypothesis Formulation, Isolated Testing on a temporary branch (<code>debug/hyp-*</code>), and finally a Synthesis of the findings into a <strong>Root Cause Analysis (RCA)</strong> report.</li>
+<li><strong>Why it works:</strong> It forces the agent to identify the root cause <em>before</em> attempting a fix, preventing "guess-and-check" coding that can lead to regressions.</li>
+</ul>
+<hr />
+<h2 id="phase-2-strategy-planning">🌉 Phase 2: Strategy &amp; Planning</h2>
+<p>Once you have gathered discovery artifacts, you must synthesize them into an actionable strategy.</p>
+<h3 id="plan"><code>/plan</code></h3>
+<p>Your tool for internal strategy and architectural design.</p>
+<ul>
+<li><strong>How it works:</strong> The <code>plan</code> agent conducts a thorough analysis of your codebase. After clarifying the goal with you interactively, it produces a comprehensive Markdown plan in the <code>.knowledge/plans/</code> directory.</li>
+<li><strong>Crucial Rule:</strong> The <code>/plan</code> command <em>never</em> executes the code. It maps the territory and provides a step-by-step execution roadmap for you to approve first.</li>
+</ul>
+<h3 id="onboard"><code>/onboard</code></h3>
+<p>Your tool for rapid project orientation.</p>
+<ul>
+<li><strong>How it works:</strong> Provides a high-signal overview of the repository's architecture, standards, and current state. </li>
+<li><strong>Why it works:</strong> It ensures that you (and the agent) are always aligned with the project's unique conventions before starting a session.</li>
+</ul>
+<hr />
+<h2 id="phase-3-execution-implementation">🚀 Phase 3: Execution &amp; Implementation</h2>
+<p>Once you have a solid strategy in <code>.knowledge/plans/</code>, you can move into execution. These commands eliminate the friction of context-switching between your IDE and terminal.</p>
+<h3 id="issues"><code>/issues</code></h3>
+<p>Your gateway to GitHub.</p>
+<ul>
+<li><strong>How it works:</strong> Interfaces with the GitHub CLI to analyze open issues and recommend what to tackle next based on strategic impact.</li>
+</ul>
+<h3 id="scaffold"><code>/scaffold</code></h3>
+<p>Your tool for project initialization.</p>
+<ul>
+<li><strong>How it works:</strong> Scaffolds new components or entire projects using modern, standard tooling (TS, Python, Rust, etc.) and integrates the framework's standards and <code>makefile</code> from the start.</li>
+</ul>
+<h3 id="todo"><code>/todo</code></h3>
+<p>Your task management tool.</p>
+<ul>
+<li><strong>How it works:</strong> Manages project tasks via the <code>todowrite</code> tool. Use it to track work items, set priorities, and mark completion.</li>
+<li><strong>Why it works:</strong> Keeps a structured task list visible to both user and agent, ensuring nothing falls through the cracks.</li>
+</ul>
+<h3 id="commit"><code>/commit</code></h3>
+<p>...</p>
+<h2 id="agent-architecture">🌲 Agent Architecture</h2>
+<p>The framework uses <strong>OpenCode</strong> with specialized agents that handle different cognitive workloads:</p>
+<h3 id="primary-agents-modes">Primary Agents (Modes)</h3>
+<ul>
+<li><strong><code>analyze</code></strong>: Research, investigation, and audits</li>
+<li><strong><code>plan</code></strong>: Strategy and architectural design</li>
+<li><strong><code>build</code></strong>: Implementation with TCR discipline</li>
+<li><strong><code>release</code></strong>: Publishing and versioning</li>
+</ul>
+<h3 id="subagents">Subagents</h3>
+<ul>
+<li><strong><code>investigator</code></strong>: Codebase analysis</li>
+<li><strong><code>scout</code></strong>: Web research</li>
+<li><strong><code>tester</code></strong>: Hypothesis validation</li>
+<li><strong><code>drafter</code></strong>: Content creation</li>
+<li><strong><code>critic</code></strong>: Prose review</li>
+</ul>
+<h2 id="a-full-feature-development-walkthrough">🔄 A Full Feature Development Walkthrough</h2>
+<ul>
+<li><strong>How it works:</strong> Instead of monolithic "WIP" commits, this command analyzes your <code>git diff</code> and logically groups modifications into cohesive units. It proposes a series of atomic, Conventional Commits (e.g., separating a feature update from a documentation tweak) for your approval.</li>
+</ul>
+<h3 id="release"><code>/release</code></h3>
+<p>Automates the deployment process.</p>
+<ul>
+<li><strong>How it works:</strong> Verifies workspace integrity (clean git tree, passing tests via <code>make</code>), analyzes commit history to propose the next version bump, drafts a <code>CHANGELOG.md</code> entry, and publishes the final tag to GitHub.</li>
+</ul>
+<h2 id="a-full-feature-development-walkthrough_1">🔄 A Full Feature Development Walkthrough</h2>
+<p>A complete, principled development cycle follows the <strong>Discovery -&gt; Plan -&gt; Execute</strong> lifecycle.</p>
+<h3 id="step-1-discovery-with-research-or-audit"><strong>Step 1: Discovery with <code>/research</code> or <code>/audit</code></strong></h3>
+<p>Before acting, you must gather context. For example, if you are integrating a new authentication library, you start by researching the technical requirements.</p>
+<ul>
+<li>Use <code>/research</code> to gather documentation and synthesize it into <code>.knowledge/notes/auth-library-deep-dive.md</code>.</li>
+<li>Use <code>/audit</code> to audit the codebase or existing documents.</li>
+</ul>
+<h3 id="step-2-strategy-with-plan"><strong>Step 2: Strategy with <code>/plan</code></strong></h3>
+<p>Once you understand the requirements, you trigger the <code>/plan</code> command.</p>
+<ul>
+<li>The <code>plan</code> agent analyzes the codebase and generates <code>.knowledge/plans/implement-auth.md</code>, mapping out the specific architectural changes and testing strategy.</li>
+</ul>
+<h3 id="step-3-execute-with-build"><strong>Step 3: Execute with <code>/build</code></strong></h3>
+<p>The approved plan is linked to a task. You trigger the execution:</p>
+<ul>
+<li><strong>Pre-flight:</strong> The agent verifies the tree is clean on <code>main</code>.</li>
+<li><strong>Isolation:</strong> A feature branch is created.</li>
+<li><strong>Loop (Red-Green-Verify):</strong>
+    The <code>/build</code> command breaks the plan into granular steps:<ol>
+<li>Write a failing test based on the step.</li>
+<li>Implement the minimal logic to pass.</li>
+<li>Verify with <code>make test</code>. If successful, commit the step.</li>
+<li>If it fails, revert the step and report the failure.</li>
+<li>The loop repeats for every granular step defined in the plan.</li>
+</ol>
+</li>
+</ul>
+<h3 id="step-4-review-integrate"><strong>Step 4: Review &amp; Integrate</strong></h3>
+<p>After all steps pass, the agent presents the final work. Upon your approval, it merges back to <code>main</code> and cleans up the feature branch.</p>
+<h3 id="step-5-document-release">Step 5: Document &amp; Release</h3>
+<p>Finally, update the technical documentation as needed and use <code>/release</code> to publish the new version.</p>
+<h2 id="walkthrough-solving-a-bug-with-debug">🔍 Walkthrough: Solving a Bug with <code>/debug</code></h2>
+<p>When a bug is detected, the <code>/debug</code> command ensures a scientific resolution:</p>
+<ol>
+<li><strong>Analyze Context:</strong> The agent gathers all relevant logs and context.
+...</li>
+<li><strong>Formulate Hypothesis:</strong> The agent proposes a root cause hypothesis (e.g., "The auth token is not being correctly passed to the header").</li>
+<li><strong>Isolate &amp; Test:</strong> The agent creates a temporary branch to implement a minimal reproduction script or logging.</li>
+<li><strong>RCA Synthesis:</strong> Once confirmed, the agent generates a <strong>Root Cause Analysis (RCA)</strong> report. This report is used as the basis for the subsequent <code>/build</code> to implement the fix.</li>
+</ol>
+<h2 id="maintaining-your-journal">✍️ Maintaining your Journal</h2>
+<p>The framework's most powerful feature is its automated audit trail. This is enforced by a <strong>timestamp-based pre-commit hook</strong> that ensures your code never gets ahead of your documentation.</p>
+<h3 id="the-rule-of-temporal-consistency">The Rule of Temporal Consistency</h3>
+<p>Every code change should be documented in <code>.knowledge/log/YYYY-MM-DD.yaml</code>. If you modify a file at 10:00 AM, you should have a journal entry with a timestamp of 10:00 AM or later before you can commit.</p>
+<h3 id="using-the-note-tool">Using the Note Tool</h3>
+<p>To simplify this, use the <code>/note</code> command:</p>
+<div class="highlight"><pre><span></span><code>opencode<span class="w"> </span>/note<span class="w"> </span><span class="s2">&quot;Brief description of your work&quot;</span>
+</code></pre></div>
+<p>This adds an entry to the daily journal with a precise timestamp.</p>
+<hr />
+<h2 id="the-content-creation-workflow">✍️ The Content Creation Workflow</h2>
+<p>Beyond code, this framework excels at generating high-quality technical content through a principled, multi-stage pipeline.</p>
+<h3 id="draft"><code>/draft</code></h3>
+<p>Your primary tool for long-form technical writing.</p>
+<ul>
+<li><strong>How it works:</strong> The <code>/draft</code> command follows a structured workflow: Context Gathering (from <code>.knowledge/notes/</code> or <code>.knowledge/plans/</code>), Title &amp; Metadata Selection, Outline Creation (aligned with the Style Guide), Initialization of the file, Section-by-Section Drafting, and finally, a Conclusion with next steps.</li>
+<li><strong>Why it works:</strong> It forces structural integrity and prevents the "AI-ish" monotone by building the document incrementally based on project-specific research.</li>
+</ul>
+<h3 id="fix"><code>/fix</code></h3>
+<p>Your tool for bug fixes with regression prevention.</p>
+<ul>
+<li><strong>How it works:</strong> Uses <code>/debug</code> to find root cause, then applies TCR discipline to implement the fix with a regression test.</li>
+<li><strong>Why it works:</strong> It separates investigation from implementation, ensuring fixes are grounded in understanding.</li>
+</ul>
+<hr />
+<hr />
+<p><em>This framework is not a "one-size-fits-all" solution; it is a starting point. Every command and subagent is a living document meant to be tweaked to suit your unique mental model.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
