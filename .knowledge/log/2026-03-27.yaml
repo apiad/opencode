@@ -1,4 +1,10 @@
 entries:
+  - timestamp: 2026-03-27T19:55:00Z
+    type: commit
+    message: "fix(microcli): remove trailing space in box-drawing"
+    files:
+      - .opencode/bin/microcli.py
+    issue: null
   - timestamp: 2026-03-27T19:50:00Z
     type: commit
     message: "chore(knowledge): add notes and plans"
