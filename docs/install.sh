@@ -92,16 +92,16 @@ select_mode() {
 
 install_copy() {
     info "Installing OpenCode Framework (copy mode)..."
-    
+
     temp_dir=$(mktemp -d)
     git clone --depth 1 "$REPO_URL" "$temp_dir/opencode-core"
     mv "$temp_dir/opencode-core" .opencode
     rm -rf "$temp_dir"
-    
+
     if [[ -d ".opencode/.git" ]]; then
         rm -rf ".opencode/.git"
     fi
-    
+
     success "Framework installed to .opencode/"
 }
 
@@ -119,30 +119,31 @@ create_directories() {
 
 main() {
     banner
-    
+
     check_git
     check_uv
     check_opencode
     check_not_installed
     check_git_clean
-    
+
     mode=$(select_mode)
-    
+
     echo ""
     case "$mode" in
         copy) install_copy ;;
         link) install_link ;;
     esac
-    
+
     create_directories
-    
+
     echo ""
     echo -e "${GREEN}════════════════════════════════════════════════════════${NC}"
     echo -e "${GREEN}  Installation complete!${NC}"
     echo -e "${GREEN}════════════════════════════════════════════════════════${NC}"
     echo ""
     echo -e "Next steps:"
-    echo -e "  ${CYAN}opencode /onboard${NC}  - Get started with your project"
+    echo -e "  ${CYAN}opencode /help${NC}    - Learn how to use this framework"
+    echo -e "  ${CYAN}opencode /onboard${NC} - Get started with your project"
     echo ""
     if [[ "$mode" == "link" ]]; then
         echo -e "To update framework later:"
