@@ -1,6 +1,6 @@
 # Development & Contribution
 
-The **Gemini CLI Opinionated Framework** enforces a high-discipline development lifecycle. Whether you are a human or an AI contributor, adherence to these standards is mandatory.
+The **OpenCode Framework** enforces a high-discipline development lifecycle. Whether you are a human or an AI contributor, adherence to these standards is mandatory.
 
 ## 🔄 The Mandatory Workflow Lifecycle
 
@@ -15,15 +15,14 @@ Every non-trivial change must follow this strict three-phase process:
 
 Before proposing a change, you must gather context and identify risks. Use the specialized discovery commands:
 - **`/research`**: For domain knowledge and external libraries.
-- **`/maintenance`**: To audit the codebase for technical debt.
+- **`/audit`**: To audit the codebase for technical debt and architecture issues.
 - **`/debug`**: To perform a root-cause analysis (RCA) on a bug.
-- **`/review`**: To audit a document's structure and prose.
 
-*Crucially, these commands are read-only; they produce artifacts (`research/`, `*.review.md`), not code changes.*
+*Crucially, these commands are read-only; they produce artifacts (`.knowledge/notes/`, `*.review.md`), not code changes.*
 
 ### 2. Strategic Planning (The Bridge)
 
-A feature or fix is not considered "active" until a persistent Markdown plan has been created in the `plans/` directory. Use the `/plan` command to synthesize the artifacts generated in Phase 1 into an actionable strategy, and synchronize it with `tasks.yaml`.
+A feature or fix is not considered "active" until a persistent Markdown plan has been created in the `.knowledge/plans/` directory. Use the `/plan` command to synthesize the artifacts generated in Phase 1 into an actionable strategy.
 
 ### 3. Execution & Validation (Side-Effects)
 
@@ -79,31 +78,6 @@ Failure to do this will block your commit or turn execution.
 - **Source of Truth:** The `makefile` is the central definition of project health. Even if it initially points to an empty `test` target, it serves as the hook point for the agent's automated validation.
 - **The TCR Mandate:** The primary mechanism for ensuring "Green-only" development is the mandatory **Test-Commit-Revert** loop. If a change fails its temporary verification, it is instantly reverted, ensuring the `main` branch remains a "known-good" state.
 
-## 🧠 Codifying Knowledge with Skills
-
-!!! warning "[PENDING IMPLEMENTATION]"
-    The `/learn` command for expanding the project's long-term memory is **not yet implemented**. This section describes the planned feature.
-
-The planned `/learn` command will be the primary tool for expanding the project's long-term memory. When mastering a new technology, follow this workflow:
-
-### 1. Grounded Learning Lifecycle
-The agent follows a 4-phase process: **Audit** (environment check), **Strategic Mapping** (learning objectives), **Execution** (real-world experimentation), and **Codification**.
-
-### 2. Mandatory Frontmatter (`SKILL.md`)
-
-The root `SKILL.md` file **must** include a YAML block at the top. This allows the framework to autonomously recognize and activate the skill in future sessions.
-
-```yaml
----
-name: <unique-identifier>
-description: <concise-summary-for-autonomous-activation>
----
-```
-
-### 3. Asset Management
-
-All successful experiment scripts and idiomatic examples generated during the `/learn` phase should be moved to the `assets/` subdirectory within the skill folder. These serve as verified reference points for future agent turns.
-
 ## 🌲 Git & Source Control
 
 ### 1. Clean Working Tree
@@ -127,7 +101,7 @@ When possible, provide a scope to the commit message (e.g., `feat(onboard): add 
 ## ✍️ Documentation Style
 
 - **Markdown:** All documentation and logs must be in GitHub-flavored Markdown.
-- **Kebab-case:** Use kebab-case for all filenames in the `docs/`, `plans/`, and `research/` directories.
+- **Kebab-case:** Use kebab-case for all filenames in the `docs/`, `.knowledge/plans/`, and `.knowledge/notes/` directories.
 - **Direct & Technical:** Documentation should be concise, high-signal, and technically rigorous.
 
 ---

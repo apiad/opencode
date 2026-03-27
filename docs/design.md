@@ -1,31 +1,28 @@
 # Architecture & Systems
 
-The **Gemini CLI Opinionated Framework** uses **OpenCode** as its agent orchestration layer. The core framework resides in the `.opencode/` directory.
+The **OpenCode Framework** uses **OpenCode** as its agent orchestration layer. The core framework resides in the `.opencode/` directory.
 
 ## 🏗️ The OpenCode Architecture
 
-### Primary Agents (`.opencode/agents/`)
+### Primary Agents (Modes)
 
 | Agent | Purpose |
 |-------|---------|
-| `plan` | Planning workflow - analyzes codebase, generates plans to `plans/` |
-| `build` | TCR coding workflow - manages tasks and delegates to builder |
-| `query` | Default agent for repo Q&A - invokes subagents as needed |
-| `research` | Research campaigns - parallel scout work with writer summaries |
-| `brainstorm` | Critical thinking and risk assessment |
-| `write` | Prose composition and refinement |
-| `review` | Multi-phase editorial review |
+| `analyze` | Research, investigation, and audits |
+| `plan` | Strategy and architectural design |
+| `build` | TCR implementation discipline |
+| `release` | Publishing and versioning |
 
-### Subagents (`.opencode/agents/subagents/`)
+### Subagents
 
 | Subagent | Purpose |
 |----------|---------|
-| `builder` | TCR grunt coding (test-driven implementation) |
-| `scout` | Web research (parallelizable) |
 | `investigator` | Codebase architectural analysis |
-| `writer` | Prose refinement |
-| `reviewer` | Editorial audits |
-| `debugger` | RCA investigation |
+| `scout` | Web research (parallelizable) |
+| `tester` | Hypothesis validation |
+| `drafter` | Content creation |
+| `critic` | Prose review |
+| `general` | General-purpose coding tasks | |
 
 ### Commands (`.opencode/commands/`)
 
@@ -34,31 +31,31 @@ Commands define structured, multi-phase workflows that automate the development 
 | Command | Phase | Description |
 |---------|-------|-------------|
 | `/research` | Discovery | Deep-dive exploration producing Markdown reports |
-| `/maintenance` | Discovery | Non-destructive codebase audit |
-| `/review` | Discovery | Multi-phase linguistic and structural audit |
+| `/audit` | Discovery | Codebase audit for tech debt and architecture |
 | `/debug` | Discovery | Scientific, hypothesis-driven forensic investigation |
-| `/brainstorm` | Discovery | Interactive critical-thinking sessions |
+| `/investigate` | Discovery | Root cause analysis |
 | `/plan` | Strategy | Mandatory bridge to execution plans |
-| `/task` | Execution | TCR loop and feature branch isolation |
-| `/draft` | Execution | Content transformation into finished documents |
-| `/document` | Execution | Documentation synchronization |
+| `/build` | Execution | TCR loop implementation |
+| `/fix` | Execution | Bug fix with regression prevention |
+| `/draft` | Execution | Content creation into finished documents |
 | `/onboard` | All | Project orientation for new developers |
 | `/scaffold` | All | Project initialization with modern tooling |
 | `/commit` | Shipping | Conventional commits with grouped changes |
 | `/release` | Shipping | Version bump, changelog, git tagging |
-| `/issues` | All | GitHub CLI integration |
+| `/todo` | All | Task management |
+| `/note` | All | Journal entry creation |
 
 ### The Unified Lifecycle Flow
 
 The framework enforces a strict architectural boundary between discovering what to do and actually doing it. Data flows unidirectionally:
 
-1. **Discovery:** `/research`, `/maintenance`, `/review`, `/debug` create read-only artifacts
-2. **Strategy:** `/plan` generates actionable roadmaps in `plans/`
-3. **Execution:** `/task` (code) or `/draft` (prose) perform actual work
+1. **Discovery:** `/research`, `/audit`, `/debug` create read-only artifacts in `.knowledge/notes/`
+2. **Strategy:** `/plan` generates actionable roadmaps in `.knowledge/plans/`
+3. **Execution:** `/build` (code) or `/draft` (prose) perform actual work
 
 ## 🔄 TCR (Test-Commit-Revert) Protocol
 
-The `/task work` command enforces a high-discipline development lifecycle through a strict TCR loop:
+The `/build` command enforces a high-discipline development lifecycle through a strict TCR loop:
 
 1. **Pre-flight Verification:** Ensures a clean `main` branch and passing tests.
 2. **Isolation:** All work occurs on an auto-generated, kebab-case feature branch.
@@ -68,29 +65,17 @@ The `/task work` command enforces a high-discipline development lifecycle throug
    - **Verify:** If the test fails, the agent is allowed **one quick fix**. If it fails again, the change is **automatically reverted** (`git checkout .`), preserving the last known stable state.
 4. **Integration:** Upon completion, the feature branch is merged, the roadmap is updated, and the branch is deleted.
 
-## 📝 Procedural Task Management
+## 📝 Task Management
 
-The `tasks.yaml` file is managed exclusively via the `task` tool:
+Tasks are managed via the `todowrite` tool within agent sessions:
 
-- **Single source of truth** for project roadmap
-- **State lifecycle:** `add` (Todo) → `start` (In Progress) → `archive` (Done)
-- **Never edit `tasks.yaml` by hand** — always use the task tool
-
-!!! warning "Migrating from TASKS.md"
-    If you have an existing `TASKS.md` file, instruct the model to migrate it:
-    ```
-    /task please migrate from @TASKS
-    ```
+- **Visible task list** for both user and agent
+- **State lifecycle:** pending → in_progress → completed
+- **Priority levels:** high, medium, low
 
 ### Usage
 
-```bash
-task list                    # Show all tasks
-task add --label "Feature X" --description "..."
-task start --task-id G.1
-task archive --task-id G.1
-task attach-plan --task-id G.1 --plan-path plans/my-plan.md
-```
+Use the `/todo` command or `todowrite` tool directly to manage tasks.
 
 ## 🔍 Scientific Debugging (`/debug`)
 
@@ -112,18 +97,21 @@ The framework uses a timestamp-based git hook to enforce journaling:
 ## 📁 Directory Structure
 
 ```
-.opencode/
+.opencode/            # Framework runtime (agents, commands, tools)
 ├── agents/          # Primary agent definitions
 │   └── subagents/  # Specialized subagents
 ├── commands/        # High-level commands
-├── tools/           # Utilities (TypeScript tools: task.ts, journal.ts, pre-commit.py)
-└── style-guide.md   # Prose style rules
+├── tools/           # Utilities (pre-commit.py, etc.)
+├── style-guide.md   # Prose style rules
+└── README.md        # Framework self-documentation
 
-plans/               # Saved execution plans
-journal/             # Daily journal entries (YYYY-MM-DD.yaml)
-research/           # Research artifacts
-drafts/             # Content drafts
-tasks.yaml          # Project roadmap (managed by task tool)
+.knowledge/
+├── plans/           # Saved execution plans
+├── notes/           # Research artifacts and analysis notes
+├── log/             # Daily journal entries (YYYY-MM-DD.yaml)
+└── drafts/          # Content drafts
+
+tasks.yaml           # Project roadmap (managed by task tool)
 ```
 
 ## ⚙️ Technology Stack

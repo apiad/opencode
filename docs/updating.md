@@ -37,7 +37,7 @@ cd .opencode && git fetch && git checkout vX.Y.Z
 Or use the installer to update the submodule:
 
 ```bash
-curl -fsSL https://apiad.github.io/opencode/install.sh | bash -s -- --mode=link --update
+curl -fsSL https://apiad.github.io/opencode/install.sh | bash -s -- --link --update
 ```
 
 ---
@@ -46,23 +46,21 @@ curl -fsSL https://apiad.github.io/opencode/install.sh | bash -s -- --mode=link 
 
 ### Copy → Link
 
-Run the installer with `--mode=link`:
-
+Run the installer with `--link`:
 ```bash
-curl -fsSL https://apiad.github.io/opencode/install.sh | bash -s -- --mode=link
+curl -fsSL https://apiad.github.io/opencode/install.sh | bash -s -- --link
 ```
 
-> **Warning:** This will convert your installation to a git submodule. The installer will prompt for confirmation.
+> **Note:** This will convert your installation to a git submodule.
 
 ### Link → Copy
 
-Run the installer with `--mode=copy`:
-
+Run the installer with `--copy`:
 ```bash
-curl -fsSL https://apiad.github.io/opencode/install.sh | bash -s -- --mode=copy
+curl -fsSL https://apiad.github.io/opencode/install.sh | bash -s -- --copy
 ```
 
-> **Warning:** This will remove the `.git/` directory from the framework, breaking the submodule connection. Your customizations will be preserved.
+> **Note:** This will remove the `.git/` directory from the framework, breaking the submodule connection. Your customizations will be preserved.
 
 ---
 
@@ -153,7 +151,7 @@ If your installation is corrupted:
 
 2. **Reinstall:**
    ```bash
-   curl -fsSL https://apiad.github.io/opencode/install.sh | bash -s -- --mode=copy
+   curl -fsSL https://apiad.github.io/opencode/install.sh | bash -s -- --copy
    ```
 
 3. **Restore your configurations** from backups (if available in `~/.opencode/`)

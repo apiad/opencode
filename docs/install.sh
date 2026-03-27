@@ -69,25 +69,23 @@ check_not_installed() {
     fi
 }
 
-select_mode() {
-    echo ""
-    echo -e "${BOLD}Select installation mode:${NC}"
-    echo ""
-    echo -e "  ${BOLD}[1]${NC} ${CYAN}Copy${NC}     - Download framework (no upstream updates)"
-    echo "                Self-contained, no external dependencies"
-    echo ""
-    echo -e "  ${BOLD}[2]${NC} ${CYAN}Link${NC}     - Add as git submodule (get upstream updates)"
-    echo "                Recommended for active development"
-    echo ""
-    echo -ne "Enter choice [1]: "
-    read -r choice
-    mode="${choice:-1}"
-
-    case "$mode" in
-        1) install_copy ;;
-        2) install_link ;;
-        *) install_copy ;;
-    esac
+parse_args() {
+    mode="copy"
+    for arg in "$@"; do
+        case "$arg" in
+            --link) mode="link" ;;
+            --help)
+                echo "Usage: $0 [--link]"
+                echo ""
+                echo "  --link    Add framework as git submodule (get upstream updates)"
+                echo "            Default: copy mode (self-contained)"
+                exit 0
+                ;;
+            *)
+                error "Unknown option: $arg. Use --help for usage."
+                ;;
+        esac
+    done
 }
 
 install_copy() {
@@ -119,6 +117,7 @@ create_directories() {
 
 main() {
     banner
+    parse_args "$@"
 
     check_git
     check_uv
@@ -126,7 +125,10 @@ main() {
     check_not_installed
     check_git_clean
 
-    select_mode
+    case "$mode" in
+        copy) install_copy ;;
+        link) install_link ;;
+    esac
 
     create_directories
 

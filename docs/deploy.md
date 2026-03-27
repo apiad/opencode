@@ -1,6 +1,6 @@
 # Installation & Setup
 
-Getting the **Gemini CLI Opinionated Framework** up and running is an automated, interactive process. Whether you're starting a new project or integrating into an existing one, the `install.sh` script is your primary tool.
+Getting the **OpenCode Framework** up and running is an automated, non-interactive process. Whether you're starting a new project or integrating into an existing one, the `install.sh` script is your primary tool.
 
 ## Installation Modes
 
@@ -73,13 +73,13 @@ To switch modes, run the installer with the desired mode:
 
 ```bash
 # Copy to Link
-curl -fsSL https://apiad.github.io/opencode/install.sh | bash -s -- --mode=link
+curl -fsSL https://apiad.github.io/opencode/install.sh | bash -s -- --link
 
 # Link to Copy
-curl -fsSL https://apiad.github.io/opencode/install.sh | bash -s -- --mode=copy
+curl -fsSL https://apiad.github.io/opencode/install.sh | bash -s -- --copy
 ```
 
-The installer will prompt for confirmation when switching modes.
+The installer runs non-interactively; use `--link` or `--copy` to specify the mode.
 
 ---
 
@@ -88,7 +88,7 @@ The installer will prompt for confirmation when switching modes.
 The fastest way to install or update the framework is to run the following command:
 
 ```bash
-curl -fsSL https://apiad.github.io/starter/install.sh | bash
+curl -fsSL https://apiad.github.io/opencode/install.sh | bash
 ```
 
 ### 1. New Project (Scaffolding)
@@ -97,7 +97,7 @@ Running `install.sh` in an empty directory will:
 
 - Initialize a fresh Git repository.
 - Extract the core `.opencode/` framework and configuration files.
-- Create the standard project structure (`journal/`, `plans/`, `research/`, `drafts/`).
+- Create the standard project structure (`.knowledge/log/`, `.knowledge/plans/`, `.knowledge/notes/`, `.knowledge/drafts/`).
 - Initialize baseline files (`README.md`, `CHANGELOG.md`, `tasks.yaml`, `makefile`).
 - Perform an initial "feat" commit.
 
@@ -111,7 +111,7 @@ If run inside an existing project, the script performs a **Surgical Update**:
     - `opencode.json`
     - `.opencode/style-guide.md`
 - **Confirm:** Presents a detailed summary of which files will be **created**, **updated**, or **protected** and waits for your approval.
-- **Integrate:** Adds missing directory structures (`journal/`, `plans/`, etc.) if they don't exist.
+- **Integrate:** Adds missing directory structures (`.knowledge/log/`, `.knowledge/plans/`, etc.) if they don't exist.
 - **Commit:** Automatically creates a descriptive `chore` commit marking the update.
 
 ## 🛠️ Prerequisites & Setup
@@ -119,7 +119,7 @@ If run inside an existing project, the script performs a **Surgical Update**:
 To ensure full functionality, your environment should have:
 
 - **Git:** Required for state management and change detection hooks.
-- **Node.js:** Necessary for running the `gemini` CLI.
+- **Node.js:** Necessary for running the `opencode` CLI.
 - **Python 3.12+:** Required for executing the project's automation scripts in `.opencode/tools/`.
 - **uv:** The required Python package and project manager.
 - **Make:** Used for project validation and health checks (runs `uv run pytest`).
@@ -143,20 +143,20 @@ Once the installation is complete, follow these steps to orient yourself:
 Execute the `/onboard` command to get a high-signal overview of the repository's architecture, standards, and current roadmap.
 
 ```bash
-gemini /onboard
+opencode /onboard
 ```
 
 ### 2. Initialize the Roadmap
 
-Check the current `tasks.yaml` file and use the `/task` command to define your project's initial goals.
+Check the current task list and use the `/todo` command to define your project's initial goals.
 
 ### 3. Start a New Feature
 
 For your first feature, follow the standard workflow:
 
-- **Research:** `gemini /research [topic]`
-- **Plan:** `gemini /plan` (follow the interactive prompts)
-- **Implement:** Begin coding once the plan is saved in `plans/`.
+- **Research:** `opencode /research [topic]`
+- **Plan:** `opencode /plan` (follow the interactive prompts)
+- **Implement:** Begin coding once the plan is saved in `.knowledge/plans/`.
 
 ---
 

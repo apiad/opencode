@@ -1,6 +1,6 @@
-# Gemini CLI Opinionated Framework
+# OpenCode Framework
 
-Welcome to the **Gemini CLI Opinionated Framework**, a cognitive partnership model designed to transform how you work with AI agents.
+Welcome to the **OpenCode Framework**, a cognitive partnership model designed to transform how you work with AI agents.
 
 This project is more than just a template; it is a structured environment that elevates the AI from a simple "code generator" or "copilot" to a **Senior Architect and Critical Thinking Partner**.
 
@@ -19,7 +19,7 @@ All significant work must be preceded or accompanied by a structured journal ent
 ### 3. Strategy-First (Discovery -> Plan -> Execute)
 
 Every non-trivial change follows a strict, non-negotiable lifecycle. 
-1. **Discovery & Audit:** The agent first researches the domain (`/research`), audits the codebase (`/maintenance`, `/review`), or investigates bugs (`/debug`) without modifying anything.
+1. **Discovery & Audit:** The agent first researches the domain (`/research`), audits the codebase (`/audit`), or investigates bugs (`/debug`) without modifying anything.
 2. **Strategy:** A detailed implementation plan is proposed (`/plan`) based on discovery artifacts and requires user approval.
 3. **Execution:** Only then does the agent begin writing code (`/task`) or content (`/draft`). This is enforced by the **TCR (Test-Commit-Revert)** protocol, ensuring a "Green-only" development path.
 
@@ -36,7 +36,7 @@ All development work is strictly performed on dedicated, auto-generated feature 
 The fastest way to bootstrap a new project or integrate the framework into an existing one is to run the following command in your terminal:
 
 ```bash
-curl -fsSL https://apiad.github.io/starter/install.sh | bash
+curl -fsSL https://apiad.github.io/opencode/install.sh | bash
 ```
 
 !!! success "Next Steps"
@@ -45,13 +45,10 @@ curl -fsSL https://apiad.github.io/starter/install.sh | bash
 ## 🛠️ Key Capabilities
 
 - **Deep Discovery:** Use `/research` for multi-phase domain investigations.
-- **Knowledge Mastering:** Use `/learn` to explore and codify new libraries or topics into permanent project skills.
-- **Semantic Tier Routing (The Tier Protocol):** Optimizes for intelligence, cost, and speed by mapping specialized agents (`planner`, `debugger`, `learner`, `reviewer`) to high-reasoning models.
-- **Automated Context Optimization:** Proactively minifies historical instructions to maintain high token efficiency during long, complex sessions.
 - **Architectural Planning:** Use `/plan` to generate persistent, actionable strategies.
 - **Forensic Debugging:** Use `/debug` for root-cause analysis without immediate (and potentially incorrect) fixes.
-- **Automated Documentation:** Use `/document` to keep the documentation synchronized with the evolving codebase.
-- **Procedural Roadmap Management:** Use `/task` and the `task` tool to maintain a structured, machine-managed project roadmap in `tasks.yaml`.
+- **Evidence-Based Audits:** Use `/audit` to identify technical debt and architecture issues.
+- **Procedural Roadmap Management:** Use `/todo` and the `todowrite` tool to maintain a structured project task list.
 
 ## 🔄 Project Lifecycle
 
