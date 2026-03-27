@@ -12,11 +12,13 @@ Usage:
   uv run note --title "My Note" [--slug my-note] [--tags "tag1,tag2"] < content.txt
   uv run note --title "My Note" --save < content.txt
 """
+import re
 import sys
 from datetime import datetime
 from pathlib import Path
 
 import typer
+import yaml
 
 app = typer.Typer(help="Create structured notes")
 NOTES_DIR = Path(".knowledge/notes")
@@ -24,7 +26,6 @@ NOTES_DIR = Path(".knowledge/notes")
 
 def slugify(title: str) -> str:
     """Convert title to URL-safe slug."""
-    import re
     return re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
 
 
@@ -32,18 +33,16 @@ def format_note(title: str, slug: str, tags: list[str], content: str) -> str:
     """Format note with YAML frontmatter."""
     date = datetime.now().strftime("%Y-%m-%d")
 
-    lines = ["---"]
-    lines.append(f'title: "{title}"')
-    lines.append(f"slug: {slug}")
-    lines.append(f"date: {date}")
-    lines.append("tags:")
-    for tag in tags:
-        lines.append(f"  - {tag}")
-    lines.append("---")
-    lines.append("")
-    lines.append(f"# {title}")
-    lines.append("")
-    lines.append(content)
+    frontmatter = {
+        "title": title,
+        "slug": slug,
+        "date": date,
+        "tags": tags,
+    }
+
+    yaml_header = yaml.dump(frontmatter, sort_keys=False, allow_unicode=True, default_flow_style=False)
+
+    lines = ["---", yaml_header.rstrip(), "---", "", f"# {title}", "", content]
 
     return "\n".join(lines)
 
