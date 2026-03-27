@@ -126,7 +126,7 @@ main() {
     check_not_installed
     check_git_clean
 
-    install_link
+    select_mode
 
     create_directories
 
