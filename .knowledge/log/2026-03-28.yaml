@@ -1,0 +1,9 @@
+entries:
+  - timestamp: 2026-03-28T10:00:00Z
+    type: release
+    version: 0.3.0
+    package: microcli-toolkit
+    changelog: |
+      - Add stdin[T] for complex JSON parsing from stdin
+      - Parse JSON to dict or Pydantic models
+      - Optional pydantic extra for model validation
