@@ -1,3 +1,6 @@
 [submodule ".opencode"]
 	path = .opencode
 	url = https://github.com/apiad/opencode-core.git
+[submodule "lib/microcli"]
+	path = lib/microcli
+	url = https://github.com/apiad/microcli.git
