@@ -1,4 +1,10 @@
 entries:
+  - timestamp: 2026-03-27T20:30:00Z
+    type: commit
+    message: "feat(microcli): add failure mode detection to --learn"
+    files:
+      - .opencode/bin/microcli.py
+    issue: null
   - timestamp: 2026-03-27T20:15:00Z
     type: commit
     message: "feat(microcli): add --learn for auto-discovered command tours"
