@@ -1,4 +1,10 @@
 entries:
+  - timestamp: 2026-03-27T21:00:00Z
+    type: commit
+    message: "feat(microcli): add happy paths to --learn"
+    files:
+      - .opencode/bin/microcli.py
+    issue: null
   - timestamp: 2026-03-27T20:50:00Z
     type: commit
     message: "refactor(microcli): show condition first in --learn output"
