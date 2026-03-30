@@ -3,7 +3,7 @@ id: literate-commands-plugin-mvp
 created: 2026-03-29
 modified: 2026-03-29
 type: plan
-status: draft
+status: in_progress
 phases:
   - name: Core Parsing & Step Execution
     done: false

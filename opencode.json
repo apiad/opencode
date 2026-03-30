@@ -1,6 +1,5 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "default_agent": "analyze",
-  "instructions": [".opencode/instructions.md"],
-  "plugin": [".experiments/literate-commands/literate-commands.ts"]
+  "instructions": [".opencode/instructions.md"]
 }
