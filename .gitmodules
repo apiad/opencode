@@ -4,3 +4,6 @@
 [submodule "lib/microcli"]
 	path = lib/microcli
 	url = https://github.com/apiad/microcli.git
+[submodule "lib/opencode-literate-commands"]
+	path = lib/opencode-literate-commands
+	url = https://github.com/apiad/opencode-literate-commands.git
