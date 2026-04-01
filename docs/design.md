@@ -9,7 +9,8 @@ The **OpenCode Framework** uses **OpenCode** as its agent orchestration layer. T
 | Agent | Purpose |
 |-------|---------|
 | `analyze` | Research, investigation, and audits |
-| `plan` | Strategy and architectural design |
+| `design` | Architecture and system design |
+| `plan` | Strategy and planning |
 | `build` | TCR implementation discipline |
 | `release` | Publishing and versioning |
 
@@ -22,7 +23,8 @@ The **OpenCode Framework** uses **OpenCode** as its agent orchestration layer. T
 | `tester` | Hypothesis validation |
 | `drafter` | Content creation |
 | `critic` | Prose review |
-| `general` | General-purpose coding tasks | |
+| `general` | General-purpose coding tasks |
+| `lit-commands` | Literate command processing |
 
 ### Commands (`.opencode/commands/`)
 
@@ -44,6 +46,7 @@ Commands define structured, multi-phase workflows that automate the development 
 | `/release` | Shipping | Version bump, changelog, git tagging |
 | `/todo` | All | Task management |
 | `/note` | All | Journal entry creation |
+| `/sandbox` | All | Docker sandbox setup and management |
 
 ### The Unified Lifecycle Flow
 
@@ -65,6 +68,66 @@ The `/build` command enforces a high-discipline development lifecycle through a 
    - **Verify:** If the test fails, the agent is allowed **one quick fix**. If it fails again, the change is **automatically reverted** (`git checkout .`), preserving the last known stable state.
 4. **Integration:** Upon completion, the feature branch is merged, the roadmap is updated, and the branch is deleted.
 
+## 📜 Literate Commands
+
+Literate Commands are Markdown files that define guided, multi-step workflows with embedded executable code blocks. They enable structured automation with variable collection, conditional logic, and automated script execution.
+
+### How It Works
+
+A literate command is a `.md` file with YAML frontmatter that defines:
+- **Variables:** Named inputs with types and prompts
+- **Conditions:** Branching logic based on variable values
+- **Steps:** Executable blocks with descriptions
+
+### Frontmatter Options
+
+```yaml
+---
+literate: true
+variables:
+  - name: project_name
+    type: string
+    prompt: "What is your project name?"
+  - name: use_docker
+    type: boolean
+    prompt: "Enable Docker support?"
+conditions:
+  use_docker:
+    true: include_docker
+    false: skip_docker
+---
+```
+
+### Phase Execution Model
+
+Literate commands execute in four phases:
+
+1. **Parse:** Read and validate the Markdown file, extract frontmatter
+2. **Substitute:** Collect variables from user, replace placeholders
+3. **Route:** Evaluate conditions, determine which steps to execute
+4. **Execute:** Run the selected steps in sequence
+
+### Example Structure
+
+```markdown
+---
+literate: true
+variables:
+  - name: feature
+    type: string
+    prompt: "Feature name?"
+---
+# Feature Implementation Workflow
+
+## Step 1: Create Branch
+
+Run: `git checkout -b feature/{{feature}}`
+
+## Step 2: Implement Feature
+
+{{implementation_steps}}
+```
+
 ## 📝 Task Management
 
 Tasks are managed via the `todowrite` tool within agent sessions:
@@ -85,6 +148,52 @@ The `/debug` command implements a principled approach to problem-solving:
 2. **Hypothesis Formulation:** Propose a specific root cause hypothesis.
 3. **Isolated Testing:** Create a temporary diagnostic branch (`debug/hyp-*`).
 4. **RCA Synthesis:** Generate a Root Cause Analysis report.
+
+## 🐳 Sandbox Plugin
+
+The Sandbox Plugin provides Docker-based isolation for tool execution. It ensures that potentially dangerous operations run in a controlled environment without affecting the host system.
+
+### How It Works
+
+When enabled, commands are executed inside a Docker container rather than directly on the host:
+
+1. **Setup:** The `/sandbox` command initializes a Docker image and volume mounts
+2. **Routing:** Mode-specific commands can be configured to run in sandbox
+3. **Execution:** Commands execute inside the container with limited permissions
+4. **Cleanup:** Container is removed after execution
+
+### Directory Structure
+
+```
+.opencode/
+├── sandbox/
+│   ├── sandbox.sh       # Sandbox management script
+│   ├── dockerfile       # Container definition
+│   └── dockerfile       # Alternative container definition
+└── plugins/
+    └── sandbox.js       # Sandbox plugin implementation
+```
+
+### Usage
+
+```bash
+# Setup the sandbox environment
+opencode /sandbox setup
+
+# Run commands in sandbox mode
+opencode --sandbox [command]
+
+# Teardown the sandbox
+opencode /sandbox teardown
+```
+
+### When to Use
+
+Use the sandbox for:
+- Running untrusted code
+- Testing potentially destructive operations
+- Isolated development environments
+- Reproducible build environments
 
 ## ⚓ Pre-Commit Validation
 

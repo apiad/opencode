@@ -73,6 +73,13 @@ Your tool for project initialization.
 
 - **How it works:** Scaffolds new components or entire projects using modern, standard tooling (TS, Python, Rust, etc.) and integrates the framework's standards and `makefile` from the start.
 
+### `/sandbox`
+
+Your tool for isolated execution environments.
+
+- **How it works:** Sets up a Docker-based sandbox for running commands in isolation. Useful for testing potentially destructive operations or running untrusted code.
+- **Why it works:** Provides safety guarantees by isolating execution from the host system.
+
 ### `/todo`
 
 Your task management tool.
@@ -81,14 +88,32 @@ Your task management tool.
 - **Why it works:** Keeps a structured task list visible to both user and agent, ensuring nothing falls through the cracks.
 
 ### `/commit`
-...
+
+Your tool for validation-aware commits with grouped changes.
+
+- **How it works:** Analyzes your `git diff` and logically groups modifications into cohesive units. Proposes a series of atomic, Conventional Commits for your approval.
+- **Workflow:**
+  1. **Validation:** Runs `make test` to ensure tests pass
+  2. **Staging:** Shows files to commit and asks for confirmation
+  3. **Commit:** Creates Conventional Commit with optional issue linking
+  4. **Logging:** Updates `.knowledge/log/{date}.yaml` with entry
+- **Why it works:** Ensures tests pass before commit, groups changes logically, and maintains audit trail
+
+### `/release`
+
+Automates the deployment process.
+
+- **How it works:** Verifies workspace integrity (clean git tree, passing tests via `make`), analyzes commit history to propose the next version bump, drafts a `CHANGELOG.md` entry, and publishes the final tag to GitHub.
+- **Why it works:** Automates the tedious release process while enforcing quality gates
+
 ## 🌲 Agent Architecture
 
 The framework uses **OpenCode** with specialized agents that handle different cognitive workloads:
 
 ### Primary Agents (Modes)
 - **`analyze`**: Research, investigation, and audits
-- **`plan`**: Strategy and architectural design
+- **`design`**: Architecture and system design
+- **`plan`**: Strategy and planning
 - **`build`**: Implementation with TCR discipline
 - **`release`**: Publishing and versioning
 
@@ -98,17 +123,8 @@ The framework uses **OpenCode** with specialized agents that handle different co
 - **`tester`**: Hypothesis validation
 - **`drafter`**: Content creation
 - **`critic`**: Prose review
-
-## 🔄 A Full Feature Development Walkthrough
-
-
-- **How it works:** Instead of monolithic "WIP" commits, this command analyzes your `git diff` and logically groups modifications into cohesive units. It proposes a series of atomic, Conventional Commits (e.g., separating a feature update from a documentation tweak) for your approval.
-
-### `/release`
-
-Automates the deployment process.
-
-- **How it works:** Verifies workspace integrity (clean git tree, passing tests via `make`), analyzes commit history to propose the next version bump, drafts a `CHANGELOG.md` entry, and publishes the final tag to GitHub.
+- **`general`**: General-purpose coding tasks
+- **`lit-commands`**: Literate command processing
 
 ## 🔄 A Full Feature Development Walkthrough
 

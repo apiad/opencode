@@ -123,6 +123,7 @@ To ensure full functionality, your environment should have:
 - **Python 3.12+:** Required for executing the project's automation scripts in `.opencode/tools/`.
 - **uv:** The required Python package and project manager.
 - **Make:** Used for project validation and health checks (runs `uv run pytest`).
+- **Docker:** Required for the sandbox plugin (optional for isolated execution).
 
 ### Installing Git Hooks
 

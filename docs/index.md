@@ -45,7 +45,9 @@ curl -fsSL https://apiad.github.io/opencode/install.sh | bash
 ## 🛠️ Key Capabilities
 
 - **Deep Discovery:** Use `/research` for multi-phase domain investigations.
-- **Architectural Planning:** Use `/plan` to generate persistent, actionable strategies.
+- **Architectural Design:** Use `/design` for architecture and system design work.
+- **Literate Commands:** Create guided, multi-step workflows with variables and conditional logic.
+- **Isolated Execution:** Run commands in sandboxed Docker environments for safety.
 - **Forensic Debugging:** Use `/debug` for root-cause analysis without immediate (and potentially incorrect) fixes.
 - **Evidence-Based Audits:** Use `/audit` to identify technical debt and architecture issues.
 - **Procedural Roadmap Management:** Use `/todo` and the `todowrite` tool to maintain a structured project task list.
