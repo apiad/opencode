@@ -1,10 +1,12 @@
-# Experiments Directory
+# Playground Directory
 
-This folder is used by subagents (tester, drafter) for temporary work.
+This folder is used for experimentation and temporary work.
 
 - **Never committed to git** — automatically ignored
 - **Never auto-purged** — user decides when to clean up
-- **Subagent-only writes** — parent agents never write here directly
+- **Analyze mode: read-write** — experiment freely here
+- **Design mode: read-only** — no experiments in design mode
+- **Create mode: read-write** — can experiment if needed
 
 ## Subfolders
 
@@ -13,9 +15,9 @@ This folder is used by subagents (tester, drafter) for temporary work.
 
 ## Cleanup
 
-To clean up experiment files:
+To clean up playground files:
 ```bash
-rm -rf .experiments/*
+rm -rf .playground/*
 ```
 
 Or keep them for reference — they do no harm.
