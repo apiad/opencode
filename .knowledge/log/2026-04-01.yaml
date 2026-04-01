@@ -1,0 +1,30 @@
+entries:
+  - timestamp: 2026-04-01T00:00:00Z
+    type: commit
+    message: "feat: update submodules with sandbox"
+    files:
+      - .opencode
+      - lib/opencode-literate-commands
+    summary: |
+      Updated submodules with:
+      - feat: add sandbox command (.opencode)
+      - fix: typo (opencode-literate-commands)
+  - timestamp: 2026-04-01T12:00:00Z
+    type: release
+    version: "2.0.0"
+    changelog: |
+      ## [2.0.0] - 2026-04-01
+      
+      ### Breaking Changes
+      - Literate Commands: Multi-step guided workflows
+      - Sandbox Plugin: Docker-based isolation
+      
+      ### Features
+      - Literate Commands skill for guided workflows
+      - Sandbox environment for isolated execution
+      - Enhanced agent architecture (analyze, design, build modes)
+      
+      ### Documentation
+      - Added AGENT.md documentation
+      - Updated command inventory
+      - Added sandbox command docs
