@@ -1,0 +1,11 @@
+entries:
+  - timestamp: 2026-04-01T00:00:00Z
+    type: commit
+    message: "feat: update submodules with sandbox"
+    files:
+      - .opencode
+      - lib/opencode-literate-commands
+    summary: |
+      Updated submodules with:
+      - feat: add sandbox command (.opencode)
+      - fix: typo (opencode-literate-commands)

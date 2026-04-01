@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2026-04-01
+
+### Breaking Changes
+- **Literate Commands:** Multi-step guided workflows with variable collection, conditional logic, and automated script execution
+- **Sandbox Plugin:** Docker-based isolation for tool execution with mode-specific command routing
+
+### Features
+- **Literate Commands:** Added skill for creating guided, multi-step workflows
+  - Variable collection with types
+  - Conditional logic support
+  - In-place array mutation for command abort
+  - Phase-based execution (parse → substitute → route → execute)
+- **Sandbox Environment:** Isolated execution context for commands
+- **Workflow Improvements:** Enhanced agent architecture with analyze, design, build modes
+
+### Documentation
+- Added AGENT.md documentation
+- Updated command inventory with literate-commands support
+- Added sandbox command documentation
+
 ## [1.1.0] - 2026-03-27
 
 ### Features
