@@ -63,3 +63,17 @@ entries:
       - Correct Mode/Skill/Command definitions (explicit vs implicit)
       - Add three-part Part IV (commands, security, context-aware execution)
       - Add domain intros for Software Development, Research, Technical Writing
+  - timestamp: 2026-04-01T17:00:00Z
+    type: commit
+    message: "docs: apply surgical edits to article draft"
+    files:
+      - .knowledge/drafts/the-anatomy-of-ai-agents-v2-draft.md
+    summary: |
+      Applied all surgical edits to the revised draft:
+      - Restructure Part I with context saturation thesis (E1-E5)
+      - Correct Mode definition (explicit, not implicit)
+      - Correct Skill definition (injected on demand)
+      - Clarify Command definition (user-injected prompts)
+      - Add taxonomy framing to Part II
+      - Add domain intros to Part III
+      - Expand Part IV with three ideas (commands, security, context-aware)
