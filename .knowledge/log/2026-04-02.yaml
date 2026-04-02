@@ -1,4 +1,12 @@
 entries:
+  - timestamp: 2026-04-02T13:00:00Z
+    type: commit
+    message: "fix(install): create .playground directory on setup"
+    files:
+      - docs/install.sh
+    summary: |
+      Added .playground/ directory creation and .gitignore to the install script,
+      ensuring subagent scratch space is ready after setup.
   - timestamp: 2026-04-02T00:00:00Z
     type: commit
     message: "docs(article): apply style review fixes to AI agents v2 draft"

@@ -112,6 +112,8 @@ install_link() {
 create_directories() {
     info "Creating .knowledge/ directories..."
     mkdir -p .knowledge/{notes,plans,log,drafts}
+    mkdir -p .playground
+    echo * > .playground/.gitignore
     success "Directories created"
 }
 
